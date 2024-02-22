@@ -34,16 +34,16 @@ namespace OrderAPI.Controllers
                 }
             };
         }
-        [Route("get")]
-        public List<Order> Get()
+        [HttpGet]
+        public IActionResult Get()
         {
-            return orders;
+            return Ok(orders);
         }
 
-        [Route("get/{id}")]
-        public Order? Get(int id)
+        [HttpGet("/{id}")]
+        public IActionResult Get(int id)
         {
-            return orders.Where(col=>col.Id == id).FirstOrDefault();
+            return Ok(orders.Where(col=>col.Id == id).FirstOrDefault());
         }
     }
 }
