@@ -1,0 +1,29 @@
+{
+  "Routes": [
+    {
+      "UseServiceDiscovery": true,
+      "ServiceName": "OrderAPI",
+      "LoadBalancer": "LeastConnection",
+      "DownstreamPathTemplate": "/api/order",
+      "DownstreamScheme": "https",
+      "UpstreamPathTemplate": "/order",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "UseServiceDiscovery": true,
+      "ServiceName": "InventoryAPI",
+      "LoadBalancer": "LeastConnection",
+      "DownstreamPathTemplate": "/api/inventory",
+      "DownstreamScheme": "https",
+      "UpstreamPathTemplate": "/inventory",
+      "UpstreamHttpMethod": [ "GET" ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "ServiceDiscoveryProvider": {
+      "Host": "localhost",
+      "Port": 8500,
+      "Type": "Consul"
+    }
+  }
+}

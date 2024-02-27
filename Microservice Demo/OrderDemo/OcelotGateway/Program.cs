@@ -8,9 +8,10 @@ builder.Host.ConfigureAppConfiguration((context, config) =>
     config.AddJsonFile($"ocelot.{context.HostingEnvironment.EnvironmentName}.json", true, true);
 });
 
-builder.Services.AddOcelot(builder.Configuration).AddConsul();
+builder.Services.AddOcelot().AddConsul();
 
 var app = builder.Build();
+app.UseRouting();
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapGet("/", async context =>
