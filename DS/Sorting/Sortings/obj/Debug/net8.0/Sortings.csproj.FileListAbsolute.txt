@@ -1,0 +1,15 @@
+/Users/sandeepsingh/Documents/Learning/DS/Sorting/Sortings/bin/Debug/net8.0/Sortings
+/Users/sandeepsingh/Documents/Learning/DS/Sorting/Sortings/bin/Debug/net8.0/Sortings.deps.json
+/Users/sandeepsingh/Documents/Learning/DS/Sorting/Sortings/bin/Debug/net8.0/Sortings.runtimeconfig.json
+/Users/sandeepsingh/Documents/Learning/DS/Sorting/Sortings/bin/Debug/net8.0/Sortings.dll
+/Users/sandeepsingh/Documents/Learning/DS/Sorting/Sortings/bin/Debug/net8.0/Sortings.pdb
+/Users/sandeepsingh/Documents/Learning/DS/Sorting/Sortings/obj/Debug/net8.0/Sortings.GeneratedMSBuildEditorConfig.editorconfig
+/Users/sandeepsingh/Documents/Learning/DS/Sorting/Sortings/obj/Debug/net8.0/Sortings.AssemblyInfoInputs.cache
+/Users/sandeepsingh/Documents/Learning/DS/Sorting/Sortings/obj/Debug/net8.0/Sortings.AssemblyInfo.cs
+/Users/sandeepsingh/Documents/Learning/DS/Sorting/Sortings/obj/Debug/net8.0/Sortings.csproj.CoreCompileInputs.cache
+/Users/sandeepsingh/Documents/Learning/DS/Sorting/Sortings/obj/Debug/net8.0/Sortings.sourcelink.json
+/Users/sandeepsingh/Documents/Learning/DS/Sorting/Sortings/obj/Debug/net8.0/Sortings.dll
+/Users/sandeepsingh/Documents/Learning/DS/Sorting/Sortings/obj/Debug/net8.0/refint/Sortings.dll
+/Users/sandeepsingh/Documents/Learning/DS/Sorting/Sortings/obj/Debug/net8.0/Sortings.pdb
+/Users/sandeepsingh/Documents/Learning/DS/Sorting/Sortings/obj/Debug/net8.0/Sortings.genruntimeconfig.cache
+/Users/sandeepsingh/Documents/Learning/DS/Sorting/Sortings/obj/Debug/net8.0/ref/Sortings.dll
