@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "MKP6WHAJiNjaPmg1acsAg8Dfxd0IcoFYjKByz2faVAE=",
+  "Source": "CustomerManagementService",
+  "BasePath": "_content/CustomerManagementService",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

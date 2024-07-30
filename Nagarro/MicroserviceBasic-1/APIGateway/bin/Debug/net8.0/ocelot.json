@@ -1,0 +1,25 @@
+{
+  "Routes": [
+    {
+      "UpstreamPathTemplate": "/customer-service/{everything}",
+      "DownstreamScheme": "http",
+      "ServiceName": "customer-service",
+      "DownstreamPathTemplate": "/api/customer/{everything}",
+      "UpstreamHttpMethod": [ "GET","PUT","POST","DELETE" ]
+    },
+    {
+      "UpstreamPathTemplate": "/account-service/{everything}",
+      "DownstreamScheme": "http",
+      "ServiceName": "account-service",
+      "DownstreamPathTemplate": "/api/account/{everything}",
+      "UpstreamHttpMethod": [ "GET","PUT","POST","DELETE" ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "ServiceDiscoveryProvider": {
+      "Host": "localhost",
+      "Port": 8500,
+      "Type": "Consul"
+    }
+  }
+}
