@@ -10,7 +10,7 @@ public class ConsulRegistrationService(IConsulClient consulClient, IConfiguratio
         var host =configuration.GetValue<string>("ServiceConfiguration:Host");
         var port =configuration.GetValue<string>("ServiceConfiguration:Port");
         _serviceId = $"{serviceName}-{Guid.NewGuid()}";
-        var tagList = new string[] { serviceName };
+        var tagList = new string[] { serviceName??"" };
         
         var register = new AgentServiceRegistration()
         {

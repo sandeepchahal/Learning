@@ -1,5 +1,5 @@
+using CustomerManagementService.Models;
 using Microsoft.AspNetCore.Mvc;
-using Models.CustomerModels;
 
 namespace CustomerManagementService.Controllers;
 

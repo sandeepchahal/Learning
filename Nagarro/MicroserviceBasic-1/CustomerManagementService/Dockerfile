@@ -1,23 +1,21 @@
-﻿FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-USER $APP_UID
-WORKDIR /app
-EXPOSE 8080
-EXPOSE 8081
-
+﻿# Use the .NET SDK image for the build stage
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["CustomerManagementService/CustomerManagementService.csproj", "CustomerManagementService/"]
-RUN dotnet restore "CustomerManagementService/CustomerManagementService.csproj"
+
+# Copy the .csproj file and restore dependencies
+COPY ["CustomerManagementService.csproj", "."]
+RUN dotnet restore "CustomerManagementService.csproj"
+
+# Copy the rest of the project files and build the project
 COPY . .
-WORKDIR "/src/CustomerManagementService"
-RUN dotnet build "CustomerManagementService.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build "CustomerManagementService.csproj" -c Release -o /app/build
 
+# Publish the application
 FROM build AS publish
-ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "CustomerManagementService.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "CustomerManagementService.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
-FROM base AS final
+# Use the .NET ASP.NET runtime image for the final stage
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "CustomerManagementService.dll"]

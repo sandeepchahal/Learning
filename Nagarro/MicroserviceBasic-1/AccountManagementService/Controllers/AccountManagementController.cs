@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using Models.AccountModels;
 using System.Text.Json;
+using AccountManagementService.Models;
 
 namespace AccountManagementService.Controllers;
 

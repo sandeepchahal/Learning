@@ -2122,16 +2122,6 @@
             "rid": "win"
           }
         }
-      },
-      "Models/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
-        "compile": {
-          "bin/placeholder/Models.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Models.dll": {}
-        }
       }
     }
   },
@@ -6251,11 +6241,6 @@
         "system.windows.extensions.nuspec",
         "useSharedDesignerContext.txt"
       ]
-    },
-    "Models/1.0.0": {
-      "type": "project",
-      "path": "../Models/Models.csproj",
-      "msbuildProject": "../Models/Models.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -6263,7 +6248,6 @@
       "Consul >= 1.7.14.4",
       "Microsoft.AspNetCore.OpenApi >= 8.0.5",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 8.0.3",
-      "Models >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.4.0"
     ]
   },
@@ -6291,11 +6275,7 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {
-            "/Users/sandeepsingh/Documents/Learning/Nagarro/MicroserviceBasic-1/Models/Models.csproj": {
-              "projectPath": "/Users/sandeepsingh/Documents/Learning/Nagarro/MicroserviceBasic-1/Models/Models.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {

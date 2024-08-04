@@ -1,4 +1,4 @@
-namespace Models.AccountModels;
+namespace AccountManagementService.Models;
 
 public class Account
 {

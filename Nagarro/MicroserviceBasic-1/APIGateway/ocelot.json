@@ -1,14 +1,14 @@
 {
   "Routes": [
     {
-      "UpstreamPathTemplate": "/customer-service/{everything}",
+      "UpstreamPathTemplate": "/customer/{everything}",
       "DownstreamScheme": "http",
-      "ServiceName": "customer-service",
+      "ServiceName": "Customer-Service",
       "DownstreamPathTemplate": "/api/customer/{everything}",
       "UpstreamHttpMethod": [ "GET","PUT","POST","DELETE" ]
     },
     {
-      "UpstreamPathTemplate": "/account-service/{everything}",
+      "UpstreamPathTemplate": "/account/{everything}",
       "DownstreamScheme": "http",
       "ServiceName": "account-service",
       "DownstreamPathTemplate": "/api/account/{everything}",

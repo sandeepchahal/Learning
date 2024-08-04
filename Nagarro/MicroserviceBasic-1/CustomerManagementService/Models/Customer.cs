@@ -1,4 +1,4 @@
-namespace Models.CustomerModels;
+namespace CustomerManagementService.Models;
 
 public class Customer
 {
