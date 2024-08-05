@@ -10,14 +10,14 @@
     {
       "UpstreamPathTemplate": "/account/{everything}",
       "DownstreamScheme": "http",
-      "ServiceName": "account-service",
+      "ServiceName": "Account-Service",
       "DownstreamPathTemplate": "/api/account/{everything}",
       "UpstreamHttpMethod": [ "GET","PUT","POST","DELETE" ]
     }
   ],
   "GlobalConfiguration": {
     "ServiceDiscoveryProvider": {
-      "Host": "localhost",
+      "Host": "consul",
       "Port": 8500,
       "Type": "Consul"
     }

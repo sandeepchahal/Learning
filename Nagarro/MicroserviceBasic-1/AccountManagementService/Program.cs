@@ -24,7 +24,7 @@ builder.Services.AddSingleton<IConsulClient>(_ => new ConsulClient(config =>
 
 builder.Services.AddHttpClient("CustomerService", client =>
 {
-    client.BaseAddress = new Uri("http://localhost:5079/customer/"); 
+    client.BaseAddress = new Uri("http://apigateway:8080/customer/"); 
 });
 
 var app = builder.Build();
@@ -37,4 +37,5 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.MapControllers();
+app.Urls.Add("http://0.0.0.0:5210");
 app.Run();

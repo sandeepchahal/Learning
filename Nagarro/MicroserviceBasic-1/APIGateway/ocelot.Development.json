@@ -4,20 +4,32 @@
       "UpstreamPathTemplate": "/customer/{everything}",
       "DownstreamScheme": "http",
       "ServiceName": "Customer-Service",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "customer_api",
+          "Port": 5180
+        }
+      ],
       "DownstreamPathTemplate": "/api/customer/{everything}",
       "UpstreamHttpMethod": [ "GET","PUT","POST","DELETE" ]
     },
     {
       "UpstreamPathTemplate": "/account/{everything}",
       "DownstreamScheme": "http",
-      "ServiceName": "account-service",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "account_api",
+          "Port": 5210
+        }
+      ],
+      "ServiceName": "Account-Service",
       "DownstreamPathTemplate": "/api/account/{everything}",
       "UpstreamHttpMethod": [ "GET","PUT","POST","DELETE" ]
     }
   ],
   "GlobalConfiguration": {
     "ServiceDiscoveryProvider": {
-      "Host": "localhost",
+      "Host": "consul",
       "Port": 8500,
       "Type": "Consul"
     }

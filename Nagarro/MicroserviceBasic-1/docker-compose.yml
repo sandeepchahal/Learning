@@ -1,0 +1,57 @@
+version: "3.8"
+
+services:
+  consul:
+    image: consul:1.14.0
+    container_name: consul
+    ports:
+      - "8500:8500"
+    command: "agent -dev -client 0.0.0.0"
+    networks:
+      - mynetwork
+
+  account_api:
+    image: sandeepchahal433/ms_basic_account:1.0
+    container_name: account_api
+    ports:
+      - "5001:5210" # Expose internal port 5210 on host port 5001
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConsulConfiguration__Host=http://consul:8500
+    depends_on:
+      - consul
+    networks:
+      - mynetwork
+
+  customer_api:
+    image: sandeepchahal433/ms_basic_customer:1.0
+    container_name: customer_api
+    ports:
+      - "5002:5180" # Expose internal port 5180 on host port 5002
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConsulConfiguration__Host=http://consul:8500
+    depends_on:
+      - consul
+    networks:
+      - mynetwork
+
+  apigateway:
+    image: sandeepchahal433/ms_basic_apigateway:1.0
+    container_name: apigateway
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConsulConfiguration__Host=http://consul:8500
+    depends_on:
+      - consul
+      - account_api
+      - customer_api
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge

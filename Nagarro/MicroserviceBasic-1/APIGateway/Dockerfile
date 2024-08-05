@@ -30,7 +30,7 @@ WORKDIR /app
 
 # Copy the published application and Ocelot configuration file
 COPY --from=publish /app/publish .
-COPY ocelot.json /app/
+COPY ocelot.Development.json /app/
 
 # Set the entry point for the application
 ENTRYPOINT ["dotnet", "APIGateway.dll"]
