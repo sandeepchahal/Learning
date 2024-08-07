@@ -1,0 +1,38 @@
+{
+  "Routes": [
+    {
+      "UpstreamPathTemplate": "/product/{everything}",
+      "DownstreamScheme": "http",
+      "ServiceName": "Product-Service",
+
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "product_api",
+          "Port": 5005
+        }
+      ],
+      "DownstreamPathTemplate": "/api/product/{everything}",
+      "UpstreamHttpMethod": [ "GET","PUT","POST","DELETE" ]
+    },
+    {
+      "UpstreamPathTemplate": "/product-detail/{everything}",
+      "DownstreamScheme": "http",
+      "ServiceName": "ProductDetail-Service",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "product_detail_api",
+          "Port": 5006
+        }
+      ],
+      "DownstreamPathTemplate": "/api/product/detail/{everything}",
+      "UpstreamHttpMethod": [ "GET","PUT","POST","DELETE" ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "ServiceDiscoveryProvider": {
+      "Host": "consul",
+      "Port": 8500,
+      "Type": "Consul"
+    }
+  }
+}

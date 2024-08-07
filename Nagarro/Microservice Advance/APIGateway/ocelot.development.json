@@ -1,0 +1,25 @@
+{
+  "Routes": [
+    {
+      "UpstreamPathTemplate": "/product/{everything}",
+      "DownstreamScheme": "http",
+      "ServiceName": "Product-Service",
+      "DownstreamPathTemplate": "/api/product/{everything}",
+      "UpstreamHttpMethod": [ "GET","PUT","POST","DELETE" ]
+    },
+    {
+      "UpstreamPathTemplate": "/product-detail/{everything}",
+      "DownstreamScheme": "http",
+      "ServiceName": "Product-Detail-Service",
+      "DownstreamPathTemplate": "/api/product/detail/{everything}",
+      "UpstreamHttpMethod": [ "GET","PUT","POST","DELETE" ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "ServiceDiscoveryProvider": {
+      "Host": "consul",
+      "Port": 8500,
+      "Type": "Consul"
+    }
+  }
+}

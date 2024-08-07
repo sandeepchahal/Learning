@@ -11,6 +11,7 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Customer Management API", Version = "v1" });
 });
+
 builder.Services.AddSingleton<IHostedService, ConsulRegistrationService>();
 var consulHost = builder.Configuration.GetValue<string>("ConsulConfiguration:Host");
 
@@ -21,6 +22,7 @@ builder.Services.AddSingleton<IConsulClient>(_ => new ConsulClient(config =>
 {
     config.Address = new Uri(consulHost);
 }));
+
 builder.Services.AddHttpClient("AccountService", client =>
 {
     client.BaseAddress = new Uri("http://apigateway:8080/account/"); 
