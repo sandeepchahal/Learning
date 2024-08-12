@@ -1,10 +1,11 @@
 using System.Configuration;
 using Consul;
+using JWTConfiguration;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi.Models;
 using ProductService;
 
 var builder = WebApplication.CreateBuilder(args);
-
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -34,6 +35,14 @@ builder.Services.AddHttpClient("ProductDetailServiceClient", (serviceProvider, c
     client.BaseAddress = new Uri(baseUrl);
 });
 
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = JwtConfigurationProvider.GetTokenValidationParameters();
+    });
+
+builder.Logging.AddConsole();
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -46,6 +55,11 @@ else
     app.Urls.Add("http://0.0.0.0:80"); 
 }
 
+// Add custom middleware to log requests
+app.UseMiddleware<RequestLoggingMiddleware>();
+
+app.UseAuthentication();
+app.UseAuthorization();
 app.UseHttpsRedirection();
 app.MapControllers();
 app.Run();

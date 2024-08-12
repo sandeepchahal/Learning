@@ -18,12 +18,12 @@ public class User
 
 public static class PredefinedUsers
 {
-    public static List<User> Users = new List<User>
-    {
+    public static readonly List<User> Users =
+    [
         new User(1, "admin", "admin123", "Admin"),
         new User(2, "user1", "user123", "User"),
         new User(3, "user2", "user234", "User")
-    };
+    ];
 }
 
 public class LoginModel

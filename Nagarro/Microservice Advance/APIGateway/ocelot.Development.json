@@ -14,10 +14,18 @@
       "DownstreamPathTemplate": "/api/product/detail/{everything}",
       "UpstreamHttpMethod": [ "GET","PUT","POST","DELETE" ]
     }
+    ,
+    {
+      "UpstreamPathTemplate": "/user/login",
+      "DownstreamScheme": "http",
+      "ServiceName": "User-Service",
+      "DownstreamPathTemplate": "/api/auth/login",
+      "UpstreamHttpMethod": [ "POST"]
+    }
   ],
   "GlobalConfiguration": {
     "ServiceDiscoveryProvider": {
-      "Host": "consul",
+      "Host": "localhost",
       "Port": 8500,
       "Type": "Consul"
     }

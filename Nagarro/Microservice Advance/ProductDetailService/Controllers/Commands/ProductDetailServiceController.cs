@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ProductDetailService.Models;
 
-namespace ProductDetailService.Controllers;
+namespace ProductDetailService.Controllers.Commands;
 
-[Route("api/product/detail")]
+[Route("api/admin/product/detail")]
+[Authorize(Roles = "Admin")]
 [ApiController]
 public class ProductDetailServiceController : ControllerBase
 {
@@ -19,8 +21,7 @@ public class ProductDetailServiceController : ControllerBase
 
             productDetail.ProductDetailId = ProductDetails.Count + 1;
             ProductDetails.Add(productDetail);
-            return CreatedAtAction(nameof(GetProductDetails), new { productId = productDetail.ProductId },
-                productDetail);
+            return StatusCode(StatusCodes.Status201Created, "New Product Detail is added successfully");
         }
         catch (Exception)
         {
@@ -70,25 +71,5 @@ public class ProductDetailServiceController : ControllerBase
                 "An error has occurred");
         }
     }
-
-
-    [HttpGet("get-all-by-product-id/{productId}")]
-    public IActionResult GetProductDetails(int productId)
-    {
-        try
-        {
-            var productDetails = ProductDetails.Where(pd => pd.ProductId == productId).ToList();
-            if (productDetails.Count == 0)
-            {
-                return NotFound();
-            }
-
-            return Ok(productDetails);
-        } 
-        catch (Exception)
-        {
-            return StatusCode(StatusCodes.Status500InternalServerError,
-                "An error has occurred");
-        }
-    }
+    
 }

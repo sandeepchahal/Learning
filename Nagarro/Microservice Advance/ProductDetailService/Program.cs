@@ -1,5 +1,7 @@
 using System.Configuration;
 using Consul;
+using JWTConfiguration;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi.Models;
 using ProductDetailService;
 
@@ -24,6 +26,15 @@ builder.Services.AddSingleton<IConsulClient>(_ => new ConsulClient(config =>
     config.Address = new Uri(consulHost);
 }));
 
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = JwtConfigurationProvider.GetTokenValidationParameters();
+    });
+
+
+builder.Logging.AddConsole();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -37,6 +48,9 @@ else
     app.Urls.Add("http://0.0.0.0:80"); 
 }
 
+app.UseMiddleware<RequestLoggingMiddleware>();
+app.UseAuthentication();
+app.UseAuthorization();
 app.UseHttpsRedirection();
 app.MapControllers();
 app.Run();

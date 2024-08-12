@@ -7,7 +7,7 @@ using UserService.Models;
 
 namespace UserService.Implementation;
 
-public class UserManageService(IConfiguration configuration):IUserManageService
+public class UserManageService:IUserManageService
 {
     private readonly List<User> _users = PredefinedUsers.Users;
 
@@ -28,11 +28,30 @@ public class UserManageService(IConfiguration configuration):IUserManageService
 
     private string GenerateJwtToken(User user)
     {
-        var key = configuration["Jwt:Key"];
-        if (key is null)
+        var jwtKey = Environment.GetEnvironmentVariable("JWT_KEY");
+        var jwtAud = Environment.GetEnvironmentVariable("JWT_AUDIENCE");
+        var jwtIssuer = Environment.GetEnvironmentVariable("JWT_ISSUER");
+
+        if (string.IsNullOrEmpty(jwtKey))
+        {
+            throw new InvalidOperationException("JWT_KEY environment variable is not set.");
+        }
+
+        if (string.IsNullOrEmpty(jwtAud))
+        {
+            throw new InvalidOperationException("JWT_AUDIENCE environment variable is not set.");
+ 
+        }
+        if (string.IsNullOrEmpty(jwtIssuer))
+        {
+            throw new InvalidOperationException("JWT_ISSUER environment variable is not set.");
+ 
+        }
+        
+        if (jwtKey is null)
             throw new ConfigurationErrorsException("JWT key not found ");
         
-        var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
+        var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey));
         var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
         var claims = new[]
@@ -43,8 +62,8 @@ public class UserManageService(IConfiguration configuration):IUserManageService
         };
 
         var token = new JwtSecurityToken(
-            issuer: configuration["Jwt:Issuer"],
-            audience: configuration["Jwt:Audience"],
+            issuer: jwtIssuer,
+            audience: jwtAud,
             claims: claims,
             expires: DateTime.Now.AddMinutes(15),
             signingCredentials: credentials);

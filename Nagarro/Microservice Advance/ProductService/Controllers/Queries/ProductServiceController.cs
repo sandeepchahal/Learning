@@ -1,9 +1,8 @@
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using ProductService.Models;
 
-namespace ProductService.Controllers;
+namespace ProductService.Controllers.Queries;
 
 [Route("api/product")]
 [ApiController]
@@ -11,54 +10,7 @@ public class ProductServiceController(IHttpClientFactory httpClientFactory) : Co
 {
     private readonly List<Product> _products = PredefinedProduct.Products;
     readonly HttpClient _client = httpClientFactory.CreateClient("ProductDetailServiceClient");
-
-    [HttpPost("add")]
-    [Authorize(Roles = "Admin")]
-    public IActionResult AddProduct([FromBody] Product product)
-    {
-        try
-        {
-            product.ProductId = _products.Count + 1;
-            _products.Add(product);
-            return CreatedAtAction(nameof(GetProduct), new { id = product.ProductId }, product);
-        }
-        catch (Exception)
-        {
-            return StatusCode(StatusCodes.Status500InternalServerError,
-                "An error has occurred");
-        }
-    }
-
-    [HttpDelete("delete/{id}")]
-    [Authorize(Roles = "Admin")]
-    public async Task<IActionResult> RemoveProduct(int id)
-    {
-        try
-        {
-            var product = _products.FirstOrDefault(p => p.ProductId == id);
-            if (product == null)
-            {
-                return NotFound();
-            }
-
-            // remove from product details as well
-            var response = await _client.GetAsync($"delete-by-product-id/{id}");
-            if (!response.IsSuccessStatusCode)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Unexpected error occurred while deleting the product");
-            }
-
-            _products.Remove(product);
-            return NoContent();
-        }
-        catch (Exception)
-        {
-            return StatusCode(StatusCodes.Status500InternalServerError,
-                "An error has occurred");
-        }
-    }
-
+    
     [HttpGet("get-all")]
     public IActionResult GetAllProducts()
     {

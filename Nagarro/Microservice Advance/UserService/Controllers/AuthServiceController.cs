@@ -13,7 +13,7 @@ public class AuthServiceController(IUserManageService userManageService) : Contr
     {
         var token = userManageService.Authenticate(model.Username, model.Password);
         if (token == null)
-            return Unauthorized();
+            return Unauthorized("User Name or Password is incorrect!");
 
         return Ok(new { Token = token });
     }

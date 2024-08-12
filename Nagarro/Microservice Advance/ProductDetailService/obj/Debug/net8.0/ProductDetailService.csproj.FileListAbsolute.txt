@@ -226,3 +226,13 @@
 /Users/sandeepsingh/Documents/Learning/Nagarro/Microservice Advance/ProductDetailService/obj/Debug/net8.0/ProductDetailService.genruntimeconfig.cache
 /Users/sandeepsingh/Documents/Learning/Nagarro/Microservice Advance/ProductDetailService/obj/Debug/net8.0/ref/ProductDetailService.dll
 /Users/sandeepsingh/Documents/Learning/Nagarro/Microservice Advance/ProductDetailService/bin/Debug/net8.0/Consul.dll
+/Users/sandeepsingh/Documents/Learning/Nagarro/Microservice Advance/ProductDetailService/bin/Debug/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/Users/sandeepsingh/Documents/Learning/Nagarro/Microservice Advance/ProductDetailService/bin/Debug/net8.0/Microsoft.IdentityModel.Abstractions.dll
+/Users/sandeepsingh/Documents/Learning/Nagarro/Microservice Advance/ProductDetailService/bin/Debug/net8.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/Users/sandeepsingh/Documents/Learning/Nagarro/Microservice Advance/ProductDetailService/bin/Debug/net8.0/Microsoft.IdentityModel.Logging.dll
+/Users/sandeepsingh/Documents/Learning/Nagarro/Microservice Advance/ProductDetailService/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.dll
+/Users/sandeepsingh/Documents/Learning/Nagarro/Microservice Advance/ProductDetailService/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/Users/sandeepsingh/Documents/Learning/Nagarro/Microservice Advance/ProductDetailService/bin/Debug/net8.0/Microsoft.IdentityModel.Tokens.dll
+/Users/sandeepsingh/Documents/Learning/Nagarro/Microservice Advance/ProductDetailService/bin/Debug/net8.0/System.IdentityModel.Tokens.Jwt.dll
+/Users/sandeepsingh/Documents/Learning/Nagarro/Microservice Advance/ProductDetailService/bin/Debug/net8.0/JWTConfiguration.dll
+/Users/sandeepsingh/Documents/Learning/Nagarro/Microservice Advance/ProductDetailService/bin/Debug/net8.0/JWTConfiguration.pdb
