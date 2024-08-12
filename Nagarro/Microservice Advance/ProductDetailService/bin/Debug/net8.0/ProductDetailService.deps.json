@@ -8,12 +8,25 @@
     ".NETCoreApp,Version=v8.0": {
       "ProductDetailService/1.0.0": {
         "dependencies": {
+          "Consul": "1.7.14.4",
           "Microsoft.AspNetCore.OpenApi": "8.0.5",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "8.0.3",
           "Swashbuckle.AspNetCore": "6.4.0"
         },
         "runtime": {
           "ProductDetailService.dll": {}
+        }
+      },
+      "Consul/1.7.14.4": {
+        "dependencies": {
+          "Microsoft.CSharp": "4.7.0",
+          "Newtonsoft.Json": "13.0.3"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Consul.dll": {
+            "assemblyVersion": "1.7.14.4",
+            "fileVersion": "1.7.14.4"
+          }
         }
       },
       "Humanizer/2.14.1": {
@@ -1029,6 +1042,7 @@
           }
         }
       },
+      "Microsoft.CSharp/4.7.0": {},
       "Microsoft.DiaSymReader/2.0.0": {
         "runtime": {
           "lib/netstandard2.0/Microsoft.DiaSymReader.dll": {
@@ -1541,6 +1555,13 @@
       "serviceable": false,
       "sha512": ""
     },
+    "Consul/1.7.14.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-0+vCXo9I0sSJJfFafBN1VGtu/Ya1Sw26fmmGDX3TdYZRq7ScXjZC8tvMIcrxNpxwyWN+e7sxn/aZ9XiZHS4LCw==",
+      "path": "consul/1.7.14.4",
+      "hashPath": "consul.1.7.14.4.nupkg.sha512"
+    },
     "Humanizer/2.14.1": {
       "type": "package",
       "serviceable": true,
@@ -2002,6 +2023,13 @@
       "sha512": "sha512-LXyV+MJKsKRu3FGJA3OmSk40OUIa/dQCFLOnm5X8MNcujx7hzGu8o+zjXlb/cy5xUdZK2UKYb9YaQ2E8m9QehQ==",
       "path": "microsoft.codeanalysis.workspaces.common/4.8.0",
       "hashPath": "microsoft.codeanalysis.workspaces.common.4.8.0.nupkg.sha512"
+    },
+    "Microsoft.CSharp/4.7.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-pTj+D3uJWyN3My70i2Hqo+OXixq3Os2D1nJ2x92FFo6sk8fYS1m1WLNTs0Dc1uPaViH0YvEEwvzddQ7y4rhXmA==",
+      "path": "microsoft.csharp/4.7.0",
+      "hashPath": "microsoft.csharp.4.7.0.nupkg.sha512"
     },
     "Microsoft.DiaSymReader/2.0.0": {
       "type": "package",

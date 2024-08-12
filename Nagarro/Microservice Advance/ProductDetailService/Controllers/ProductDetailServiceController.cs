@@ -7,7 +7,7 @@ namespace ProductDetailService.Controllers;
 [ApiController]
 public class ProductDetailServiceController : ControllerBase
 {
-    private static readonly List<ProductDetail> ProductDetails = new();
+    private static readonly List<ProductDetail> ProductDetails = PredefinedProductDetail.GetProductDetails.ToList();
 
     [HttpPost("add/{productId}")]
     public IActionResult AddProductDetail(int productId, [FromBody] ProductDetail productDetail)
@@ -55,7 +55,7 @@ public class ProductDetailServiceController : ControllerBase
     {
         try
         {
-            var productDetail = ProductDetails.FirstOrDefault(pd => pd.ProductDetailId == id);
+            var productDetail = ProductDetails.FirstOrDefault(pd => pd.ProductId == id);
             if (productDetail == null)
             {
                 return NotFound();

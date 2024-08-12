@@ -225,3 +225,4 @@
 /Users/sandeepsingh/Documents/Learning/Nagarro/Microservice Advance/ProductDetailService/obj/Debug/net8.0/ProductDetailService.pdb
 /Users/sandeepsingh/Documents/Learning/Nagarro/Microservice Advance/ProductDetailService/obj/Debug/net8.0/ProductDetailService.genruntimeconfig.cache
 /Users/sandeepsingh/Documents/Learning/Nagarro/Microservice Advance/ProductDetailService/obj/Debug/net8.0/ref/ProductDetailService.dll
+/Users/sandeepsingh/Documents/Learning/Nagarro/Microservice Advance/ProductDetailService/bin/Debug/net8.0/Consul.dll
