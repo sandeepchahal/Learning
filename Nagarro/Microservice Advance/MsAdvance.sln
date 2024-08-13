@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIGateway", "APIGateway\AP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JWTConfiguration", "JWTConfiguration\JWTConfiguration.csproj", "{9B5E2664-DA7D-46C6-BB46-30711EAF883F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notification", "Notification\Notification.csproj", "{43962AE3-9D70-401F-A1E0-DA4560D8D975}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,5 +62,9 @@ Global
 		{9B5E2664-DA7D-46C6-BB46-30711EAF883F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B5E2664-DA7D-46C6-BB46-30711EAF883F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B5E2664-DA7D-46C6-BB46-30711EAF883F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43962AE3-9D70-401F-A1E0-DA4560D8D975}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43962AE3-9D70-401F-A1E0-DA4560D8D975}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43962AE3-9D70-401F-A1E0-DA4560D8D975}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43962AE3-9D70-401F-A1E0-DA4560D8D975}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

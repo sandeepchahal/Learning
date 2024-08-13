@@ -57,7 +57,6 @@ else
 
 // Add custom middleware to log requests
 app.UseMiddleware<RequestLoggingMiddleware>();
-
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseHttpsRedirection();
