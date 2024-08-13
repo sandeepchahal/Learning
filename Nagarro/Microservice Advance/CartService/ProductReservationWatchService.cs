@@ -1,7 +1,7 @@
 using CartService.Implementation;
 namespace CartService;
 
-public class ProductReservationWatchService(ICartService cartService):BackgroundService
+public class ProductReservationWatchService(IServiceScopeFactory serviceScopeFactory):BackgroundService
 {
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
@@ -9,12 +9,15 @@ public class ProductReservationWatchService(ICartService cartService):Background
         {
             try
             {
+                using var scope = serviceScopeFactory.CreateScope();
+                var cartService = scope.ServiceProvider.GetRequiredService<ICartService>();
+
                 var result = cartService.GetAllItems();
                 foreach (var item in result)
                 {
                     if (DateTime.Now <= item.ExpirationTime) continue;
                     var (removed, message) =
-                        cartService.RemoveItem(item.UserId, item.ProductId, item.ProductDetailId);
+                        await cartService.RemoveItem(item.UserId, item.ProductId, item.ProductDetailId);
                     Console.WriteLine(
                         removed
                             ? $"Removed expired item: UserId={item.UserId}, ProductId={item.ProductId}, ProductDetailId={item.ProductDetailId}"

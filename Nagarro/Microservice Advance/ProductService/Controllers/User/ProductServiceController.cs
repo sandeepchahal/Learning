@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using ProductService.Models;
 
-namespace ProductService.Controllers.Queries;
+namespace ProductService.Controllers.User;
 
 [Route("api/product")]
 [ApiController]
@@ -52,42 +52,6 @@ public class ProductServiceController(IHttpClientFactory httpClientFactory) : Co
             return StatusCode(StatusCodes.Status500InternalServerError,
                 "An error has occurred");
         }
-    }
-
-    [HttpPost("reserve/{productId}/{quantity}")]
-    public IActionResult ReserveIfAvailable(int productId, int quantity)
-    {
-        try
-        {
-            var product = _products.FirstOrDefault(p => p.ProductId == productId);
-            if (product == null)
-            {
-                return NotFound();
-            }
-
-            if (product.Quantity > quantity)
-                return StatusCode(StatusCodes.Status400BadRequest,
-                    "Quantity cannot be raised more than available quantity");
-            product.Quantity -= quantity;
-            return StatusCode(StatusCodes.Status200OK, "Quantity is reserved successfully");
-        }
-        catch (Exception)
-        {
-            return StatusCode(StatusCodes.Status500InternalServerError,
-                "An error has occurred");
-        }
-    }
-
-    [HttpPost("update-quantity/{productId}/{quantity}")]
-    public IActionResult UpdateProductQuantity(int productId, int quantity)
-    {
-        var product = _products.FirstOrDefault(p => p.ProductId == productId);
-        if (product == null)
-        {
-            return NotFound();
-        }
-        product.Quantity += quantity;
-        return StatusCode(StatusCodes.Status200OK, "Quantity is updated successfully");
     }
 
     private async Task<List<ProductDetailDto>> GetProductDetailsAsync(int productId)

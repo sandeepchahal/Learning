@@ -33,8 +33,8 @@ public class CartServiceController(ICartService cartService):ControllerBase
         }
     }
 
-    [HttpPost("remove/{productId}/{productDetailId}")]
-    public IActionResult RemoveAnItem(int productId, int productDetailId)
+    [HttpDelete("remove/{productId}/{productDetailId}")]
+    public async Task<IActionResult> RemoveAnItem(int productId, int productDetailId)
     {
         try
         {
@@ -44,7 +44,7 @@ public class CartServiceController(ICartService cartService):ControllerBase
             if (!TryParse(user, out var userId))
                 return StatusCode(StatusCodes.Status500InternalServerError,
                     "An error has occurred");
-            var result = cartService.RemoveItem(userId, productId, productDetailId);
+            var result =await  cartService.RemoveItem(userId, productId, productDetailId);
             return result.Item1 ? StatusCode(StatusCodes.Status200OK, result.Item2) : BadRequest(result.Item2);
         }
         catch (Exception)
@@ -54,8 +54,8 @@ public class CartServiceController(ICartService cartService):ControllerBase
         }
     }
     
-    [HttpPost("add-quantity/{productId}/{productDetailId}/{quantity}")]
-    public IActionResult AddQuantity(int productId, int productDetailId, int quantity)
+    [HttpPut("add-quantity/{productId}/{productDetailId}/{quantity}")]
+    public async Task<IActionResult> AddQuantity(int productId, int productDetailId, int quantity)
     {
         try
         {
@@ -65,7 +65,7 @@ public class CartServiceController(ICartService cartService):ControllerBase
             if (!TryParse(user, out var userId))
                 return StatusCode(StatusCodes.Status500InternalServerError,
                     "An error has occurred");
-            var result = cartService.AddQuantity(userId, productId, productDetailId, quantity);
+            var result = await cartService.AddQuantity(userId, productId, productDetailId, quantity);
             return result.Item1 ? StatusCode(StatusCodes.Status200OK, result.Item2) : BadRequest(result.Item2);
         }
         catch (Exception)
@@ -75,8 +75,8 @@ public class CartServiceController(ICartService cartService):ControllerBase
         }
     }
     
-    [HttpPost("delete-quantity/{productId}/{productDetailId}/{quantity}")]
-    public IActionResult DeleteQuantity(int productId, int productDetailId, int quantity)
+    [HttpPut("delete-quantity/{productId}/{productDetailId}/{quantity}")]
+    public async Task<IActionResult> DeleteQuantity(int productId, int productDetailId, int quantity)
     {
         try
         {
@@ -86,7 +86,7 @@ public class CartServiceController(ICartService cartService):ControllerBase
             if (!TryParse(user, out var userId))
                 return StatusCode(StatusCodes.Status500InternalServerError,
                     "An error has occurred");
-            var result = cartService.DeleteQuantity(userId, productId, productDetailId, quantity);
+            var result = await cartService.DeleteQuantity(userId, productId, productDetailId, quantity);
             return result.Item1 ? StatusCode(StatusCodes.Status200OK, result.Item2) : BadRequest(result.Item2);
         }
         catch (Exception)

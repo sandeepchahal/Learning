@@ -1,44 +1,71 @@
+using System.Configuration;
+using CheckoutService;
+using CheckoutService.Coordinator;
+using CheckoutService.ServiceImplementations;
+using Consul;
+using JWTConfiguration;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.OpenApi.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Product Service", Version = "v1" });
+});
+
+var consulHost = builder.Configuration.GetValue<string>("ConsulConfiguration:Host");
+
+if (string.IsNullOrEmpty(consulHost))
+    throw new ConfigurationErrorsException($"Consul Configuration Host is not found in the configuration");
+
+builder.Services.AddSingleton<IConsulClient>(_ => new ConsulClient(config =>
+{
+    config.Address = new Uri(consulHost);
+}));
+
+builder.Services.AddHttpClient("ProductDetailServiceClient", (serviceProvider, client) =>
+{
+    var configuration = serviceProvider.GetRequiredService<IConfiguration>();
+    var baseUrl = configuration["Services:ProductDetail:BaseUrl"];
+    if (baseUrl is null)
+        throw new ConfigurationErrorsException("Base Url is not found");
+    client.BaseAddress = new Uri(baseUrl);
+});
+
+builder.Services.AddHttpClient("CartServiceClient", (serviceProvider, client) =>
+{
+    var configuration = serviceProvider.GetRequiredService<IConfiguration>();
+    var baseUrl = configuration["Services:Cart:BaseUrl"];
+    if (baseUrl is null)
+        throw new ConfigurationErrorsException("Base Url is not found");
+    client.BaseAddress = new Uri(baseUrl);
+});
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = JwtConfigurationProvider.GetTokenValidationParameters();
+    });
+builder.Services.AddAuthorization();
+builder.Services.AddSingleton<IHostedService, ConsulRegistrationService>();
+builder.Services.AddSingleton<IMessageService, MessageServiceAction>();
+builder.Services.AddScoped<ICheckOutCoordinator, CheckOutCoordinator>();
 
 var app = builder.Build();
-
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-app.UseHttpsRedirection();
-
-var summaries = new[]
+else
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-    {
-        var forecast = Enumerable.Range(1, 5).Select(index =>
-                new WeatherForecast
-                (
-                    DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                    Random.Shared.Next(-20, 55),
-                    summaries[Random.Shared.Next(summaries.Length)]
-                ))
-            .ToArray();
-        return forecast;
-    })
-    .WithName("GetWeatherForecast")
-    .WithOpenApi();
-
-app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    app.Urls.Add("http://0.0.0.0:80"); 
 }
+app.UseAuthentication();
+app.UseAuthorization();
+app.UseHttpsRedirection();
+app.MapControllers();
+app.Run();

@@ -5,10 +5,17 @@ public class Product
     public int ProductId { get; set; }
     public string Name { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;
-
     public int Quantity { get; set; }
 }
-
+// Product Details
+public class ProductDetailDto
+{
+    public int ProductDetailId { get; set; }
+    public int ProductId { get; set; }
+    public string Size { get; set; } = string.Empty;
+    public decimal Price { get; set; }
+    public string Design { get; set; } = string.Empty;
+}
 public static class PredefinedProduct
 {
     public static List<Product> Products =
@@ -37,13 +44,4 @@ public static class PredefinedProduct
             Quantity = 30
         }
     ];
-}
-// Product Details
-public class ProductDetailDto
-{
-    public int ProductDetailId { get; set; }
-    public int ProductId { get; set; }
-    public string Size { get; set; } = string.Empty;
-    public decimal Price { get; set; }
-    public string Design { get; set; } = string.Empty;
 }

@@ -70,7 +70,7 @@ public class CartServiceAction(IHttpClientFactory httpClientFactory):ICartServic
             return [];
         }
     }
-    public (bool,string?) RemoveItem(int userId,int productId, int productDetailId)
+    public async Task<(bool,string?)> RemoveItem(int userId,int productId, int productDetailId)
     {
         try
         {
@@ -80,8 +80,10 @@ public class CartServiceAction(IHttpClientFactory httpClientFactory):ICartServic
                 .Find(col => col.ProductId == productId 
                              && col.ProductDetailId == productDetailId);
             if (result == null) return (false,$"No items in the cart are available for product Id - {productId} ");
+            var productResponse = await TryUpdateProductQuantity(result.ProductId, result.Quantity);
+            if (!productResponse.Item1) return (false, productResponse.Item2);
             value.Remove(result);
-            return (true,$"item is removed from cart successfully");
+            return (true, $"item is removed from cart successfully");
 
         }
         catch (Exception)
@@ -90,7 +92,7 @@ public class CartServiceAction(IHttpClientFactory httpClientFactory):ICartServic
         }
     }
 
-    public (bool,string?) AddQuantity(int userId,int productId, int productDetailId, int quantity)
+    public async Task<(bool,string?)> AddQuantity(int userId,int productId, int productDetailId, int quantity)
     {
         try
         {
@@ -100,8 +102,10 @@ public class CartServiceAction(IHttpClientFactory httpClientFactory):ICartServic
                 .Find(col => col.ProductId == productId 
                              && col.ProductDetailId == productDetailId);
             if (result == null) return (false,$"No items in the cart are available for product Id - {productId} ");
+            var productResponse = await TryUpdateProductQuantity(result.ProductId, -quantity);
+            if (!productResponse.Item1) return (false, productResponse.Item2);
             result.Quantity += quantity;
-            return (true,$"item is updated successfully");
+            return (true, $"item is removed from cart successfully");
         }
         catch (Exception)
         {
@@ -109,7 +113,7 @@ public class CartServiceAction(IHttpClientFactory httpClientFactory):ICartServic
         }
     }
 
-    public (bool,string?) DeleteQuantity(int userId,int productId, int productDetailId, int quantity)
+    public async Task<(bool,string?)> DeleteQuantity(int userId,int productId, int productDetailId, int quantity)
     {
         try
         {
@@ -119,6 +123,8 @@ public class CartServiceAction(IHttpClientFactory httpClientFactory):ICartServic
                 .Find(col => col.ProductId == productId 
                              && col.ProductDetailId == productDetailId);
             if (result == null) return (false,$"No items in the cart are available for product Id - {productId} ");
+            var productResponse = await TryUpdateProductQuantity(result.ProductId, quantity);
+            if (!productResponse.Item1) return (false, productResponse.Item2);
             result.Quantity -= quantity;
             return (true,$"item is updated successfully");
         }
@@ -138,7 +144,21 @@ public class CartServiceAction(IHttpClientFactory httpClientFactory):ICartServic
         }
         catch (Exception)
         {
-            return (false, string.Empty);
+            return (false, "An error has occurred while processing the request");
+        }
+    }
+    
+    private async Task<(bool,string?)> TryUpdateProductQuantity(int productId, int quantity)
+    {
+        try
+        {
+            var response = await _client.GetAsync($"update-quantity/{productId}/{quantity}");
+            var responseResult = await response.Content.ReadAsStringAsync();
+            return (response.IsSuccessStatusCode, responseResult);
+        }
+        catch (Exception)
+        {
+            return (false, "An error has occurred while processing the request");
         }
     }
 }

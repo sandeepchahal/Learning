@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ProductService.Models;
 
-namespace ProductService.Controllers.Commands;
+namespace ProductService.Controllers.Admin;
 
 [Authorize(Roles = "Admin")]
 [Route("api/admin/product")]

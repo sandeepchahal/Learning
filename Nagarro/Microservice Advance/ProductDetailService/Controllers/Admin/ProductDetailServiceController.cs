@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ProductDetailService.Models;
 
-namespace ProductDetailService.Controllers.Commands;
+namespace ProductDetailService.Controllers.Admin;
 
 [Route("api/admin/product/detail")]
 [Authorize(Roles = "Admin")]
