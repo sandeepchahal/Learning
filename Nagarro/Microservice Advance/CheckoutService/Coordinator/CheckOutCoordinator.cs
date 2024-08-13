@@ -6,6 +6,7 @@ namespace CheckoutService.Coordinator;
 
 public class CheckOutCoordinator(IHttpClientFactory httpClientFactory,IMessageService messageService):ICheckOutCoordinator
 {
+    private static int _order = 0;
     private readonly HttpClient _productDetailClient = httpClientFactory.CreateClient("ProductDetailServiceClient");
     private readonly HttpClient _cartClient = httpClientFactory.CreateClient("CartServiceClient");
     
@@ -23,6 +24,7 @@ public class CheckOutCoordinator(IHttpClientFactory httpClientFactory,IMessageSe
                 await CompensateQuantity(item);
                 return false;
             }
+            SendNotification(cartItems, OrderStatus.Created);
             return true;
         }
         catch (Exception e)
@@ -63,7 +65,6 @@ public class CheckOutCoordinator(IHttpClientFactory httpClientFactory,IMessageSe
             await CompensateQuantity(item);
             return false;
         }
-        SendNotification(item);
         return true;
     }
     private async Task<bool> CompensatePayment(CartItem item)
@@ -92,11 +93,17 @@ public class CheckOutCoordinator(IHttpClientFactory httpClientFactory,IMessageSe
     
     #region  notificaton
 
-    private void SendNotification(CartItem item)
+    private void SendNotification(IEnumerable<CartItem> item, OrderStatus orderStatus)
     {
         try
         {
-            messageService.PublishMessage(OrderStatus.Created,item);
+            var orderNotification = new OrderNotification()
+            {
+                OrderId = _order+1,
+                Status = orderStatus,
+                Products = item.ToList()
+            };
+            messageService.PublishMessage(OrderStatus.Created,orderNotification);
         }
         catch (Exception)
         {

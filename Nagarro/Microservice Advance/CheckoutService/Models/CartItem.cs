@@ -1,3 +1,5 @@
+using CheckoutService.Enums;
+
 namespace CheckoutService.Models;
 
 public class CartItem
@@ -10,4 +12,11 @@ public class CartItem
 public class CheckOutRequestItem
 {
     public List<CartItem> CartItems { get; set; } = [];
+}
+
+public class OrderNotification
+{
+    public int OrderId { get; set; }
+    public OrderStatus Status { get; set; }
+    public List<CartItem> Products { get; set; }
 }
