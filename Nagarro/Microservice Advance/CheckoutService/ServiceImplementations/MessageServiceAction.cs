@@ -7,13 +7,14 @@ public class MessageServiceAction:IMessageService
 {
     private readonly IModel _model;
 
-    public MessageServiceAction(IConfiguration configuration)
+    public MessageServiceAction()
     {
+        var host = Environment.GetEnvironmentVariable("RABBITMQ_HOST");
         var factory = new ConnectionFactory
         {
-            HostName = configuration["RabbitMQ:HostName"],
-            UserName = configuration["RabbitMQ:UserName"],
-            Password = configuration["RabbitMQ:Password"]
+            HostName = Environment.GetEnvironmentVariable("RABBITMQ_HOST")??"localhost",
+            UserName = Environment.GetEnvironmentVariable("RABBITMQ_USERNAME")??"guest",
+            Password = Environment.GetEnvironmentVariable("RABBITMQ_PASSWORD")??"guest"
         };
 
          var connection = factory.CreateConnection();

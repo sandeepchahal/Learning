@@ -10,7 +10,7 @@ public class CartItem
 }
 public class CheckOutRequestItem
 {
-    public List<CartItem> CartItems { get; }
+    public List<CartItem> CartItems { get; set; }
 }
 
 

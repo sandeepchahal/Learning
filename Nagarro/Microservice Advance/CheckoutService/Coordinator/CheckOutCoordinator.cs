@@ -49,7 +49,7 @@ public class CheckOutCoordinator(IHttpClientFactory httpClientFactory,IMessageSe
     {
         var productInfo = new ProductQuantityContext() { ProductDetailId = item.ProductDetailId,
             Quantity = item.Quantity };
-        var response = await _productDetailClient.PostAsJsonAsync("update-quantity", productInfo);
+        var response = await _productDetailClient.PutAsJsonAsync("update-quantity", productInfo);
         return response.IsSuccessStatusCode; 
     }
     #endregion
@@ -75,7 +75,8 @@ public class CheckOutCoordinator(IHttpClientFactory httpClientFactory,IMessageSe
     #region Cart
     private async Task<bool> RemoveFromCart(CartItem item)
     {
-        var response = await _cartClient.DeleteAsync($"remove/{item.ProductId}/{item.ProductDetailId}");
+        var removeCartUrl = $"remove/{item.ProductId}/{item.ProductDetailId}";
+        var response = await _cartClient.DeleteAsync(removeCartUrl);
         return response.IsSuccessStatusCode;
 
     }
