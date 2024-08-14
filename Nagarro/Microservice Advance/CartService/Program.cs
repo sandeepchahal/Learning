@@ -21,10 +21,10 @@ builder.Services.AddSingleton<IConsulClient>(_ => new ConsulClient(config =>
     config.Address = new Uri(consulHost);
 }));
 
-builder.Services.AddHttpClient("ProductServiceClient", (serviceProvider, client) =>
+builder.Services.AddHttpClient("ProductDetailServiceClient", (serviceProvider, client) =>
 {
     var configuration = serviceProvider.GetRequiredService<IConfiguration>();
-    var baseUrl = configuration["Services:Product:BaseUrl"];
+    var baseUrl = configuration["Services:ProductDetail:BaseUrl"];
     if (baseUrl is null)
         throw new ConfigurationErrorsException("Base Url is not found");
     client.BaseAddress = new Uri(baseUrl);

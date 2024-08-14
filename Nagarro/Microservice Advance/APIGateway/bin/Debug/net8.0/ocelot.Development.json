@@ -1,6 +1,13 @@
 {
   "Routes": [
     {
+      "UpstreamPathTemplate": "/user/login",
+      "DownstreamScheme": "http",
+      "ServiceName": "User-Service",
+      "DownstreamPathTemplate": "/api/auth/login",
+      "UpstreamHttpMethod": [ "POST"]
+    },
+    {
       "UpstreamPathTemplate": "/product/{everything}",
       "DownstreamScheme": "http",
       "ServiceName": "Product-Service",
@@ -13,15 +20,22 @@
       "ServiceName": "Product-Detail-Service",
       "DownstreamPathTemplate": "/api/product/detail/{everything}",
       "UpstreamHttpMethod": [ "GET","PUT","POST","DELETE" ]
-    }
-    ,
+    },
     {
-      "UpstreamPathTemplate": "/user/login",
+      "UpstreamPathTemplate": "/cart/{everything}",
       "DownstreamScheme": "http",
-      "ServiceName": "User-Service",
-      "DownstreamPathTemplate": "/api/auth/login",
-      "UpstreamHttpMethod": [ "POST"]
+      "ServiceName": "Cart-Service",
+      "DownstreamPathTemplate": "/api/cart/{everything}",
+      "UpstreamHttpMethod": [ "GET","PUT","POST","DELETE" ]
+    },
+    {
+      "UpstreamPathTemplate": "/checkout/process",
+      "DownstreamScheme": "http",
+      "ServiceName": "CheckOut-Service",
+      "DownstreamPathTemplate": "/api/checkout/process",
+      "UpstreamHttpMethod": ["POST" ]
     }
+    
   ],
   "GlobalConfiguration": {
     "ServiceDiscoveryProvider": {

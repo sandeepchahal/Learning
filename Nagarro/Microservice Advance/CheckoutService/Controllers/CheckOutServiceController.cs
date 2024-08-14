@@ -24,8 +24,9 @@ public class CheckOutServiceController(ICheckOutCoordinator checkOutCoordinator)
                 return StatusCode(StatusCodes.Status500InternalServerError,
                     "An error has occurred");
             
-            var result = await checkOutCoordinator.ExecuteCheckOut(checkOutRequest.CartItems);
-            return !result? StatusCode(StatusCodes.Status400BadRequest, "An error has occurred while processing the request"):
+            var result = await checkOutCoordinator.ExecuteCheckOut(userId, checkOutRequest.CartItems);
+            return !result? 
+                StatusCode(StatusCodes.Status400BadRequest, "An error has occurred while processing the request"):
                 Ok("Order is placed successfully");
         }
         catch (Exception)

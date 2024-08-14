@@ -13,8 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CartService", "CartService\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckoutService", "CheckoutService\CheckoutService.csproj", "{BEA966C2-A1F5-4216-B3A0-81DBAB1C70C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationService", "NotificationService\NotificationService.csproj", "{DD2B780F-E828-4F4B-9968-8C42D470B2B4}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIGateway", "APIGateway\APIGateway.csproj", "{1C83C6D1-4CA9-4F9B-A070-AA779B1FFF93}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JWTConfiguration", "JWTConfiguration\JWTConfiguration.csproj", "{9B5E2664-DA7D-46C6-BB46-30711EAF883F}"
@@ -50,10 +48,6 @@ Global
 		{BEA966C2-A1F5-4216-B3A0-81DBAB1C70C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BEA966C2-A1F5-4216-B3A0-81DBAB1C70C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BEA966C2-A1F5-4216-B3A0-81DBAB1C70C3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DD2B780F-E828-4F4B-9968-8C42D470B2B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DD2B780F-E828-4F4B-9968-8C42D470B2B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DD2B780F-E828-4F4B-9968-8C42D470B2B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DD2B780F-E828-4F4B-9968-8C42D470B2B4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1C83C6D1-4CA9-4F9B-A070-AA779B1FFF93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1C83C6D1-4CA9-4F9B-A070-AA779B1FFF93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C83C6D1-4CA9-4F9B-A070-AA779B1FFF93}.Release|Any CPU.ActiveCfg = Release|Any CPU

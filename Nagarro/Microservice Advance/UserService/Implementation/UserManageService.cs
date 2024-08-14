@@ -65,7 +65,7 @@ public class UserManageService:IUserManageService
             issuer: jwtIssuer,
             audience: jwtAud,
             claims: claims,
-            expires: DateTime.Now.AddMinutes(15),
+            expires: DateTime.Now.AddMinutes(60),
             signingCredentials: credentials);
 
         return new JwtSecurityTokenHandler().WriteToken(token);

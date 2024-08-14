@@ -53,7 +53,7 @@ public class ProductDetailServiceController : ControllerBase
                 return NotFound();
             }
 
-            if (product.Quantity > productQuantityContext.Quantity)
+            if (product.Quantity < productQuantityContext.Quantity)
                 return StatusCode(StatusCodes.Status400BadRequest,
                     "Request cannot be processed. Quantity cannot be more than available quantity");
             product.Quantity -= productQuantityContext.Quantity;
@@ -66,7 +66,7 @@ public class ProductDetailServiceController : ControllerBase
         }
     }
 
-    [HttpPost("update-quantity")]
+    [HttpPut("update-quantity")]
     public IActionResult UpdateProductQuantity(ProductQuantityContext productQuantityContext)
     {
         var product = ProductDetails.FirstOrDefault(p => p.ProductDetailId == productQuantityContext.ProductDetailId);

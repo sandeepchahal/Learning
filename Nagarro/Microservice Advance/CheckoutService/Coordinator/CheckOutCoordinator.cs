@@ -10,7 +10,7 @@ public class CheckOutCoordinator(IHttpClientFactory httpClientFactory,IMessageSe
     private readonly HttpClient _productDetailClient = httpClientFactory.CreateClient("ProductDetailServiceClient");
     private readonly HttpClient _cartClient = httpClientFactory.CreateClient("CartServiceClient");
     
-    public async Task<bool> ExecuteCheckOut(IEnumerable<CartItem> cartItems)
+    public async Task<bool> ExecuteCheckOut(int userId, IEnumerable<CartItem> cartItems)
     {
         // step -1 deducted the quantity from product
         // step -2 mock payment and send notification 
@@ -24,7 +24,7 @@ public class CheckOutCoordinator(IHttpClientFactory httpClientFactory,IMessageSe
                 await CompensateQuantity(item);
                 return false;
             }
-            SendNotification(cartItems, OrderStatus.Created);
+            SendNotification(cartItems, OrderStatus.Created, userId);
             return true;
         }
         catch (Exception e)
@@ -59,13 +59,10 @@ public class CheckOutCoordinator(IHttpClientFactory httpClientFactory,IMessageSe
     private async Task<bool> ProcessPayment(CartItem item)
     {
         await Task.Delay(10000);
-        if (!await RemoveFromCart(item))
-        {
-            await CompensatePayment(item);
-            await CompensateQuantity(item);
-            return false;
-        }
-        return true;
+        if (await RemoveFromCart(item)) return true;
+        await CompensatePayment(item);
+        await CompensateQuantity(item);
+        return false;
     }
     private async Task<bool> CompensatePayment(CartItem item)
     {
@@ -93,12 +90,13 @@ public class CheckOutCoordinator(IHttpClientFactory httpClientFactory,IMessageSe
     
     #region  notificaton
 
-    private void SendNotification(IEnumerable<CartItem> item, OrderStatus orderStatus)
+    private void SendNotification(IEnumerable<CartItem> item, OrderStatus orderStatus, int userId)
     {
         try
         {
             var orderNotification = new OrderNotification()
             {
+                UserId = userId,
                 OrderId = _order+1,
                 Status = orderStatus,
                 Products = item.ToList()

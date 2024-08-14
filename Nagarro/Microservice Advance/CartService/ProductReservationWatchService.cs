@@ -13,15 +13,19 @@ public class ProductReservationWatchService(IServiceScopeFactory serviceScopeFac
                 var cartService = scope.ServiceProvider.GetRequiredService<ICartService>();
 
                 var result = cartService.GetAllItems();
-                foreach (var item in result)
+
+                foreach (var dict in result)
                 {
-                    if (DateTime.Now <= item.ExpirationTime) continue;
-                    var (removed, message) =
-                        await cartService.RemoveItem(item.UserId, item.ProductId, item.ProductDetailId);
-                    Console.WriteLine(
-                        removed
-                            ? $"Removed expired item: UserId={item.UserId}, ProductId={item.ProductId}, ProductDetailId={item.ProductDetailId}"
-                            : $"Failed to remove expired item: UserId={item.UserId}, ProductId={item.ProductId}, ProductDetailId={item.ProductDetailId}. Reason: {message}");
+                    foreach (var item in dict.Value)
+                    {
+                        if (DateTime.Now <= item.ExpirationTime) continue;
+                        var (removed, message) =
+                            await cartService.RemoveItem(dict.Key, item.ProductId, item.ProductDetailId);
+                        Console.WriteLine(
+                            removed
+                                ? $"Removed expired item: UserId={dict.Key}, ProductId={item.ProductId}, ProductDetailId={item.ProductDetailId}"
+                                : $"Failed to remove expired item: UserId={dict.Key}, ProductId={item.ProductId}, ProductDetailId={item.ProductDetailId}. Reason: {message}");
+                    }
                 }
             }
             catch (Exception ex)

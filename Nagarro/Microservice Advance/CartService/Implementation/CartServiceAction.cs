@@ -4,14 +4,16 @@ namespace CartService.Implementation;
 
 public class CartServiceAction(IHttpClientFactory httpClientFactory):ICartService
 {
-    private readonly Dictionary<int, List<CartReservation>> _productReservation = new();
-    private readonly HttpClient _client = httpClientFactory.CreateClient("ProductServiceClient");
+    private static Dictionary<int, List<CartReservation>> _productReservation = new();
+    private readonly HttpClient _client = httpClientFactory.CreateClient("ProductDetailServiceClient");
     
-    public async Task<(bool,string?)> AddToCart(int userId, ProductReservation productReservation)
+    public async Task<(bool,string?)> AddToCart(int userId, ProductReservationDTO productReservation)
     {
         try
         {
-            var result = await TryReserveProductIfAvailable(productReservation.ProductId, productReservation.Quantity);
+            var result = await TryReserveProductIfAvailable(productReservation.ProductDetailId,
+                productReservation.Quantity);
+            
             if (!result.Item1)
                 return result;
 
@@ -19,17 +21,16 @@ public class CartServiceAction(IHttpClientFactory httpClientFactory):ICartServic
             {
                 ProductId = productReservation.ProductId,
                 Quantity = productReservation.Quantity,
-                UserId = userId,
                 ProductDetailId = productReservation.ProductDetailId
             };
-            if (!_productReservation.ContainsKey(productReservation.UserId))
+            if (!_productReservation.ContainsKey(userId))
             {
-                _productReservation[productReservation.UserId] = [cart];
+                _productReservation[userId] = [cart];
 
             }
             else
             {
-                _productReservation[productReservation.UserId].Add(cart);
+                _productReservation[userId].Add(cart);
             }
 
             return (true, "Item(s) is added to the cart");
@@ -53,17 +54,11 @@ public class CartServiceAction(IHttpClientFactory httpClientFactory):ICartServic
         }
     }
 
-    public List<CartReservation> GetAllItems()
+    public Dictionary<int, List<CartReservation>>  GetAllItems()
     {
         try
         {
-            var result = new List<CartReservation>();
-
-            foreach (var item in _productReservation)
-            {
-                result.AddRange(item.Value);
-            }
-            return result;
+            return _productReservation;
         }
         catch (Exception)
         {
@@ -80,8 +75,8 @@ public class CartServiceAction(IHttpClientFactory httpClientFactory):ICartServic
                 .Find(col => col.ProductId == productId 
                              && col.ProductDetailId == productDetailId);
             if (result == null) return (false,$"No items in the cart are available for product Id - {productId} ");
-            var productResponse = await TryUpdateProductQuantity(result.ProductId, result.Quantity);
-            if (!productResponse.Item1) return (false, productResponse.Item2);
+            var productDetailResponse = await TryUpdateProductQuantity(result.ProductDetailId, result.Quantity);
+            if (!productDetailResponse.Item1) return (false, productDetailResponse.Item2);
             value.Remove(result);
             return (true, $"item is removed from cart successfully");
 
@@ -134,11 +129,13 @@ public class CartServiceAction(IHttpClientFactory httpClientFactory):ICartServic
         }
     }
 
-    private async Task<(bool,string?)> TryReserveProductIfAvailable(int productId, int quantity)
+    private async Task<(bool,string?)> TryReserveProductIfAvailable(int productDetailId, int quantity)
     {
         try
         {
-            var response = await _client.GetAsync($"reserve/{productId}/{quantity}");
+            ProductDetailContext productDetailContext =
+                new() { ProductDetailId = productDetailId, Quantity = quantity };
+            var response = await _client.PostAsJsonAsync($"reserve",productDetailContext);
             var responseResult = await response.Content.ReadAsStringAsync();
             return (response.IsSuccessStatusCode, responseResult);
         }
@@ -148,11 +145,13 @@ public class CartServiceAction(IHttpClientFactory httpClientFactory):ICartServic
         }
     }
     
-    private async Task<(bool,string?)> TryUpdateProductQuantity(int productId, int quantity)
+    private async Task<(bool,string?)> TryUpdateProductQuantity(int productDetailId, int quantity)
     {
         try
         {
-            var response = await _client.GetAsync($"update-quantity/{productId}/{quantity}");
+            ProductDetailContext productDetailContext =
+                new() { ProductDetailId = productDetailId, Quantity = quantity };
+            var response = await _client.PutAsJsonAsync($"update-quantity", productDetailContext);
             var responseResult = await response.Content.ReadAsStringAsync();
             return (response.IsSuccessStatusCode, responseResult);
         }

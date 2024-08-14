@@ -13,7 +13,7 @@ namespace CartService.Controllers.Commands;
 public class CartServiceController(ICartService cartService):ControllerBase
 {
     [HttpPost("add")]
-    public async Task<IActionResult> AddToCart(ProductReservation productReservation)
+    public async Task<IActionResult> AddToCart(ProductReservationDTO productReservation)
     {
         try
         {
