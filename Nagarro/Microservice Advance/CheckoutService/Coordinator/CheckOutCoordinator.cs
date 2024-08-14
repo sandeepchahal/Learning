@@ -1,3 +1,4 @@
+using System.Net.Http.Headers;
 using CheckoutService.Enums;
 using CheckoutService.Models;
 using CheckoutService.ServiceImplementations;
@@ -9,8 +10,8 @@ public class CheckOutCoordinator(IHttpClientFactory httpClientFactory,IMessageSe
     private static int _order = 0;
     private readonly HttpClient _productDetailClient = httpClientFactory.CreateClient("ProductDetailServiceClient");
     private readonly HttpClient _cartClient = httpClientFactory.CreateClient("CartServiceClient");
-    
-    public async Task<bool> ExecuteCheckOut(int userId, IEnumerable<CartItem> cartItems)
+    private string authToken;
+    public async Task<bool> ExecuteCheckOut(int userId, string authorizationToken, IEnumerable<CartItem> cartItems)
     {
         // step -1 deducted the quantity from product
         // step -2 mock payment and send notification 
@@ -18,6 +19,7 @@ public class CheckOutCoordinator(IHttpClientFactory httpClientFactory,IMessageSe
         // step -4 send notification order created or failed
         try
         {
+            authToken = authorizationToken;
             foreach (var item in cartItems)
             {
                 if (await ReserveProduct(item)) continue;
@@ -75,6 +77,7 @@ public class CheckOutCoordinator(IHttpClientFactory httpClientFactory,IMessageSe
     #region Cart
     private async Task<bool> RemoveFromCart(CartItem item)
     {
+        _cartClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",authToken[7..]);
         var removeCartUrl = $"remove/{item.ProductId}/{item.ProductDetailId}";
         var response = await _cartClient.DeleteAsync(removeCartUrl);
         return response.IsSuccessStatusCode;
@@ -110,4 +113,5 @@ public class CheckOutCoordinator(IHttpClientFactory httpClientFactory,IMessageSe
         }
     }
     #endregion
+    
 }

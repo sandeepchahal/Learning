@@ -18,9 +18,9 @@ public class MessageBroker : IHostedService
     {
         var factory = new ConnectionFactory()
         {
-            HostName = Environment.GetEnvironmentVariable("RABBITMQ_HOST"),//"localhost",
-            UserName = Environment.GetEnvironmentVariable("RABBITMQ_USERNAME"),// guest,
-            Password = Environment.GetEnvironmentVariable("RABBITMQ_PASSWORD") //"guest"
+            HostName = Environment.GetEnvironmentVariable("RABBITMQ_HOST")??"localhost",
+            UserName = Environment.GetEnvironmentVariable("RABBITMQ_USERNAME")??"guest",
+            Password = Environment.GetEnvironmentVariable("RABBITMQ_PASSWORD")??"guest"
         };
 
         _connection = factory.CreateConnection();
@@ -46,6 +46,7 @@ public class MessageBroker : IHostedService
         {
             var body = ea.Body.ToArray();
             var message = Encoding.UTF8.GetString(body);
+            Console.WriteLine(message);
             var orderNotification = JsonConvert.DeserializeObject<OrderNotification>(message);
             if (orderNotification != null)
                 ProcessOrderNotification(orderNotification);

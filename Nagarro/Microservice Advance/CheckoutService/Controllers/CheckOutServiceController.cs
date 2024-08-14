@@ -17,6 +17,10 @@ public class CheckOutServiceController(ICheckOutCoordinator checkOutCoordinator)
     {
         try
         {
+            var token = HttpContext.Request.Headers.Authorization;
+            if (string.IsNullOrEmpty(token))
+                return BadRequest("Auth token is not found in the header");
+            
             var user = User.FindFirstValue(claimType: ClaimTypes.NameIdentifier);
             if (string.IsNullOrEmpty(user))
                 return Unauthorized("Session is timed out. Please login again.");
@@ -24,7 +28,7 @@ public class CheckOutServiceController(ICheckOutCoordinator checkOutCoordinator)
                 return StatusCode(StatusCodes.Status500InternalServerError,
                     "An error has occurred");
             
-            var result = await checkOutCoordinator.ExecuteCheckOut(userId, checkOutRequest.CartItems);
+            var result = await checkOutCoordinator.ExecuteCheckOut(userId,token,  checkOutRequest.CartItems);
             return !result? 
                 StatusCode(StatusCodes.Status400BadRequest, "An error has occurred while processing the request"):
                 Ok("Order is placed successfully");
