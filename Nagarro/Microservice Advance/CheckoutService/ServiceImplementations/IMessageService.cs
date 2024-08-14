@@ -4,5 +4,7 @@ namespace CheckoutService.ServiceImplementations;
 
 public interface IMessageService
 {
-    void PublishMessage(OrderStatus orderStatus, object message);
+    void PublishSuccessMessage(object message);
+    void PublishFailedMessage(object message);
+
 }

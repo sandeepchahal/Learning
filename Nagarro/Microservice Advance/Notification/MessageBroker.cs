@@ -28,9 +28,8 @@ public class MessageBroker : IHostedService
         _model.ExchangeDeclare(ExchangeName, "topic", false, false, null);
         _model.QueueDeclare(QueueName, false, false, false, null);
         _model.QueueDeclare(FailureQueueName, false, false, false, null);
-        _model.QueueBind(QueueName, ExchangeName, nameof(OrderStatus.Completed), null);
-        _model.QueueBind(QueueName, ExchangeName, nameof(OrderStatus.Created), null);
-        _model.QueueBind(FailureQueueName, ExchangeName, nameof(OrderStatus.Failed), null);
+        _model.QueueBind(QueueName, ExchangeName, "order.created", null);
+        _model.QueueBind(FailureQueueName, ExchangeName, "order.failed", null);
     }
 
     public async Task StartAsync(CancellationToken cancellationToken)
@@ -46,7 +45,6 @@ public class MessageBroker : IHostedService
         {
             var body = ea.Body.ToArray();
             var message = Encoding.UTF8.GetString(body);
-            Console.WriteLine(message);
             var orderNotification = JsonConvert.DeserializeObject<OrderNotification>(message);
             if (orderNotification != null)
                 ProcessOrderNotification(orderNotification);
@@ -64,7 +62,6 @@ public class MessageBroker : IHostedService
         {
             var body = ea.Body.ToArray();
             var message = Encoding.UTF8.GetString(body);
-            Console.WriteLine("An error has occurred while processing the request");
             Console.WriteLine($"Error: - {message}");
         };
 

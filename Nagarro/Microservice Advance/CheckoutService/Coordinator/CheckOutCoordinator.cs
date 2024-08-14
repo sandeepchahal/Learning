@@ -1,5 +1,4 @@
 using System.Net.Http.Headers;
-using CheckoutService.Enums;
 using CheckoutService.Models;
 using CheckoutService.ServiceImplementations;
 
@@ -7,7 +6,6 @@ namespace CheckoutService.Coordinator;
 
 public class CheckOutCoordinator(IHttpClientFactory httpClientFactory,IMessageService messageService):ICheckOutCoordinator
 {
-    private static int _order = 0;
     private readonly HttpClient _productDetailClient = httpClientFactory.CreateClient("ProductDetailServiceClient");
     private readonly HttpClient _cartClient = httpClientFactory.CreateClient("CartServiceClient");
     private string authToken;
@@ -26,7 +24,6 @@ public class CheckOutCoordinator(IHttpClientFactory httpClientFactory,IMessageSe
                 await CompensateQuantity(item);
                 return false;
             }
-            SendNotification(cartItems, OrderStatus.Created, userId);
             return true;
         }
         catch (Exception e)
@@ -92,26 +89,5 @@ public class CheckOutCoordinator(IHttpClientFactory httpClientFactory,IMessageSe
 
     #endregion
     
-    #region  notificaton
-
-    private void SendNotification(IEnumerable<CartItem> item, OrderStatus orderStatus, int userId)
-    {
-        try
-        {
-            var orderNotification = new OrderNotification()
-            {
-                UserId = userId,
-                OrderId = _order+1,
-                Status = orderStatus,
-                Products = item.ToList()
-            };
-            messageService.PublishMessage(OrderStatus.Created,orderNotification);
-        }
-        catch (Exception)
-        {
-            // log the error
-        }
-    }
-    #endregion
     
 }
