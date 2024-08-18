@@ -43,21 +43,47 @@ public class ProductDetailServiceController : ControllerBase
     }
     
     [HttpPost("reserve")]
-    public IActionResult ReserveIfAvailable([FromBody] ProductQuantityContext productQuantityContext)
+    public IActionResult ReserveProduct([FromBody] ProductQuantityContext productQuantityContext)
     {
         try
         {
             var product = ProductDetails.FirstOrDefault(p =>  p.ProductDetailId == productQuantityContext.ProductDetailId);
             if (product == null)
             {
-                return NotFound();
+                return NotFound($"Product Details not found for the id - {productQuantityContext.ProductDetailId}");
             }
-
             if (product.Quantity < productQuantityContext.Quantity)
                 return StatusCode(StatusCodes.Status400BadRequest,
                     "Request cannot be processed. Quantity cannot be more than available quantity");
             product.Quantity -= productQuantityContext.Quantity;
             return StatusCode(StatusCodes.Status200OK, "Quantity is reserved successfully");
+        }
+        catch (Exception)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError,
+                "An error has occurred");
+        }
+    }
+    [HttpPost("check-quantity")]
+    public IActionResult CheckQuantity([FromBody] ProductQuantityContext productQuantityContext)
+    {
+        try
+        {
+            var product = ProductDetails.FirstOrDefault(p =>  p.ProductDetailId == productQuantityContext.ProductDetailId);
+            if (product == null)
+            {
+                return NotFound($"Product Details not found for the id - {productQuantityContext.ProductDetailId}");
+            }
+
+            if (product.Quantity == 0)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest,
+                    "Item is out of stock");
+            }
+            if (product.Quantity < productQuantityContext.Quantity)
+                return StatusCode(StatusCodes.Status400BadRequest,
+                    "Request cannot be processed. Quantity cannot be more than available quantity");
+            return StatusCode(StatusCodes.Status200OK, "Quantity is available");
         }
         catch (Exception)
         {

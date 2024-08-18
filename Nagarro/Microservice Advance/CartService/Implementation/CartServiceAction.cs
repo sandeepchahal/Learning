@@ -11,7 +11,7 @@ public class CartServiceAction(IHttpClientFactory httpClientFactory):ICartServic
     {
         try
         {
-            var result = await TryReserveProductIfAvailable(productReservation.ProductDetailId,
+            var result = await IsQuantityAvailable(productReservation.ProductDetailId,
                 productReservation.Quantity);
             
             if (!result.Item1)
@@ -129,13 +129,13 @@ public class CartServiceAction(IHttpClientFactory httpClientFactory):ICartServic
         }
     }
 
-    private async Task<(bool,string?)> TryReserveProductIfAvailable(int productDetailId, int quantity)
+    private async Task<(bool,string?)> IsQuantityAvailable(int productDetailId, int quantity)
     {
         try
         {
             ProductDetailContext productDetailContext =
                 new() { ProductDetailId = productDetailId, Quantity = quantity };
-            var response = await _client.PostAsJsonAsync($"reserve",productDetailContext);
+            var response = await _client.PostAsJsonAsync($"check-quantity",productDetailContext);
             var responseResult = await response.Content.ReadAsStringAsync();
             return (response.IsSuccessStatusCode, responseResult);
         }

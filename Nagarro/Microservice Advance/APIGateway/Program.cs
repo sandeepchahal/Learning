@@ -20,5 +20,5 @@ builder.Services.AddCors(options =>
 });
 var app = builder.Build();
 app.UseOcelot().Wait();
-app.UseMiddleware<MyLogger>();
+app.UseMiddleware<TraceIdMiddleware>();
 app.Run();

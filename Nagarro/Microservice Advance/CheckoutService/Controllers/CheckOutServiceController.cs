@@ -34,15 +34,15 @@ public class CheckOutServiceController(ICheckOutCoordinator checkOutCoordinator,
                 return BadRequest("Auth token is not found in the header");
             
             var result = await checkOutCoordinator.ExecuteCheckOut(userId, token, checkOutRequest.CartItems);
-            if (result)
+            if (result.Item1)
             {
                 SendSuccessNotification(checkOutRequest.CartItems.ToList(), userId);
                 return Ok("Order is placed successfully");
             }
 
-            SendFailureNotification("An error has occurred while processing the request");
+            SendFailureNotification($"Error -{result.Item2}");
             return StatusCode(StatusCodes.Status400BadRequest,
-                "An error has occurred while processing the request");
+                $"Error: {result.Item2}");
         }
         catch (Exception)
         {

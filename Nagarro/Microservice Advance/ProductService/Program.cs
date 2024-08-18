@@ -55,10 +55,9 @@ else
     app.Urls.Add("http://0.0.0.0:80"); 
 }
 
-// Add custom middleware to log requests
-app.UseMiddleware<RequestLoggingMiddleware>();
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseMiddleware<MyLogger>();
 app.UseHttpsRedirection();
 app.MapControllers();
 app.Run();
