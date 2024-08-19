@@ -40,3 +40,6 @@
 /Users/sandeepsingh/Documents/Learning/Nagarro/Microservice Advance/APIGateway/obj/Debug/net8.0/APIGateway.csproj.AssemblyReference.cache
 /Users/sandeepsingh/Documents/Learning/Nagarro/Microservice Advance/APIGateway/obj/Debug/net8.0/APIGateway.MvcApplicationPartsAssemblyInfo.cs
 /Users/sandeepsingh/Documents/Learning/Nagarro/Microservice Advance/APIGateway/obj/Debug/net8.0/APIGateway.csproj.Up2Date
+/Users/sandeepsingh/Documents/Learning/Nagarro/Microservice Advance/APIGateway/bin/Debug/net8.0/Ocelot.Provider.Polly.dll
+/Users/sandeepsingh/Documents/Learning/Nagarro/Microservice Advance/APIGateway/bin/Debug/net8.0/Polly.dll
+/Users/sandeepsingh/Documents/Learning/Nagarro/Microservice Advance/APIGateway/bin/Debug/net8.0/Polly.Core.dll

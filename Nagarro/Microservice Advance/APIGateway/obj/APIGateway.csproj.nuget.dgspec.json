@@ -50,6 +50,10 @@
             "Ocelot.Provider.Consul": {
               "target": "Package",
               "version": "[23.2.2, )"
+            },
+            "Ocelot.Provider.Polly": {
+              "target": "Package",
+              "version": "[23.2.2, )"
             }
           },
           "imports": [

@@ -17,7 +17,6 @@
         "DurationOfBreak": 5000,
         "TimeoutValue": 5000
       }
-
     },
     {
       "UpstreamPathTemplate": "/product/{everything}",
@@ -32,6 +31,25 @@
       ],
       "DownstreamPathTemplate": "/api/product/{everything}",
       "UpstreamHttpMethod": [ "GET","PUT","POST","DELETE" ],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 5000,
+        "TimeoutValue": 5000
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/admin/product/{everything}",
+      "DownstreamScheme": "http",
+      "ServiceName": "Product-Service",
+
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "product_api",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/api/admin/product/{everything}",
+      "UpstreamHttpMethod": ["POST","DELETE" ],
       "QoSOptions": {
         "ExceptionsAllowedBeforeBreaking": 3,
         "DurationOfBreak": 5000,
@@ -56,7 +74,24 @@
         "TimeoutValue": 5000
       }
     },
-    
+    {
+      "UpstreamPathTemplate": "/admin/product-detail/{everything}",
+      "DownstreamScheme": "http",
+      "ServiceName": "Product-Detail-Service",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "product_detail_api",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/api/admin/product/detail/{everything}",
+      "UpstreamHttpMethod": ["POST","DELETE" ],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 5000,
+        "TimeoutValue": 5000
+      }
+    },
     {
       "UpstreamPathTemplate": "/cart/{everything}",
       "DownstreamScheme": "http",

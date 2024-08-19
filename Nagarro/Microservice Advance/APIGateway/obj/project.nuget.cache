@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "7BSN2doQxoo=",
+  "dgSpecHash": "/xUmWx8r++A=",
   "success": true,
   "projectFilePath": "/Users/sandeepsingh/Documents/Learning/Nagarro/Microservice Advance/APIGateway/APIGateway.csproj",
   "expectedPackageFiles": [
@@ -17,6 +17,9 @@
     "/Users/sandeepsingh/.nuget/packages/newtonsoft.json.bson/1.0.2/newtonsoft.json.bson.1.0.2.nupkg.sha512",
     "/Users/sandeepsingh/.nuget/packages/ocelot/23.2.2/ocelot.23.2.2.nupkg.sha512",
     "/Users/sandeepsingh/.nuget/packages/ocelot.provider.consul/23.2.2/ocelot.provider.consul.23.2.2.nupkg.sha512",
+    "/Users/sandeepsingh/.nuget/packages/ocelot.provider.polly/23.2.2/ocelot.provider.polly.23.2.2.nupkg.sha512",
+    "/Users/sandeepsingh/.nuget/packages/polly/8.3.1/polly.8.3.1.nupkg.sha512",
+    "/Users/sandeepsingh/.nuget/packages/polly.core/8.3.1/polly.core.8.3.1.nupkg.sha512",
     "/Users/sandeepsingh/.nuget/packages/system.diagnostics.diagnosticsource/4.7.1/system.diagnostics.diagnosticsource.4.7.1.nupkg.sha512"
   ],
   "logs": []

@@ -7,11 +7,16 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "user_api",
-          "Port": 5001
+          "Port": 80
         }
       ],
       "DownstreamPathTemplate": "/api/auth/login",
-      "UpstreamHttpMethod": [ "POST"]
+      "UpstreamHttpMethod": [ "POST"],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 5000,
+        "TimeoutValue": 5000
+      }
     },
     {
       "UpstreamPathTemplate": "/product/{everything}",
@@ -21,26 +26,54 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "product_api",
-          "Port": 5002
+          "Port": 80
         }
       ],
       "DownstreamPathTemplate": "/api/product/{everything}",
-      "UpstreamHttpMethod": [ "GET","PUT","POST","DELETE" ]
+      "UpstreamHttpMethod": [ "GET","PUT","POST","DELETE" ],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 5000,
+        "TimeoutValue": 5000
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/admin/product/{everything}",
+      "DownstreamScheme": "http",
+      "ServiceName": "Product-Service",
+
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "product_api",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/api/admin/product/{everything}",
+      "UpstreamHttpMethod": ["POST","DELETE" ],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 5000,
+        "TimeoutValue": 5000
+      }
     },
     {
       "UpstreamPathTemplate": "/product-detail/{everything}",
       "DownstreamScheme": "http",
-      "ServiceName": "ProductDetail-Service",
+      "ServiceName": "Product-Detail-Service",
       "DownstreamHostAndPorts": [
         {
           "Host": "product_detail_api",
-          "Port": 5003
+          "Port": 80
         }
       ],
       "DownstreamPathTemplate": "/api/product/detail/{everything}",
-      "UpstreamHttpMethod": [ "GET","PUT","POST","DELETE" ]
+      "UpstreamHttpMethod": [ "GET","PUT","POST","DELETE" ],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 5000,
+        "TimeoutValue": 5000
+      }
     },
-    
     {
       "UpstreamPathTemplate": "/cart/{everything}",
       "DownstreamScheme": "http",
@@ -48,11 +81,16 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "cart_api",
-          "Port": 5004
+          "Port": 80
         }
       ],
       "DownstreamPathTemplate": "/api/cart/{everything}",
-      "UpstreamHttpMethod": [ "GET","PUT","POST","DELETE" ]
+      "UpstreamHttpMethod": [ "GET","PUT","POST","DELETE" ],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 5000,
+        "TimeoutValue": 5000
+      }
     },
     {
       "UpstreamPathTemplate": "/checkout/process",
@@ -61,14 +99,17 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "checkout_api",
-          "Port": 5005
+          "Port": 80
         }
       ],
       "DownstreamPathTemplate": "/api/checkout/process",
-      "UpstreamHttpMethod": ["POST" ]
+      "UpstreamHttpMethod": ["POST" ],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 5000,
+        "TimeoutValue": 5000
+      }
     }
-    
-    
   ],
   "GlobalConfiguration": {
     "ServiceDiscoveryProvider": {
