@@ -100,7 +100,7 @@ services:
     depends_on:
       - rabbitmq
     command: ["dotnet", "Notification.dll"]
-    restart: on-failure:5
+    restart: on-failure:15
     networks:
       - mynetwork
 
