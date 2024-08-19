@@ -75,8 +75,7 @@ public class CartServiceAction(IHttpClientFactory httpClientFactory) : ICartServ
                 .Find(col => col.ProductId == productId
                              && col.ProductDetailId == productDetailId);
             if (result == null) return (false, $"No items in the cart are available for product Id - {productId} & product Detail Id - {productDetailId} ");
-            var productDetailResponse = await TryUpdateProductQuantity(result.ProductDetailId, result.Quantity);
-            if (!productDetailResponse.Item1) return (false, productDetailResponse.Item2);
+
             value.Remove(result);
             return (true, $"item is removed from cart successfully");
 
@@ -97,8 +96,6 @@ public class CartServiceAction(IHttpClientFactory httpClientFactory) : ICartServ
                 .Find(col => col.ProductId == productId
                              && col.ProductDetailId == productDetailId);
             if (result == null) return (false, $"No items in the cart are available for product Id - {productId} ");
-            var productResponse = await TryUpdateProductQuantity(result.ProductId, -quantity);
-            if (!productResponse.Item1) return (false, productResponse.Item2);
             result.Quantity += quantity;
             return (true, $"item is removed from cart successfully");
         }
@@ -118,8 +115,6 @@ public class CartServiceAction(IHttpClientFactory httpClientFactory) : ICartServ
                 .Find(col => col.ProductId == productId
                              && col.ProductDetailId == productDetailId);
             if (result == null) return (false, $"No items in the cart are available for product Id - {productId} ");
-            var productResponse = await TryUpdateProductQuantity(result.ProductId, quantity);
-            if (!productResponse.Item1) return (false, productResponse.Item2);
             result.Quantity -= quantity;
             return (true, $"item is updated successfully");
         }
@@ -136,22 +131,6 @@ public class CartServiceAction(IHttpClientFactory httpClientFactory) : ICartServ
             ProductDetailContext productDetailContext =
                 new() { ProductDetailId = productDetailId, Quantity = quantity };
             var response = await _client.PostAsJsonAsync($"check-quantity", productDetailContext);
-            var responseResult = await response.Content.ReadAsStringAsync();
-            return (response.IsSuccessStatusCode, responseResult);
-        }
-        catch (Exception)
-        {
-            return (false, "An error has occurred while processing the request");
-        }
-    }
-
-    private async Task<(bool, string?)> TryUpdateProductQuantity(int productDetailId, int quantity)
-    {
-        try
-        {
-            ProductDetailContext productDetailContext =
-                new() { ProductDetailId = productDetailId, Quantity = quantity };
-            var response = await _client.PutAsJsonAsync($"update-quantity", productDetailContext);
             var responseResult = await response.Content.ReadAsStringAsync();
             return (response.IsSuccessStatusCode, responseResult);
         }

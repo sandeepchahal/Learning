@@ -5,10 +5,10 @@ namespace ProductDetailService.Controllers.User;
 
 [Route("api/product/detail")]
 [ApiController]
-public class ProductDetailServiceController : ControllerBase
+public class ProductDetailServiceController(ILogger<ProductDetailServiceController> logger) : ControllerBase
 {
     private static readonly List<ProductDetail> ProductDetails = PredefinedProductDetail.GetProductDetails.ToList();
-    
+
     [HttpGet("get-all")]
     public IActionResult GetAll()
     {
@@ -34,20 +34,20 @@ public class ProductDetailServiceController : ControllerBase
             }
 
             return Ok(productDetails);
-        } 
+        }
         catch (Exception)
         {
             return StatusCode(StatusCodes.Status500InternalServerError,
                 "An error has occurred");
         }
     }
-    
+
     [HttpPost("reserve")]
     public IActionResult ReserveProduct([FromBody] ProductQuantityContext productQuantityContext)
     {
         try
         {
-            var product = ProductDetails.FirstOrDefault(p =>  p.ProductDetailId == productQuantityContext.ProductDetailId);
+            var product = ProductDetails.FirstOrDefault(p => p.ProductDetailId == productQuantityContext.ProductDetailId);
             if (product == null)
             {
                 return NotFound($"Product Details not found for the id - {productQuantityContext.ProductDetailId}");
@@ -55,6 +55,8 @@ public class ProductDetailServiceController : ControllerBase
             if (product.Quantity < productQuantityContext.Quantity)
                 return StatusCode(StatusCodes.Status400BadRequest,
                     "Request cannot be processed. Quantity cannot be more than available quantity");
+            logger.LogInformation($"Product details for id {productQuantityContext.ProductDetailId} quantity {productQuantityContext.Quantity}");
+            logger.LogInformation($"Present info {product.ProductDetailId} quantity - {product.Quantity}");
             product.Quantity -= productQuantityContext.Quantity;
             return StatusCode(StatusCodes.Status200OK, "Quantity is reserved successfully");
         }
@@ -69,7 +71,7 @@ public class ProductDetailServiceController : ControllerBase
     {
         try
         {
-            var product = ProductDetails.FirstOrDefault(p =>  p.ProductDetailId == productQuantityContext.ProductDetailId);
+            var product = ProductDetails.FirstOrDefault(p => p.ProductDetailId == productQuantityContext.ProductDetailId);
             if (product == null)
             {
                 return NotFound($"Product Details not found for the id - {productQuantityContext.ProductDetailId}");
