@@ -1,17 +1,16 @@
 ﻿FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER $APP_UID
 WORKDIR /app
-EXPOSE 8080
-EXPOSE 8081
+EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["UserService/UserService.csproj", "UserService/"]
-RUN dotnet restore "UserService/UserService.csproj"
+COPY ["UserService.csproj", "."]
+RUN dotnet restore "UserService.csproj"
+
 COPY . .
-WORKDIR "/src/UserService"
-RUN dotnet build "UserService.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build "UserService.csproj" -c Release -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release

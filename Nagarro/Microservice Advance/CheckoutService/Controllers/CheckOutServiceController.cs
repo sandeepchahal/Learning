@@ -32,7 +32,7 @@ public class CheckOutServiceController(ICheckOutCoordinator checkOutCoordinator,
             var token = HttpContext.Request.Headers.Authorization;
             if (string.IsNullOrEmpty(token))
                 return BadRequest("Auth token is not found in the header");
-            
+
             var result = await checkOutCoordinator.ExecuteCheckOut(userId, token, checkOutRequest.CartItems);
             if (result.Item1)
             {

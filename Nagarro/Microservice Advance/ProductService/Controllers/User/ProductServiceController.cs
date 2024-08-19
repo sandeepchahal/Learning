@@ -10,7 +10,7 @@ public class ProductServiceController(IHttpClientFactory httpClientFactory) : Co
 {
     private readonly List<Product> _products = PredefinedProduct.Products;
     private readonly HttpClient _client = httpClientFactory.CreateClient("ProductDetailServiceClient");
-    
+
     [HttpGet("get-all")]
     public IActionResult GetAllProducts()
     {

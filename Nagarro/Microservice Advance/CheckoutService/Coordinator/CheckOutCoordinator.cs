@@ -19,13 +19,13 @@ public class CheckOutCoordinator(IHttpClientFactory httpClientFactory)
             foreach (var item in cartItems)
             {
                 var productReserve = await ReserveProduct(item);
-                if (productReserve.Item1) 
+                if (productReserve.Item1)
                     continue;
                 await CompensateQuantity(item);
                 return productReserve;
             }
 
-            return (true,"");
+            return (true, "");
         }
         catch (Exception e)
         {
@@ -39,7 +39,7 @@ public class CheckOutCoordinator(IHttpClientFactory httpClientFactory)
     private async Task<(bool, string)> ReserveProduct(CartItem item)
     {
         var productInfo = new ProductQuantityContext()
-            { ProductDetailId = item.ProductDetailId, Quantity = -item.Quantity };
+        { ProductDetailId = item.ProductDetailId, Quantity = item.Quantity };
         var response = await _productDetailClient.PostAsJsonAsync("reserve", productInfo);
         if (!response.IsSuccessStatusCode)
         {
@@ -48,7 +48,7 @@ public class CheckOutCoordinator(IHttpClientFactory httpClientFactory)
         }
 
         var paymentProcess = await ProcessPayment(item);
-        if (paymentProcess.Item1) return (true,"");
+        if (paymentProcess.Item1) return (true, "");
         await CompensateQuantity(item);
         return paymentProcess;
     }
@@ -73,8 +73,8 @@ public class CheckOutCoordinator(IHttpClientFactory httpClientFactory)
     {
         await Task.Delay(10000);
         var cartResponse = await RemoveFromCart(item);
-        if (cartResponse.Item1) 
-            return (true,"");
+        if (cartResponse.Item1)
+            return (true, "");
         await CompensatePayment(item);
         await CompensateQuantity(item);
         return cartResponse;
@@ -84,7 +84,7 @@ public class CheckOutCoordinator(IHttpClientFactory httpClientFactory)
     {
         await Task.Delay(10000);
 
-        return (true,"");
+        return (true, "");
     }
 
     #endregion
@@ -113,7 +113,9 @@ public class CheckOutCoordinator(IHttpClientFactory httpClientFactory)
         {
             var cartInfo = new CartItem()
             {
-                ProductDetailId = cartItem.ProductDetailId, ProductId = cartItem.ProductId, Quantity = cartItem.Quantity
+                ProductDetailId = cartItem.ProductDetailId,
+                ProductId = cartItem.ProductId,
+                Quantity = cartItem.Quantity
             };
             var response = await _cartClient.PostAsJsonAsync("add", cartInfo);
             var message = await response.Content.ReadAsStringAsync();

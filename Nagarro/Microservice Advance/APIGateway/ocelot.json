@@ -7,7 +7,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "user_api",
-          "Port": 5001
+          "Port": 80
         }
       ],
       "DownstreamPathTemplate": "/api/auth/login",
@@ -21,7 +21,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "product_api",
-          "Port": 5002
+          "Port": 80
         }
       ],
       "DownstreamPathTemplate": "/api/product/{everything}",
@@ -30,11 +30,11 @@
     {
       "UpstreamPathTemplate": "/product-detail/{everything}",
       "DownstreamScheme": "http",
-      "ServiceName": "ProductDetail-Service",
+      "ServiceName": "Product-Detail-Service",
       "DownstreamHostAndPorts": [
         {
           "Host": "product_detail_api",
-          "Port": 5003
+          "Port": 80
         }
       ],
       "DownstreamPathTemplate": "/api/product/detail/{everything}",
@@ -48,7 +48,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "cart_api",
-          "Port": 5004
+          "Port": 80
         }
       ],
       "DownstreamPathTemplate": "/api/cart/{everything}",
@@ -61,14 +61,12 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "checkout_api",
-          "Port": 5005
+          "Port": 80
         }
       ],
       "DownstreamPathTemplate": "/api/checkout/process",
       "UpstreamHttpMethod": ["POST" ]
     }
-    
-    
   ],
   "GlobalConfiguration": {
     "ServiceDiscoveryProvider": {

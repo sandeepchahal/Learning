@@ -1,23 +1,39 @@
-﻿FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-USER $APP_UID
+﻿# Base image with the runtime environment
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 WORKDIR /app
-EXPOSE 8080
-EXPOSE 8081
+EXPOSE 80
+EXPOSE 443
 
+# Build image with the SDK for compiling and publishing the app
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
+
+# Copy the class library project
+COPY ["JWTConfiguration/JWTConfiguration.csproj", "JWTConfiguration/"]
+
+# Copy the API project
 COPY ["CheckoutService/CheckoutService.csproj", "CheckoutService/"]
+
+# Restore the dependencies for both projects
 RUN dotnet restore "CheckoutService/CheckoutService.csproj"
+
+# Copy all the source files to the build context
 COPY . .
+
+# Build the API project
 WORKDIR "/src/CheckoutService"
-RUN dotnet build "CheckoutService.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build "CheckoutService.csproj" -c Release -o /app/build
 
+# Publish the API project
 FROM build AS publish
-ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "CheckoutService.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "CheckoutService.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
+# Final image with the runtime environment
 FROM base AS final
 WORKDIR /app
+
+# Copy the published output from the publish stage
 COPY --from=publish /app/publish .
+
+# Set the entry point for the container
 ENTRYPOINT ["dotnet", "CheckoutService.dll"]

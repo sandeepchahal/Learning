@@ -15,6 +15,9 @@ public class ProductDetailDto
     public string Size { get; set; } = string.Empty;
     public decimal Price { get; set; }
     public string Design { get; set; } = string.Empty;
+    public int Quantity { get; set; }
+
+
 }
 public static class PredefinedProduct
 {

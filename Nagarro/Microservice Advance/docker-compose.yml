@@ -1,0 +1,137 @@
+version: "3.8"
+
+services:
+  apigateway:
+    image: sandeepchahal433/ms_advance_apigateway:1.0
+    ports:
+      - "5010:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    env_file:
+      - .env
+    depends_on:
+      - consul
+      - rabbitmq
+      - user_api
+      - product_api
+      - product_detail_api
+      - cart_api
+      - checkout_api
+
+    networks:
+      - mynetwork
+
+  user_api:
+    image: sandeepchahal433/ms_advance_user:1.0
+    ports:
+      - "5001:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    env_file:
+      - .env
+    depends_on:
+      - consul
+    networks:
+      - mynetwork
+
+  product_api:
+    image: sandeepchahal433/ms_advance_product:1.0
+    ports:
+      - "5002:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    env_file:
+      - .env
+    depends_on:
+      - consul
+    networks:
+      - mynetwork
+
+  product_detail_api:
+    image: sandeepchahal433/ms_advance_productdetail:1.0
+    ports:
+      - "5003:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    env_file:
+      - .env
+    depends_on:
+      - consul
+    networks:
+      - mynetwork
+
+  cart_api:
+    image: sandeepchahal433/ms_advance_cart:1.0
+    ports:
+      - "5004:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    env_file:
+      - .env
+    depends_on:
+      - consul
+    networks:
+      - mynetwork
+
+  checkout_api:
+    image: sandeepchahal433/ms_advance_checkout:1.0
+    ports:
+      - "5005:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_USERNAME=guest
+      - RABBITMQ_PASSWORD=guest
+    env_file:
+      - .env
+    depends_on:
+      - rabbitmq
+      - consul
+    networks:
+      - mynetwork
+
+  notification:
+    image: sandeepchahal433/ms_advance_notification:1.0
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_USERNAME=guest
+      - RABBITMQ_PASSWORD=guest
+    depends_on:
+      - rabbitmq
+    networks:
+      - mynetwork
+    command:
+      [
+        "dockerize",
+        "-wait",
+        "tcp://rabbitmq:5672",
+        "-timeout",
+        "30s",
+        "dotnet",
+        "Notification.dll",
+      ]
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    networks:
+      - mynetwork
+
+  consul:
+    image: consul:1.14.0
+    container_name: consul
+    ports:
+      - "8500:8500"
+    command: "agent -dev -client=0.0.0.0"
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge

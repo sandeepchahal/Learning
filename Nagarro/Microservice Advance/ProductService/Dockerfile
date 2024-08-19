@@ -1,4 +1,4 @@
-﻿# Base image with the runtime environment
+# Base image with the runtime environment
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 WORKDIR /app
 EXPOSE 80
@@ -12,21 +12,21 @@ WORKDIR /src
 COPY ["JWTConfiguration/JWTConfiguration.csproj", "JWTConfiguration/"]
 
 # Copy the API project
-COPY ["ProductDetailService/ProductDetailService.csproj", "ProductDetailService/"]
+COPY ["ProductService/ProductService.csproj", "ProductService/"]
 
 # Restore the dependencies for both projects
-RUN dotnet restore "ProductDetailService/ProductDetailService.csproj"
+RUN dotnet restore "ProductService/ProductService.csproj"
 
 # Copy all the source files to the build context
 COPY . .
 
 # Build the API project
-WORKDIR "/src/ProductDetailService"
-RUN dotnet build "ProductDetailService.csproj" -c Release -o /app/build
+WORKDIR "/src/ProductService"
+RUN dotnet build "ProductService.csproj" -c Release -o /app/build
 
 # Publish the API project
 FROM build AS publish
-RUN dotnet publish "ProductDetailService.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "ProductService.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 # Final image with the runtime environment
 FROM base AS final
@@ -36,4 +36,4 @@ WORKDIR /app
 COPY --from=publish /app/publish .
 
 # Set the entry point for the container
-ENTRYPOINT ["dotnet", "ProductDetailService.dll"]
+ENTRYPOINT ["dotnet", "ProductService.dll"]
