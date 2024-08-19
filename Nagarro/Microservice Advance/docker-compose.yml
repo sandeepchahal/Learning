@@ -99,18 +99,10 @@ services:
       - RABBITMQ_PASSWORD=guest
     depends_on:
       - rabbitmq
+    command: ["dotnet", "Notification.dll"]
+    restart: on-failure:5
     networks:
       - mynetwork
-    command:
-      [
-        "dockerize",
-        "-wait",
-        "tcp://rabbitmq:5672",
-        "-timeout",
-        "30s",
-        "dotnet",
-        "Notification.dll",
-      ]
 
   rabbitmq:
     image: rabbitmq:3-management
