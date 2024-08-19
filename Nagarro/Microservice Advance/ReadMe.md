@@ -68,6 +68,8 @@ User access is required to add the items into the cart and checkout, therefore l
 --> When adding into the cart, no quantity is being reserved. Instead we would be checking the quantity while processing the checkout.
 --> Automatically cart items would be deleted after 5 mintues. This is the expiry time of cart items.
 
+# check cart items at - http://localhost:5010/cart/get-all
+
 # Processing the checkout - http://localhost:5010/checkout/process
 
                         {
