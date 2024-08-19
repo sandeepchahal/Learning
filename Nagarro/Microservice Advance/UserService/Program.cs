@@ -37,9 +37,9 @@ if (app.Environment.IsDevelopment())
 }
 else
 {
-    app.Urls.Add("http://0.0.0.0:80"); 
+    app.Urls.Add("http://0.0.0.0:80");
 }
-
+app.UseGlobalExceptionMiddleware();
 app.UseHttpsRedirection();
 app.MapControllers();
 app.Run();

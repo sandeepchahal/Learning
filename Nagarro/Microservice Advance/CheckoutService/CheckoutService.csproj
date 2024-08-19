@@ -24,6 +24,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\JWTConfiguration\JWTConfiguration.csproj" />
+      <ProjectReference Include="..\GlobalUtilities\GlobalUtilities.csproj" />
     </ItemGroup>
 
 </Project>

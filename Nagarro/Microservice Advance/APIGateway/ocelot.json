@@ -11,7 +11,13 @@
         }
       ],
       "DownstreamPathTemplate": "/api/auth/login",
-      "UpstreamHttpMethod": [ "POST"]
+      "UpstreamHttpMethod": [ "POST"],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 5000,
+        "TimeoutValue": 5000
+      }
+
     },
     {
       "UpstreamPathTemplate": "/product/{everything}",
@@ -25,7 +31,12 @@
         }
       ],
       "DownstreamPathTemplate": "/api/product/{everything}",
-      "UpstreamHttpMethod": [ "GET","PUT","POST","DELETE" ]
+      "UpstreamHttpMethod": [ "GET","PUT","POST","DELETE" ],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 5000,
+        "TimeoutValue": 5000
+      }
     },
     {
       "UpstreamPathTemplate": "/product-detail/{everything}",
@@ -38,7 +49,12 @@
         }
       ],
       "DownstreamPathTemplate": "/api/product/detail/{everything}",
-      "UpstreamHttpMethod": [ "GET","PUT","POST","DELETE" ]
+      "UpstreamHttpMethod": [ "GET","PUT","POST","DELETE" ],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 5000,
+        "TimeoutValue": 5000
+      }
     },
     
     {
@@ -52,7 +68,12 @@
         }
       ],
       "DownstreamPathTemplate": "/api/cart/{everything}",
-      "UpstreamHttpMethod": [ "GET","PUT","POST","DELETE" ]
+      "UpstreamHttpMethod": [ "GET","PUT","POST","DELETE" ],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 5000,
+        "TimeoutValue": 5000
+      }
     },
     {
       "UpstreamPathTemplate": "/checkout/process",
@@ -65,7 +86,12 @@
         }
       ],
       "DownstreamPathTemplate": "/api/checkout/process",
-      "UpstreamHttpMethod": ["POST" ]
+      "UpstreamHttpMethod": ["POST" ],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 5000,
+        "TimeoutValue": 5000
+      }
     }
   ],
   "GlobalConfiguration": {

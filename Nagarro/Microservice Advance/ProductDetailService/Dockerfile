@@ -10,6 +10,7 @@ WORKDIR /src
 
 # Copy the class library project
 COPY ["JWTConfiguration/JWTConfiguration.csproj", "JWTConfiguration/"]
+COPY ["GlobalUtilities/GlobalUtilities.csproj", "GlobalUtilities/"]
 
 # Copy the API project
 COPY ["ProductDetailService/ProductDetailService.csproj", "ProductDetailService/"]
