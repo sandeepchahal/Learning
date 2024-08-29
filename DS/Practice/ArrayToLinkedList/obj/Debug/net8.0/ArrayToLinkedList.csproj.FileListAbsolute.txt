@@ -1,0 +1,15 @@
+/Users/sandeepsingh/Documents/Learning/DS/GeeksForGeeks/ArrayToLinkedList/bin/Debug/net8.0/ArrayToLinkedList
+/Users/sandeepsingh/Documents/Learning/DS/GeeksForGeeks/ArrayToLinkedList/bin/Debug/net8.0/ArrayToLinkedList.deps.json
+/Users/sandeepsingh/Documents/Learning/DS/GeeksForGeeks/ArrayToLinkedList/bin/Debug/net8.0/ArrayToLinkedList.runtimeconfig.json
+/Users/sandeepsingh/Documents/Learning/DS/GeeksForGeeks/ArrayToLinkedList/bin/Debug/net8.0/ArrayToLinkedList.dll
+/Users/sandeepsingh/Documents/Learning/DS/GeeksForGeeks/ArrayToLinkedList/bin/Debug/net8.0/ArrayToLinkedList.pdb
+/Users/sandeepsingh/Documents/Learning/DS/GeeksForGeeks/ArrayToLinkedList/obj/Debug/net8.0/ArrayToLinkedList.GeneratedMSBuildEditorConfig.editorconfig
+/Users/sandeepsingh/Documents/Learning/DS/GeeksForGeeks/ArrayToLinkedList/obj/Debug/net8.0/ArrayToLinkedList.AssemblyInfoInputs.cache
+/Users/sandeepsingh/Documents/Learning/DS/GeeksForGeeks/ArrayToLinkedList/obj/Debug/net8.0/ArrayToLinkedList.AssemblyInfo.cs
+/Users/sandeepsingh/Documents/Learning/DS/GeeksForGeeks/ArrayToLinkedList/obj/Debug/net8.0/ArrayToLinkedList.csproj.CoreCompileInputs.cache
+/Users/sandeepsingh/Documents/Learning/DS/GeeksForGeeks/ArrayToLinkedList/obj/Debug/net8.0/ArrayToLinkedList.sourcelink.json
+/Users/sandeepsingh/Documents/Learning/DS/GeeksForGeeks/ArrayToLinkedList/obj/Debug/net8.0/ArrayToLinkedList.dll
+/Users/sandeepsingh/Documents/Learning/DS/GeeksForGeeks/ArrayToLinkedList/obj/Debug/net8.0/refint/ArrayToLinkedList.dll
+/Users/sandeepsingh/Documents/Learning/DS/GeeksForGeeks/ArrayToLinkedList/obj/Debug/net8.0/ArrayToLinkedList.pdb
+/Users/sandeepsingh/Documents/Learning/DS/GeeksForGeeks/ArrayToLinkedList/obj/Debug/net8.0/ArrayToLinkedList.genruntimeconfig.cache
+/Users/sandeepsingh/Documents/Learning/DS/GeeksForGeeks/ArrayToLinkedList/obj/Debug/net8.0/ref/ArrayToLinkedList.dll
