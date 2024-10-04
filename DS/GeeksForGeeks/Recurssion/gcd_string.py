@@ -1,5 +1,5 @@
 def gcdOfStrings(str1: str, str2: str) -> str:
-    str2.repl
+    
     minn = min(str1,str2)
     maxx = str1 if minn != str1 else str2
     def solve(a,b):

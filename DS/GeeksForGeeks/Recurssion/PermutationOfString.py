@@ -4,7 +4,8 @@ def perm(s:str):
     result =[]
     for i in range(len(s)): # abc then first =a and rest = bc
         first = s[i]
-        rest = s[:i]+s[i+1:]
+        rest = s[i+1:]
+        print(rest)
         for p in perm(rest):
             result += [first+p]
     return result

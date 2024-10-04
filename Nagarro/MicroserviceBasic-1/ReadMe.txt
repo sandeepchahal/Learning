@@ -1,5 +1,5 @@
 1. Run the below command to start the consul service. Make sure you are in the root directory where the file is present
-    docker compose up --build
+    docker compose up -d
 
     All the services should be running in docker
 2. Try accessing http://localhost:8500

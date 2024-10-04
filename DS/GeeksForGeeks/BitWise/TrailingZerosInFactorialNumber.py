@@ -3,8 +3,8 @@
 def CountZeros(factNumber):
     i=5
     count =0
-    for _ in range (factNumber):
+    while factNumber//i>0:
         count = count+int(factNumber/i)
         i = i*5
     return count
-print(CountZeros(100))
+print(CountZeros(3000))

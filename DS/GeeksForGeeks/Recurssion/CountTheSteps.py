@@ -14,6 +14,6 @@ def countSteps(n):
     return countSteps(n-1)+ countSteps(n-2)
     
 
-print(countSteps(6))
+print(countSteps(3))
     
     

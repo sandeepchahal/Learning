@@ -12,7 +12,8 @@ public class ProductServiceController(IHttpClientFactory httpClientFactory) : Co
     private readonly List<Product> _products = PredefinedProduct.Products;
     readonly HttpClient _client = httpClientFactory.CreateClient("ProductDetailServiceClient");
 
-    [HttpPost("add")]
+    [HttpPost]
+    [Route("")]
     public IActionResult AddProduct([FromBody] Product product)
     {
         try
