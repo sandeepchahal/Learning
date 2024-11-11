@@ -1,0 +1,20 @@
+.button-container {
+    display: flex;
+    justify-content: center; /* Center the buttons horizontally */
+    margin-top: 1rem;
+  }
+  
+  .button-container button {
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    cursor: pointer;
+    border: none;
+    background-color: #ddd;
+  }
+  
+  .button-container button.active {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+  }
+  

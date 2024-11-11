@@ -1,0 +1,23 @@
+<div class="search-filter-container">
+  <h3>Search and Filter Listings</h3>
+  <form (ngSubmit)="applyFilter()" class="search-filter-form">
+    <div class="form-row">
+      <label for="location">Location:</label>
+      <input type="text" id="location" [(ngModel)]="filters.location" name="location" />
+    </div>
+    <div class="form-row">
+      <label>Price Range:</label>
+      <input type="number" [(ngModel)]="filters.minPrice" name="minPrice" placeholder="Min Price" />
+      <input type="number" [(ngModel)]="filters.maxPrice" name="maxPrice" placeholder="Max Price" />
+      <button type="submit" class="apply-filters-btn">Apply Filters</button>
+    </div>
+    <div class="form-row">
+      <label>Amenities:</label>
+      <div class="amenities-container">
+        <div *ngFor="let amenity of amenities" class="amenity-item">
+          <input type="checkbox" (change)="toggleAmenity(amenity)" /> {{ amenity }}
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

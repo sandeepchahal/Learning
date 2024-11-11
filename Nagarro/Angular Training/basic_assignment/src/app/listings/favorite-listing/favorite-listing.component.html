@@ -1,0 +1,9 @@
+<div class="listing-container">
+    <div *ngFor="let listing of filteredListings" class="listing-card">
+      <img [src]="listing.imageUrl" alt="{{ listing.title }}" class="listing-image">
+      <h3>{{ listing.title }}</h3>
+      <p>Location: {{ listing.location }}</p>
+      <p>Price: ${{ listing.price }}</p>
+      <p>{{ listing.description }}</p>
+    </div>
+  </div>

@@ -1,0 +1,25 @@
+<div *ngIf="listing" class="listing-details-container">
+  <!-- Listing Image -->
+  <div class="listing-image-container">
+    <img [src]="listing.imageUrl" alt="{{ listing.title }}" class="listing-image">
+  </div>
+
+  <!-- Listing Information -->
+  <div class="listing-info">
+    <h2>{{ listing.title }}</h2>
+    <p><strong>Location:</strong> {{ listing.location }}</p>
+    <p><strong>Price:</strong> ${{ listing.price }}</p>
+    <p><strong>Description:</strong> {{ listing.description }}</p>
+    <ul>
+      <li *ngFor="let amenity of listing.amenities"><strong>Amenity:</strong> {{ amenity }}</li>
+    </ul>
+    <p><strong>Furnished:</strong> {{ listing.isFurnished ? 'Yes' : 'No' }}</p>
+    <p><strong>Vegetarian Preferred:</strong> {{ listing.isVegetarianPreferred ? 'Yes' : 'No' }}</p>
+  </div>
+
+  <!-- Comment Section -->
+  <div class="comments-section">
+    <h3 class="comments-heading">Comments</h3>
+    <app-comment [listingId]="listing.id"></app-comment>
+  </div>
+</div>

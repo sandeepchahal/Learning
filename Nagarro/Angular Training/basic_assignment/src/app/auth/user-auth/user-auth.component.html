@@ -1,0 +1,12 @@
+<div class="button-container">
+    <button (click)="showSignup()" [class.active]="mode === 'signup'">Sign Up</button>
+    <button (click)="showLogin()" [class.active]="mode === 'login'">Login</button>
+  </div>
+  
+  <div *ngIf="mode === 'signup'">
+    <app-signup></app-signup> <!-- Display SignupComponent when mode is 'signup' -->
+  </div>
+  <div *ngIf="mode === 'login'">
+    <app-login></app-login> <!-- Display LoginComponent when mode is 'login' -->
+  </div>
+  

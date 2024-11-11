@@ -1,0 +1,26 @@
+<div class="new-listing-form">
+    <h2>Add New Listing</h2>
+    <form (ngSubmit)="addListing()">
+      <label for="title">Title:</label>
+      <input type="text" id="title" [(ngModel)]="newListing.title" name="title" required />
+  
+      <label for="location">Location:</label>
+      <input type="text" id="location" [(ngModel)]="newListing.location" name="location" required />
+  
+      <label for="price">Price:</label>
+      <input type="number" id="price" [(ngModel)]="newListing.price" name="price" required />
+  
+      <label for="description">Description:</label>
+      <textarea id="description" [(ngModel)]="newListing.description" name="description" required></textarea>
+  
+      <label for="imageUrl">Image URL:</label>
+      <input type="text" id="imageUrl" [(ngModel)]="newListing.imageUrl" name="imageUrl" />
+  
+      <label>Amenities:</label>
+      <div *ngFor="let amenity of amenities">
+        <input type="checkbox" (change)="toggleAmenity(amenity)" /> {{ amenity }}
+      </div>
+      <button type="submit">Add Listing</button>
+    </form>
+  </div>
+  

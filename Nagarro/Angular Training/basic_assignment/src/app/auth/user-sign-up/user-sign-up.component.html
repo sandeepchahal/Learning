@@ -1,0 +1,86 @@
+<div class="auth-container">
+  <div class="auth-form">
+    <h2>Sign Up</h2>
+    <form (ngSubmit)="onSubmit(signUpForm)" #signUpForm="ngForm">
+      
+      <!-- Username Field -->
+      <div class="form-group" [ngClass]="{'invalid': username.invalid && username.touched}">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          id="username"
+          required
+          [(ngModel)]="user.username"
+          name="username"
+          #username="ngModel"
+          placeholder="Enter your username"
+          (blur)="username.control.markAsTouched()" />
+        <div *ngIf="username.invalid && username.touched" class="error-message">
+          Username is required.
+        </div>
+      </div>
+
+      <!-- Email Field -->
+      <div class="form-group" [ngClass]="{'invalid': email.invalid && email.touched}">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          required
+          [(ngModel)]="user.email"
+          name="email"
+          #email="ngModel"
+          placeholder="Enter your email"
+          (blur)="email.control.markAsTouched()"/>
+        <div *ngIf="email.invalid && email.touched" class="error-message">
+          <div *ngIf="email.errors?.['required']">Email is required.</div>
+          <div *ngIf="email.errors?.['email']">Please enter a valid email address.</div>
+        </div>
+      </div>
+
+      <!-- Password Field -->
+      <div class="form-group" [ngClass]="{'invalid': password.invalid && password.touched}">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          required
+          [(ngModel)]="user.password"
+          name="password"
+          #password="ngModel"
+          placeholder="Enter your password"
+          (blur)="password.control.markAsTouched()"/>
+        <div *ngIf="password.invalid && password.touched" class="error-message">
+          Password is required.
+        </div>
+      </div>
+
+      <!-- Confirm Password Field -->
+      <div class="form-group" [ngClass]="{'invalid': confirmPassword.invalid && confirmPassword.touched}">
+        <label for="confirmPassword">Confirm Password</label>
+        <input
+          type="password"
+          id="confirmPassword"
+          required
+          [(ngModel)]="user.confirmPassword"
+          name="confirmPassword"
+          #confirmPassword="ngModel"
+          placeholder="Confirm your password"
+          (blur)="confirmPassword.control.markAsTouched()"/>
+        <div *ngIf="confirmPassword.invalid && confirmPassword.touched" class="error-message">
+          Confirm Password is required.
+        </div>
+        <div *ngIf="confirmPassword.value !== password.value && confirmPassword.touched" class="error-message">
+          Passwords do not match.
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" [disabled]="!signUpForm.form.valid">Sign Up</button>
+    </form>
+
+    <!-- Success or Error Message -->
+    <p *ngIf="successMessage" class="message success">{{ successMessage }}</p>
+    <p *ngIf="errorMessage" class="message error">{{ errorMessage }}</p>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+.search-filter-container {
+  max-width: 500px; /* You can adjust the max-width based on your design */
+  margin: 0 auto; /* Centers the container */
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.search-filter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.form-row label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.form-row input[type="text"],
+.form-row input[type="number"] {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.amenities-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.amenity-item {
+  display: flex;
+  align-items: center;
+}
+
+.apply-filters-btn {
+  padding: 8px 16px;
+  border: none;
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.apply-filters-btn:hover {
+  background-color: #45a049;
+}

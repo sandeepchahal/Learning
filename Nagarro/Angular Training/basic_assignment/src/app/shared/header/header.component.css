@@ -1,0 +1,57 @@
+/* General Navbar Styling */
+.navbar {
+  background-color: #007BFF;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-link {
+  color: white;
+  font-size: 1rem;
+  text-decoration: none;
+  margin: 0 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.nav-link:hover {
+  background-color: #0056b3;
+}
+
+/* Styling for active links */
+.nav-link.active {
+  background-color: #0056b3;
+  color: #fff;
+  font-weight: bold;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .nav-link {
+    margin: 0.5rem 0;
+  }
+
+}
+
+.nav-link {
+  text-decoration: none; /* Remove any underlines */
+  color: inherit; /* Inherit text color from the parent */
+  cursor: pointer; /* Ensure cursor is a pointer on hover */
+}
+
+.nav-link:hover {
+  color: #007bff; /* Optional: Change color on hover */
+  text-decoration: underline; /* Optional: Add underline on hover */
+}
+
