@@ -1,0 +1,27 @@
+<div class="details-container" *ngIf="article; else loadingTemplate">
+    <div class="article-header">
+      <h1>{{ article.title }}</h1>
+      <div class="author-info">
+        <span>By {{ article.authorName }}</span>
+        <span> | {{ article.publishDate | date }}</span>
+      </div>
+      <div class="article-tags">
+        <span *ngFor="let tag of article.tags" class="tag">{{ tag }}</span>
+      </div>
+    </div>
+  
+    <div class="article-description">
+      <h2>Description</h2>
+      <p>{{ article.description }}</p>
+    </div>
+  
+    <div class="article-content">
+      <h2>Content</h2>
+      <p>{{ article.content }}</p>
+    </div>
+  </div>
+  
+  <ng-template #loadingTemplate>
+    <p>Loading article details...</p>
+  </ng-template>
+  

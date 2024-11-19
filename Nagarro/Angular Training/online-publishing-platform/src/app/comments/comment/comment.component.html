@@ -1,0 +1,18 @@
+<div class="comments-container">
+    <h2>Comments</h2>
+  
+    <!-- Display existing comments -->
+    <div class="comment" *ngFor="let comment of comments">
+      <p><strong>{{ comment.userName }}:</strong> {{ comment.content }}</p>
+    </div>
+  
+    <!-- Add new comment -->
+    <div *ngIf="user">
+      <textarea
+        [(ngModel)]="newComment"
+        placeholder="Write your comment..."
+      ></textarea>
+      <button (click)="addComment()">Add Comment</button>
+    </div>
+  </div>
+  

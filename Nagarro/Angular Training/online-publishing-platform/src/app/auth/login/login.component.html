@@ -1,0 +1,12 @@
+<div class="login-container">
+  <h1>Login</h1>
+  <div *ngIf="!user; else loggedInTemplate">
+    <button (click)="signInWithGoogle()">Sign in with Google</button>
+    <button (click)="signInWithFacebook()">Sign in with Facebook</button>
+  </div>
+
+  <ng-template #loggedInTemplate>
+    <p>Welcome, {{ user?.displayName }}</p>
+    <button (click)="signOut()">Sign Out</button>
+  </ng-template>
+</div>

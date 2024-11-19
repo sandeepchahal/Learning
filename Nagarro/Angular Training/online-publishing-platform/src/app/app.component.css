@@ -1,0 +1,58 @@
+nav {
+    display: flex;
+    gap: 1rem;
+    background-color: #f8f9fa;
+    padding: 1rem;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+  }
+  
+  a.active {
+    color: #0056b3;
+    border-bottom: 2px solid #0056b3;
+  }
+  .my-container
+  {
+    margin:10px;
+    padding:10px;
+  }
+  /* Basic styling for the nav container */
+.navbar {
+  display: flex;
+  justify-content: space-between; /* This will push items to both sides */
+  align-items: center;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #ddd;
+}
+
+/* The login section should be aligned at the right side */
+.auth-section {
+  display: flex;
+  align-items: center;
+}
+
+.auth-section a {
+  margin-left: 10px; /* Adds space between the links */
+  text-decoration: none;
+  color: #007bff;
+}
+
+.auth-section span {
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+/* Style for active links */
+a.active {
+  font-weight: bold;
+  color: #0056b3;
+}
+
+.my-container {
+  padding: 20px;
+}

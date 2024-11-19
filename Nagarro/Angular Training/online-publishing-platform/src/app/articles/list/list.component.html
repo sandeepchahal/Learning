@@ -1,0 +1,52 @@
+<div class="article-list-container">
+  <h1>Articles</h1>
+  
+  <!-- Create Article Button -->
+  <button class="create-article-btn" [routerLink]="['/articles/add']">
+    Create Article
+  </button>
+
+  <!-- Featured Articles Section with Collapsible -->
+  <div class="collapsible-container">
+    <h2 (click)="toggleFeaturedArticles()">
+      Featured Articles
+      <span class="toggle-icon">{{ featuredArticlesOpen ? '▲' : '▼' }}</span>
+    </h2>
+    <div *ngIf="featuredArticlesOpen && featuredArticles.length; else noFeatured" class="featured-articles">
+      <div class="featured-article" *ngFor="let article of featuredArticles">
+        <h3>{{ article.title }}</h3>
+        <p>{{ article.description }}</p>
+        <span>By {{ article.authorName }} on {{ article.publishDate | date }}</span>
+      </div>
+    </div>
+    <ng-template #noFeatured>
+      <p>No featured articles found.</p>
+    </ng-template>
+  </div>
+
+  <!-- All Articles Section with Collapsible -->
+  <div class="collapsible-container">
+    <h2 (click)="toggleAllArticles()">
+      All Articles
+      <span class="toggle-icon">{{ allArticlesOpen ? '▲' : '▼' }}</span>
+    </h2>
+    <div *ngIf="allArticlesOpen && articles.length; else noArticles" class="articles">
+      <div class="article" *ngFor="let article of articles">
+        <h3>
+          <a [routerLink]="['/articles', article.id]">{{ article.title }}</a>
+        </h3>
+        <p>{{ article.description }}</p>
+        <span>By {{ article.authorName }} on {{ article.publishDate | date }}</span>
+        <hr>
+        <a [routerLink]="['/articles', article.id, 'comments']">View Comments</a>
+      </div>
+    </div>
+    <ng-template #noArticles>
+      <p>No articles found.</p>
+    </ng-template>
+  </div>
+
+  <div *ngIf="loading" class="loading">
+    Loading articles...
+  </div>
+</div>

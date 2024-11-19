@@ -1,0 +1,20 @@
+
+<nav class="navbar">
+  <a routerLink="/articles" routerLinkActive="active">Articles</a>
+
+  <!-- Conditionally show the login or username -->
+  <div class="auth-section">
+    <ng-container *ngIf="!isLoggedIn; else loggedIn">
+      <a routerLink="/auth/login" routerLinkActive="active">Login</a>
+    </ng-container>
+    <ng-template #loggedIn>
+      <span>{{ userName }}</span>
+    </ng-template>
+  </div>
+</nav>
+
+<div class="my-container">
+  <router-outlet></router-outlet>
+</div>
+
+
