@@ -12,17 +12,25 @@ import { AuthService } from './auth/auth.service';
 })
 export class AppComponent {
   isLoggedIn = false; // To track the login state
-  userName: any; // To store the logged-in user's name
+  userName: string | null = null; // To store the logged-in user's name
+  isAdmin: boolean = false; // To track if the user is an admin
+
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.authService.isAuthenticated().then((isAuthenticated) => {
-      if (isAuthenticated) {
-        this.authService.getUser().then((user) => {
-          this.userName = user?.displayName;
-          console.log('user alreayd logged in ', this.userName);
-          this.isLoggedIn = !this.isLoggedIn;
-        });
+    // Listen for authentication state changes
+    this.authService.authStateChanged.subscribe((user) => {
+      if (user) {
+        this.userName = user.displayName;
+        console.log('User already logged in', this.userName);
+
+        // Check if the user is an admin (or any other role you need)
+        this.isAdmin = user.isAdmin || false; // Update based on user data
+        this.isLoggedIn = true;
+      } else {
+        this.isLoggedIn = false;
+        this.isAdmin = false; // Reset admin status if no user is logged in
+        this.userName = null;
       }
     });
   }

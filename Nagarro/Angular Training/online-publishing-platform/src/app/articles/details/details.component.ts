@@ -14,6 +14,7 @@ export class DetailsComponent implements OnInit {
   article: any = null;
   relatedArticles: any[] = [];
   loading = true;
+  categoryName = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -33,6 +34,11 @@ export class DetailsComponent implements OnInit {
     this.firestoreService.getArticleById(articleId).subscribe((article) => {
       if (article) {
         this.article = article;
+        this.firestoreService
+          .getCategoryById(article.categoryId)
+          .subscribe((data) => {
+            this.categoryName = data.name;
+          });
         this.loading = false;
       } else {
         console.error('Article not found!');

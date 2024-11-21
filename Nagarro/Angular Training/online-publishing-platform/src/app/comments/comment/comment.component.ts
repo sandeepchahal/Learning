@@ -5,6 +5,8 @@ import { AuthService } from '../../auth/auth.service';
 import { FirestoreService } from '../../services/firestore.service';
 import { ActivatedRoute } from '@angular/router';
 import { ChangeDetectorRef } from '@angular/core';
+import { User } from 'firebase/auth';
+import { MyUser } from '../../models/user.model';
 
 @Component({
   selector: 'app-comment',
@@ -17,7 +19,10 @@ export class CommentComponent implements OnInit {
   articleId: any = null;
   comments: any[] = [];
   newComment = '';
-  user: string | null = null;
+  replyContent = ''; // For reply content
+  replyingTo: string | null = null; // Track which comment is being replied to
+  user: MyUser | null = null;
+  userName: string | null = null;
 
   constructor(
     private firestoreService: FirestoreService,
@@ -35,7 +40,7 @@ export class CommentComponent implements OnInit {
         window.location.href = '/auth/login';
       } else {
         this.authService.getUser().then((user) => {
-          this.user = user?.displayName || 'Anonymous'; // Get user name
+          this.userName = user?.displayName || 'Anonymous'; // Get user name
         });
       }
     });
@@ -51,7 +56,7 @@ export class CommentComponent implements OnInit {
       .subscribe((comment) => {
         if (comment) {
           this.comments = comment;
-          console.log('comment', comment);
+          console.log('COmments', comment);
           this.cdr.detectChanges();
         } else {
           console.error('Comments not found!');
@@ -66,8 +71,8 @@ export class CommentComponent implements OnInit {
       .then((user) => {
         if (user) {
           // Assign user data to the local user variable
-          this.user = user.displayName; // or whatever user info you need, e.g., userId
-
+          this.userName = user.displayName; // or whatever user info you need, e.g., userId
+          this.user = user;
           // Construct the comment object
           const comment = {
             articleId: this.articleId,
@@ -90,5 +95,69 @@ export class CommentComponent implements OnInit {
       .catch((error) => {
         console.error('Error getting user:', error);
       });
+  }
+  toggleReply(commentId: string): void {
+    this.replyingTo = this.replyingTo === commentId ? null : commentId;
+    this.replyContent = '';
+  }
+
+  addReply(parentCommentId: string): void {
+    if (!this.replyContent.trim()) return;
+
+    this.authService
+      .getUser()
+      .then((user) => {
+        if (user) {
+          this.userName = user.displayName;
+          this.user = user;
+          const replyComment = {
+            articleId: this.articleId,
+            content: this.replyContent.trim(),
+            createdAt: new Date(),
+            likes: 0,
+            parentCommentId: parentCommentId,
+            userId: user.uid,
+            userName: user.displayName,
+          };
+
+          this.firestoreService.addComment(replyComment).subscribe(() => {
+            this.loadComments();
+            this.replyContent = '';
+            this.replyingTo = null;
+          });
+        } else {
+          console.error('User not found!');
+        }
+      })
+      .catch((error) => {
+        console.error('Error getting user:', error);
+      });
+  }
+
+  likeComment(commentId: string): void {
+    this.firestoreService
+      .likeComment(commentId)
+      .then(() => {
+        this.loadComments(); // Refresh the comments after updating
+      })
+      .catch((error) => {
+        console.error('Error liking comment:', error);
+      });
+  }
+
+  dislikeComment(commentId: string): void {
+    this.firestoreService
+      .dislikeComment(commentId)
+      .then(() => {
+        this.loadComments(); // Refresh the comments after updating
+      })
+      .catch((error) => {
+        console.error('Error disliking comment:', error);
+      });
+  }
+  getCommentReplies(parentId: string) {
+    return this.comments.filter(
+      (comment) => comment.parentCommentId === parentId
+    );
   }
 }

@@ -1,0 +1,26 @@
+<div class="add-user-container">
+    <h2>Add New User</h2>
+  
+    <form (ngSubmit)="onSubmit()">
+      <label for="displayName">Display Name:</label>
+      <input type="text" id="displayName" [(ngModel)]="user.displayName" name="displayName" required />
+  
+      <label for="email">Email:</label>
+      <input type="email" id="email" [(ngModel)]="user.email" name="email" required />
+  
+      <label for="bio">Bio:</label>
+      <textarea id="bio" [(ngModel)]="user.bio" name="bio"></textarea>
+  
+      <label for="isAuthor">Is Author:</label>
+      <input type="checkbox" id="isAuthor" [(ngModel)]="user.isAuthor" name="isAuthor" />
+  
+      <label for="isAdmin">Is Admin:</label>
+      <input type="checkbox" id="isAdmin" [(ngModel)]="user.isAdmin" name="isAdmin" />
+  
+      <label for="photoUrl">Photo URL:</label>
+      <input type="text" id="photoUrl" [(ngModel)]="user.photoUrl" name="photoUrl" />
+  
+      <button type="submit" [disabled]="!user.displayName || !user.email">Add User</button>
+    </form>
+  </div>
+  

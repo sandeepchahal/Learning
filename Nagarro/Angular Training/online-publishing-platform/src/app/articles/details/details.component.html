@@ -8,16 +8,14 @@
       <div class="article-tags">
         <span *ngFor="let tag of article.tags" class="tag">{{ tag }}</span>
       </div>
-    </div>
-  
-    <div class="article-description">
-      <h2>Description</h2>
-      <p>{{ article.description }}</p>
+      <div class="article-tags">
+        <span class="tag">{{ categoryName }}</span>
+      </div>
     </div>
   
     <div class="article-content">
       <h2>Content</h2>
-      <p>{{ article.content }}</p>
+      <div [innerHTML]="article.content"></div>
     </div>
   </div>
   

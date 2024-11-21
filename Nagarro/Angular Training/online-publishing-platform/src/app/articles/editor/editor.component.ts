@@ -3,33 +3,38 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FirestoreService } from '../../services/firestore.service';
 import { Router } from '@angular/router';
+import { EditorModule } from '@tinymce/tinymce-angular';
+import { Article } from '../models/article.model';
 
 @Component({
   selector: 'app-editor',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, EditorModule],
   templateUrl: './editor.component.html',
   styleUrl: './editor.component.css',
 })
 export class EditorComponent {
-  article = {
+  article: Article = {
     authorName: '',
     content: '',
-    description: '',
     tags: '',
+    categoryId: '',
     thumbnailUrl: '',
     title: '',
-    publishDate: '',
+    publishDate: new Date(),
     isDraft: false,
-    featured: false,
+    isFeatured: false,
     likes: 0,
     views: 0,
   };
 
+  categories: any[] = [];
   constructor(
     private firestoreService: FirestoreService,
     private router: Router
-  ) {} // Inject the service
+  ) {
+    this.fetchCategories();
+  } // Inject the service
 
   onSubmit() {
     if (this.validateForm()) {
@@ -53,8 +58,7 @@ export class EditorComponent {
     return (
       this.article.authorName.trim() !== '' &&
       this.article.content.trim() !== '' &&
-      this.article.title.trim() !== '' &&
-      this.article.publishDate.trim() !== ''
+      this.article.title.trim() !== ''
     );
   }
 
@@ -62,15 +66,21 @@ export class EditorComponent {
     this.article = {
       authorName: '',
       content: '',
-      description: '',
       tags: '',
       thumbnailUrl: '',
       title: '',
-      publishDate: '',
+      publishDate: new Date(),
+      categoryId: '',
       isDraft: false,
-      featured: false,
+      isFeatured: false,
       likes: 0,
       views: 0,
     };
+  }
+  fetchCategories() {
+    this.firestoreService.getCategories().subscribe((data) => {
+      this.categories = data;
+      console.log('categories', data);
+    });
   }
 }

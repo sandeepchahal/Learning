@@ -1,7 +1,24 @@
 
 <nav class="navbar">
   <a routerLink="/articles" routerLinkActive="active">Articles</a>
+  <div class="auth-section" *ngIf="isAdmin">
+    <ng-container *ngIf="!isLoggedIn; else loggedIn">
+      <a routerLink="/auth/login" routerLinkActive="active">Login</a>
+    </ng-container>
+    <ng-template #loggedIn>
+      <span>{{ userName }}</span>
 
+      <!-- Management Dropdown -->
+      <div class="dropdown">
+        <button class="dropdown-btn">Management</button>
+        <div class="dropdown-content">
+          <a routerLink="/admin/manage/user">User</a>
+          <a routerLink="/other-management">Other Management</a>
+        </div>
+      </div>
+      
+    </ng-template>
+  </div>
   <!-- Conditionally show the login or username -->
   <div class="auth-section">
     <ng-container *ngIf="!isLoggedIn; else loggedIn">

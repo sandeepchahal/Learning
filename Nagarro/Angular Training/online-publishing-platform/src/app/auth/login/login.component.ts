@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { CommonModule } from '@angular/common';
 import { User } from '@angular/fire/auth';
+import { MyUser } from '../../models/user.model';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ import { User } from '@angular/fire/auth';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  user: User | null = null;
+  user: MyUser | null = null;
 
   constructor(private authService: AuthService, private router: Router) {}
 
