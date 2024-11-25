@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
         this.authService.getUser().then((user) => {
           this.user = user;
           // Redirect to articles after login
-          this.router.navigate(['/articles']);
+          this.router.navigate(['']);
         });
       }
     });
@@ -32,14 +32,14 @@ export class LoginComponent implements OnInit {
   signInWithGoogle(): void {
     this.authService.signInWithGoogle().then(() => {
       // Redirect on successful login
-      this.router.navigate(['/articles']);
+      this.router.navigate(['']);
     });
   }
 
   signInWithFacebook(): void {
     this.authService.signInWithFacebook().then(() => {
       // Redirect on successful login
-      this.router.navigate(['/articles']);
+      this.router.navigate(['']);
     });
   }
 

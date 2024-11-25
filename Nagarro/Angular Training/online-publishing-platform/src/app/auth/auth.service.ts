@@ -132,18 +132,19 @@ export class AuthService {
       email: user.email || 'No email',
       followers: [], // Default empty array, can be updated later
       following: [], // Default empty array, can be updated later
-      isAuthor: false, // Set default value, can be updated later
-      isAdmin: false, // Set default value, can be updated later
+      isAuthor: true, // Set default value, can be updated later
+      isAdmin: true, // Set default value, can be updated later
       photoUrl: user.photoURL || '', // Default photo URL
     };
 
-    const userDocRef = doc(this.db, 'users', user.uid); // Reference to the user document
+    const userDocRef = doc(this.db, 'users', usr.uid); // Reference to the user document
     const userDoc = await getDoc(userDocRef);
     console.log('User Doc', userDoc);
     if (!userDoc.exists()) {
+      console.log('User not exists');
       // If user does not exist, save to Firestore
       await setDoc(userDocRef, {
-        ...user, // Spread the user object directly into Firestore
+        ...usr, // Spread the user object directly into Firestore
         createdAt: new Date().toISOString(), // Add createdAt field dynamically
       });
       console.log('User added to Firestore');
