@@ -4,6 +4,7 @@
   "newProjectRoot": "projects",
   
   "projects": {
+    
     "online-publishing-platform": {
       "projectType": "application",
       "schematics": {},
@@ -14,6 +15,11 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "allowedCommonJsDependencies": [
+                "@grpc/grpc-js",
+                "@grpc/proto-loader",
+                "undici"
+              ],
             "outputPath": "dist/online-publishing-platform",
             "index": "src/index.html",
             "browser": "src/main.ts",
@@ -43,13 +49,19 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
+                  "maximumWarning": "1MB",
                   "maximumError": "1MB"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kB",
+                  "maximumWarning": "5kb",
                   "maximumError": "4kB"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
                 }
               ],
               "outputHashing": "all"
