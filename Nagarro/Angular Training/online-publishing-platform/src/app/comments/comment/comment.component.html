@@ -37,13 +37,19 @@
           
           <!-- Comment actions -->
           <div class="comment-actions">
-            <button (click)="likeComment(comment.id)" class="btn-action">
+            <button 
+            [disabled]="!userName" 
+            (click)="likeComment(comment.id)" class="btn-action">
               👍 {{ comment.likes }}
             </button>
-            <button (click)="dislikeComment(comment.id)" class="btn-action">
+            <button 
+            [disabled]="!userName" 
+            (click)="dislikeComment(comment.id)" class="btn-action">
               👎 {{ comment.dislikes }}
             </button>
-            <button (click)="toggleReply(comment.id)" class="btn-action">Reply</button>
+            <button 
+            [disabled]="!userName" 
+            (click)="toggleReply(comment.id)" class="btn-action">Reply</button>
           </div>
 
           <!-- Reply form -->
@@ -65,10 +71,16 @@
                     <strong>{{ reply.userName }}:</strong> {{ reply.content }}
                   </p>
                   <div class="reply-actions">
-                    <button (click)="likeComment(reply.id)" class="btn-action">
+                    <button 
+                    [disabled]="!userName" 
+                     (click)="likeComment(reply.id)"
+                      class="btn-action">
                       👍 {{ reply.likes }}
                     </button>
-                    <button (click)="dislikeComment(reply.id)" class="btn-action">
+                    <button 
+                    [disabled]="!userName" 
+                     (click)="dislikeComment(reply.id)" 
+                     class="btn-action">
                       👎 {{ reply.dislikes }}
                     </button>
                   </div>

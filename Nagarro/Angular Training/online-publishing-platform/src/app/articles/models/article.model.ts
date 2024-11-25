@@ -1,10 +1,13 @@
+import { Timestamp } from 'firebase/firestore';
+
 export interface Article {
+  id: string;
   authorName: string;
   content: string;
   tags: string;
   thumbnailUrl: string;
   title: string;
-  publishDate: Date;
+  publishDate: Timestamp;
   categoryId: string;
   isDraft: boolean;
   isFeatured: boolean;

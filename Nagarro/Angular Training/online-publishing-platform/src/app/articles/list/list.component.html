@@ -20,8 +20,8 @@
       [(ngModel)]="searchText"
       (input)="onSearch()"
     />
-    <select [(ngModel)]="filterType" (change)="onFilterChange()">
-      <option value="articles" selected>Articles</option>
+    <select [(ngModel)]="filterType">
+      <option value="articles">Articles</option>
       <option value="authors">Authors</option>
     </select>
   </div>

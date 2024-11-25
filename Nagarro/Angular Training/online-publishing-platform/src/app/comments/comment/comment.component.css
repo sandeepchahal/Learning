@@ -168,3 +168,7 @@ h2 {
   color: #ff6347;
   margin-top: 5px;
 }
+button[disabled] {
+  pointer-events: none;
+  opacity: 0.5;
+}

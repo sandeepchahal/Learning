@@ -79,8 +79,8 @@ export class ListComponent implements OnInit {
   }
   onSearch(): void {
     const query = this.searchText.toLowerCase();
-    console.log('search', query);
-    if (this.filterType == 'article') {
+    console.log(this.filterType);
+    if (this.filterType == 'articles') {
       this.filteredArticles = this.articles.filter((art) =>
         art.title.toLowerCase().includes(query)
       );
@@ -98,9 +98,7 @@ export class ListComponent implements OnInit {
   goToArticleDetail(articleId: string): void {
     this.router.navigate(['/articles', articleId]);
   }
-  onFilterChange() {
-    this.filterType = this.filterType === 'articles' ? 'authors' : 'articles';
-  }
+
   navigateToComments(articleId: string): void {
     this.router.navigate(['/articles', articleId, 'comments']);
   }

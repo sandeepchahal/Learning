@@ -5,6 +5,7 @@ import { FirestoreService } from '../../services/firestore.service';
 import { Router } from '@angular/router';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { Article } from '../models/article.model';
+import { Timestamp } from 'firebase/firestore';
 
 @Component({
   selector: 'app-editor',
@@ -15,13 +16,15 @@ import { Article } from '../models/article.model';
 })
 export class EditorComponent {
   article: Article = {
+    id: '',
     authorName: '',
     content: '',
     tags: '',
     categoryId: '',
     thumbnailUrl: '',
     title: '',
-    publishDate: new Date(),
+    publishDate: Timestamp.fromDate(new Date()),
+
     isDraft: false,
     isFeatured: false,
     likes: 0,
@@ -64,12 +67,13 @@ export class EditorComponent {
 
   resetForm() {
     this.article = {
+      id: '',
       authorName: '',
       content: '',
       tags: '',
       thumbnailUrl: '',
       title: '',
-      publishDate: new Date(),
+      publishDate: Timestamp.fromDate(new Date()),
       categoryId: '',
       isDraft: false,
       isFeatured: false,

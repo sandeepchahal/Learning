@@ -18,7 +18,7 @@ import {
   Timestamp,
   setDoc,
 } from '@angular/fire/firestore';
-import { from, Observable } from 'rxjs';
+import { from, map, Observable, tap } from 'rxjs';
 import { Category } from '../articles/models/category.model';
 import { Article } from '../articles/models/article.model';
 import { MyUser } from '../models/user.model';
@@ -31,19 +31,25 @@ export class FirestoreService {
   constructor(private firestore: Firestore) {}
 
   // Article Methods
-  getArticles(): Observable<any[]> {
+  getArticles(): Observable<Article[]> {
     const articlesRef = collection(this.firestore, 'articles');
     const articlesQuery = query(
       articlesRef,
       where('isDraft', '==', false),
       limit(10)
     );
-    console.log(
-      'Checking the data',
-      collectionData(articlesQuery, { idField: 'id' })
+
+    return collectionData<Article>(articlesQuery, { idField: 'id' }).pipe(
+      map((articles: Article[]) =>
+        articles.map((article) => ({
+          ...article,
+          publishDate: article.publishDate?.toDate().toLocaleDateString(), // Convert Timestamp to readable format
+        }))
+      ),
+      tap((articles) => console.log('Fetched articles:', articles)) // Debug log
     );
-    return collectionData(articlesQuery, { idField: 'id' });
   }
+
   addArticle(article: Article): Observable<void> {
     const articlesRef = collection(this.firestore, 'articles');
     return new Observable((observer) => {
