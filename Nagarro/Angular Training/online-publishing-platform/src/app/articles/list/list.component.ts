@@ -104,4 +104,8 @@ export class ListComponent implements OnInit {
   navigateToComments(articleId: string): void {
     this.router.navigate(['/articles', articleId, 'comments']);
   }
+  navigateToAuthor(authorId: string): void {
+    console.log('author id', authorId);
+    this.router.navigate(['/author', authorId]);
+  }
 }

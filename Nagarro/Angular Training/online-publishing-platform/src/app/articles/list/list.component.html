@@ -71,7 +71,11 @@
           <h3>{{ author.displayName }}</h3>
           <p>{{ author.speciality }}</p>
         </div>
-        <button class="visit-btn">Visit</button>
+        <button class="visit-btn" 
+        (click)="navigateToAuthor(author.id)"
+        >
+        Visit
+        </button>
       </div>
     </div>
   </div>

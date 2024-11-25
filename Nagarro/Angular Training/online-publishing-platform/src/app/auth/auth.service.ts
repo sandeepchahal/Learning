@@ -89,7 +89,6 @@ export class AuthService {
   }
 
   async isAuthenticated(): Promise<boolean> {
-    console.log('checking is auth', this.auth.currentUser);
     const user = this.auth.currentUser;
     return !!user;
   }
@@ -125,6 +124,7 @@ export class AuthService {
       console.error('Invalid user data');
       return;
     }
+    console.log('User logged in successfully', user);
     const usr: MyUser = {
       uid: user.uid,
       bio: '', // You can fetch this from Firestore or set a default value
@@ -139,7 +139,7 @@ export class AuthService {
 
     const userDocRef = doc(this.db, 'users', user.uid); // Reference to the user document
     const userDoc = await getDoc(userDocRef);
-
+    console.log('User Doc', userDoc);
     if (!userDoc.exists()) {
       // If user does not exist, save to Firestore
       await setDoc(userDocRef, {

@@ -1,17 +1,30 @@
 <!-- comments.component.html -->
 <div class="comments-container">
   <h2>Comments</h2>
-  
-  <!-- Add new comment -->
-  <div *ngIf="user" class="comment-form">
-    <textarea
-      [(ngModel)]="newComment"
-      placeholder="Write your comment..."
-      class="comment-input"
-    ></textarea>
-    <button (click)="addComment()" class="btn-primary">Add Comment</button>
-  </div>
+ <!-- Add new comment -->
+ <div class="comment-form">
+  <textarea
+    [(ngModel)]="newComment"
+    [placeholder]="!userName ? 'You must log in to add a comment' : 'Write a comment...'"
+    class="comment-input"
+    [disabled]="!userName"
+  ></textarea>
+  <button
+    (click)="addComment()"
+    class="btn-primary"
+    [disabled]="!userName"
+  >
+    Add Comment
+  </button>
+  <p *ngIf="!userName" class="login-prompt">
+    .
+  </p>
+</div>
 
+   <!-- Comment count -->
+   <div class="comment-count">
+    <p>Comments ({{ comments.length }})</p>
+  </div>
   <!-- Display parent comments -->
   <div class="comments-list">
     <div *ngFor="let comment of comments" class="comment-block">
@@ -67,4 +80,5 @@
       </ng-container>
     </div>
   </div>
+ 
 </div>

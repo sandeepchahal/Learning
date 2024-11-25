@@ -4,6 +4,7 @@ import { MyUser } from '../../models/user.model';
 import { FirestoreService } from '../../services/firestore.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-management',
@@ -25,14 +26,15 @@ export class UserManagementComponent {
     photoUrl: '',
   };
 
-  constructor(private firestoreService: FirestoreService) {}
+  constructor(
+    private firestoreService: FirestoreService,
+    private router: Router
+  ) {}
 
-  // Method to handle form submission and add the user to Firestore
   async onSubmit(): Promise<void> {
     try {
-      // Add user using the service method
       await this.firestoreService.addUser(this.user);
-      console.log('User added successfully!');
+      this.router.navigate(['/articles']);
     } catch (error) {
       console.error('Error adding user:', error);
     }

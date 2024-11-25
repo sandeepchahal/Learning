@@ -1,58 +1,73 @@
-nav {
-    display: flex;
-    gap: 1rem;
-    background-color: #f8f9fa;
-    padding: 1rem;
-  }
-  
-  a {
-    text-decoration: none;
-    color: #007bff;
-    font-weight: bold;
-  }
-  
-  a.active {
-    color: #0056b3;
-    border-bottom: 2px solid #0056b3;
-  }
-  .my-container
-  {
-    margin:10px;
-    padding:10px;
-  }
-  /* Basic styling for the nav container */
 .navbar {
   display: flex;
-  justify-content: space-between; /* This will push items to both sides */
+  justify-content: space-between;
   align-items: center;
-  padding: 10px;
   background-color: #f8f9fa;
+  padding: 10px 20px;
   border-bottom: 1px solid #ddd;
 }
 
-/* The login section should be aligned at the right side */
-.auth-section {
+.navbar a {
+  text-decoration: none;
+  margin-right: 15px;
+  color: #007bff;
+  font-size: 16px;
+}
+
+.navbar .auth-section {
   display: flex;
   align-items: center;
 }
 
-.auth-section a {
-  margin-left: 10px; /* Adds space between the links */
-  text-decoration: none;
+.navbar .dropdown {
+  position: relative;
+  margin-right: 15px;
+}
+
+.navbar .dropdown-btn {
+  background: none;
+  border: none;
   color: #007bff;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 5px;
 }
 
-.auth-section span {
-  margin-left: 10px;
-  font-weight: bold;
+.navbar .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #ffffff;
+  min-width: 100px;
+  border: 1px solid #ddd;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1;
 }
 
-/* Style for active links */
-a.active {
-  font-weight: bold;
-  color: #0056b3;
+.navbar .dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.navbar .dropdown-content a {
+  display: block;
+  padding: 5px 10px;
+  color: #007bff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.navbar .dropdown-content a:hover {
+  background-color: #f1f1f1;
 }
 
 .my-container {
+  margin: 20px auto;
   padding: 20px;
+  max-width: 1200px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.router-outlet {
+  display: block;
 }

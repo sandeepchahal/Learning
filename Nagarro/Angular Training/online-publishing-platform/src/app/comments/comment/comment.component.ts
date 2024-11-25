@@ -35,10 +35,9 @@ export class CommentComponent implements OnInit {
     this.articleId = this.route.snapshot.paramMap.get('id');
     // Check if user is authenticated
     this.authService.isAuthenticated().then((isAuthenticated) => {
-      if (!isAuthenticated) {
-        // Redirect unauthenticated users to the login page
-        window.location.href = '/auth/login';
-      } else {
+      if (isAuthenticated) {
+        // // Redirect unauthenticated users to the login page
+        // window.location.href = '/auth/login';
         this.authService.getUser().then((user) => {
           this.userName = user?.displayName || 'Anonymous'; // Get user name
         });
@@ -56,7 +55,6 @@ export class CommentComponent implements OnInit {
       .subscribe((comment) => {
         if (comment) {
           this.comments = comment;
-          console.log('COmments', comment);
           this.cdr.detectChanges();
         } else {
           console.error('Comments not found!');
