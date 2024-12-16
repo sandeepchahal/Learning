@@ -1,14 +1,56 @@
-
 <app-search-filter (filterCriteria)="applyFilter($event)"></app-search-filter>
 
+<div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <!-- Loop through highlights -->
+    <div
+      *ngFor="let highlight of highlights; let i = index"
+      class="carousel-item"
+      [class.active]="i === 0"
+    >
+      <img
+        [src]="highlight.imageUrl"
+        class="d-block w-100 carousel-image"
+        alt="{{ highlight.title }}"
+      />
+      <div class="carousel-caption d-none d-md-block">
+        <h5>{{ highlight.title }}</h5>
+        <p>{{ highlight.description }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Carousel Controls -->
+  <button
+    class="carousel-control-prev"
+    type="button"
+    data-bs-target="#carouselExample"
+    data-bs-slide="prev"
+  >
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button
+    class="carousel-control-next"
+    type="button"
+    data-bs-target="#carouselExample"
+    data-bs-slide="next"
+  >
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+
+
 <div class="listing-container">
-  <div *ngFor="let listing of filteredListings" class="listing-card">
+  <div *ngFor="let listing of paginatedListings" class="listing-card">
     <img [src]="listing.imageUrl" alt="{{ listing.title }}" class="listing-image">
     <h3>{{ listing.title }}</h3>
     <p>Location: {{ listing.location }}</p>
     <p>Price: ${{ listing.price }}</p>
     <p>{{ listing.description }}</p>
-    
+
     <button (click)="viewDetails(listing.id)">View Details</button>
     <button (click)="markAsFavorite(listing.id)">
       {{ listing.isFavorite ? 'Unfavorite' : 'Mark as Favorite' }}
@@ -16,9 +58,18 @@
   </div>
 </div>
 
-<button *ngIf="showFavorites">
+<div class="pagination">
+  <button [disabled]="currentPage === 1" (click)="changePage(currentPage - 1)">
+    Previous
+  </button>
+  <span>Page {{ currentPage }} of {{ totalPages }}</span>
+  <button [disabled]="currentPage === totalPages" (click)="changePage(currentPage + 1)">
+    Next
+  </button>
+</div>
+
+<button *ngIf="showFavorites" (click)="toggleFavorites()">
   Show Favorite Listings
 </button>
 
-<app-favorite-listing *ngIf="showFavorites">
-</app-favorite-listing>
+<app-favorite-listing *ngIf="showFavorites"></app-favorite-listing>

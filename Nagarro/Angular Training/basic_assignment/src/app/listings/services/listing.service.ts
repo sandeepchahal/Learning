@@ -136,6 +136,38 @@ export class ListingService {
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlvvcodYFUXKLyO8ud5LTPYdarsVZtupDHDQ&s',
     },
   ];
+
+  private highlightListing: Listing[] = [
+    {
+      id: 7,
+      title: 'Sleek Urban Apartment',
+      location: 'Miami, FL',
+      price: 2500,
+      description:
+        'A sleek apartment with modern finishes and a vibrant city view.',
+      amenities: ['Wi-Fi', 'Washer/Dryer', 'Parking'],
+      isFurnished: false,
+      isVegetarianPreferred: false,
+      isFavorite: false,
+      imageUrl:
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm4cjT6Gy-vv-0tp2pLfi4dj1skJjMABZGtQ&s',
+    },
+    {
+      id: 8,
+      title: 'Rustic Mountain Cabin',
+      location: 'Aspen, CO',
+      price: 3500,
+      description:
+        'A cozy cabin in the mountains, perfect for winter getaways.',
+      amenities: ['Fireplace', 'Ski Access', 'Jacuzzi'],
+      isFurnished: true,
+      isVegetarianPreferred: false,
+      isFavorite: false,
+      imageUrl:
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlvvcodYFUXKLyO8ud5LTPYdarsVZtupDHDQ&s',
+    },
+  ];
+
   private amenitiesList: string[] = [
     'Wi-Fi',
     'Air Conditioning',
@@ -153,7 +185,9 @@ export class ListingService {
   getListings(): Listing[] {
     return this.listings;
   }
-
+  getHighlightList(): Listing[] {
+    return this.highlightListing;
+  }
   getListingById(id: number): Listing | undefined {
     return this.listings.find((listing) => listing.id === id);
   }
