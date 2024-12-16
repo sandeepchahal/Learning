@@ -150,6 +150,7 @@ export class ListComponent implements OnInit {
         this.currentPage = 0;
         this.getArticles();
       } else {
+        this.currentPage = 1;
         this.articles = articles;
         this.filteredArticles = this.articles.filter((article: any) =>
           article.tags.includes(tagName)
