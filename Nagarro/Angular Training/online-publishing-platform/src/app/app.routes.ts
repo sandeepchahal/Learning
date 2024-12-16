@@ -15,6 +15,6 @@ export const appRoutes: Routes = [
   { path: 'articles/:id/comments', component: CommentComponent },
   { path: 'author/:id', component: AuthorDetailsComponent },
   { path: 'auth/login', component: LoginComponent },
-  { path: '', redirectTo: 'articles' },
-  { path: '**', redirectTo: 'articles' },
+  { path: '', redirectTo: '/articles', pathMatch: 'full' },
+  { path: '**', redirectTo: '/articles' },
 ];

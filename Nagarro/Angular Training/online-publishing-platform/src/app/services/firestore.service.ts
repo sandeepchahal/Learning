@@ -17,6 +17,12 @@ import {
   docData,
   Timestamp,
   setDoc,
+  startAfter,
+  endBefore,
+  QueryDocumentSnapshot,
+  DocumentData,
+  getDocs,
+  limitToLast,
 } from '@angular/fire/firestore';
 import { from, map, Observable, tap } from 'rxjs';
 import { Category } from '../articles/models/category.model';
@@ -47,6 +53,80 @@ export class FirestoreService {
         }))
       ),
       tap((articles) => console.log('Fetched articles:', articles)) // Debug log
+    );
+  }
+
+  getPaginationArticles(
+    articlesPerPage: number,
+    direction: 'next' | 'prev',
+    lastDocument: QueryDocumentSnapshot<DocumentData> | null,
+    firstDocument: QueryDocumentSnapshot<DocumentData> | null
+  ): Observable<{
+    articles: Article[];
+    lastDoc: QueryDocumentSnapshot<DocumentData> | null;
+    firstDoc: QueryDocumentSnapshot<DocumentData> | null;
+  }> {
+    const articlesRef = collection(this.firestore, 'articles');
+    const orderByField = 'publishDate';
+
+    // Build the query based on direction (next/prev)
+    let articlesQuery;
+    if (direction === 'next' && lastDocument) {
+      // For 'next' direction, start after the last document
+      articlesQuery = query(
+        articlesRef,
+        orderBy(orderByField),
+        startAfter(lastDocument),
+        limit(articlesPerPage)
+      );
+    } else if (direction === 'prev' && firstDocument) {
+      // For 'prev' direction, end before the first document
+      articlesQuery = query(
+        articlesRef,
+        orderBy(orderByField),
+        endBefore(firstDocument),
+        limitToLast(articlesPerPage) // Use limitToLast for reversing the order
+      );
+    } else {
+      // Initial load or fallback to default query
+      articlesQuery = query(
+        articlesRef,
+        orderBy(orderByField),
+        limit(articlesPerPage)
+      );
+    }
+
+    // Fetch the data as a snapshot
+    return from(getDocs(articlesQuery)).pipe(
+      map((snapshot) => {
+        const articles: Article[] = snapshot.docs.map((doc) => {
+          const data = doc.data();
+          return {
+            id: doc.id,
+            authorName: data['authorName'] || '',
+            content: data['content'] || '',
+            tags: data['tags'] || [],
+            thumbnailUrl: data['thumbnailUrl'] || '',
+            title: data['title'] || '',
+            isDraft: data['isDraft'] || false,
+            publishDate:
+              data['publishDate']?.toDate().toLocaleDateString() || '',
+          } as Article;
+        });
+
+        console.log(articles);
+
+        // Extract Firestore QueryDocumentSnapshot objects for pagination
+        const lastDoc =
+          snapshot.size > 0 ? snapshot.docs[snapshot.docs.length - 1] : null;
+        const firstDoc = snapshot.size > 0 ? snapshot.docs[0] : null;
+
+        return {
+          articles,
+          lastDoc,
+          firstDoc,
+        };
+      })
     );
   }
 

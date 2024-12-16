@@ -26,13 +26,17 @@
     </select>
   </div>
   
-  <!-- Trending Keywords -->
-  <div class="trending-keywords">
-    <p>Trending Tags:</p>
-    <span *ngFor="let keyword of tags" class="keyword">
-      #{{ keyword.name }}
-    </span>
-  </div>
+<!-- Trending Keywords -->
+<div class="trending-keywords">
+  <p>Trending Tags:</p>
+  <span
+    *ngFor="let keyword of tags"
+    class="keyword"
+    (click)="filterByTag(keyword.name)"
+  >
+    #{{ keyword.name }}
+  </span>
+</div>
   
   <!-- Readers' Choice -->
   <div class="readers-choice">
@@ -59,6 +63,14 @@
     </div>
   </div>
   
+<!-- Pagination Controls -->
+<div class="pagination">
+  <button [disabled]="currentPage === 1" (click)="getArticles('prev')">Previous</button>
+  <span>Page {{ currentPage }}</span>
+  <button [disabled]="filteredArticles.length < articlesPerPage" (click)="getArticles('next')">Next</button>
+</div>
+
+<hr>
   <!-- Rising Authors Section -->
   <div class="rising-authors">
     <h2>Rising authors</h2>

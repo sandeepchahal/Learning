@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../auth/auth.service';
+import { DocumentData, QueryDocumentSnapshot } from 'firebase/firestore';
+import { Article } from '../models/article.model';
 
 @Component({
   selector: 'app-article-list',
@@ -16,8 +18,8 @@ export class ListComponent implements OnInit {
   featuredArticles: any[] = [];
   filteredFeaturedArticles: any[] = [];
 
-  articles: any[] = [];
-  filteredArticles: any[] = [];
+  articles: Article[] = [];
+  filteredArticles: Article[] = [];
 
   tags: any[] = [];
   authors: any[] = [];
@@ -27,6 +29,13 @@ export class ListComponent implements OnInit {
   searchText: string = '';
   filterType: string = 'articles';
   isAuthor: boolean | undefined = false;
+
+  // Pagination properties
+  currentPage = 0;
+  articlesPerPage = 2; // Matches the `limit` in the Firestore query
+  totalArticles = 0;
+  lastDocument: QueryDocumentSnapshot<DocumentData> | null = null; // Last document for Firestore pagination
+  firstDocument: QueryDocumentSnapshot<DocumentData> | null = null; // First document for "previous" navigation
 
   constructor(
     private firestoreService: FirestoreService,
@@ -38,11 +47,7 @@ export class ListComponent implements OnInit {
     // Fetch regular articles
     this.allArticlesOpen = true;
 
-    this.firestoreService.getArticles().subscribe((data) => {
-      this.articles = data;
-      this.filteredArticles = this.articles;
-      this.loading = false;
-    });
+    this.getArticles();
 
     // Fetch featured articles
     this.firestoreService.getFeaturedArticles().subscribe((data) => {
@@ -105,5 +110,51 @@ export class ListComponent implements OnInit {
   navigateToAuthor(authorId: string): void {
     console.log('author id', authorId);
     this.router.navigate(['/author', authorId]);
+  }
+  // Fetch articles for the current page
+  getArticles(direction: 'next' | 'prev' = 'next'): void {
+    this.loading = true;
+
+    this.firestoreService
+      .getPaginationArticles(
+        this.articlesPerPage,
+        direction,
+        this.lastDocument,
+        this.firstDocument
+      )
+      .subscribe((data) => {
+        console.log(data);
+        this.articles = data.articles;
+        this.filteredArticles = this.articles;
+
+        // Update pagination references
+        this.lastDocument = data.lastDoc; // Update the last document
+        this.firstDocument = data.firstDoc; // Update the first document
+        console.log('data', data);
+        this.currentPage =
+          direction === 'next' ? this.currentPage + 1 : this.currentPage - 1;
+      });
+  }
+
+  // Reset pagination when needed
+  resetPagination(): void {
+    this.currentPage = 1;
+    this.lastDocument = null;
+    this.firstDocument = null;
+    this.getArticles();
+  }
+
+  filterByTag(tagName: string) {
+    this.firestoreService.getArticles().subscribe((articles) => {
+      if (tagName == 'All') {
+        this.currentPage = 0;
+        this.getArticles();
+      } else {
+        this.articles = articles;
+        this.filteredArticles = this.articles.filter((article: any) =>
+          article.tags.includes(tagName)
+        );
+      }
+    });
   }
 }

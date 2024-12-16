@@ -1,7 +1,7 @@
 <div class="article-post-container">
   <h1>Create New Article</h1>
   
-  <form (ngSubmit)="  onSubmit()">
+  <form #articleForm="ngForm" (ngSubmit)="onSubmit()">
     <!-- Title -->
     <label for="title">Title</label>
     <input
@@ -9,8 +9,12 @@
       type="text"
       [(ngModel)]="article.title"
       name="title"
+      #title="ngModel"
       required
     />
+    <div class="error" *ngIf="title.invalid && title.touched">
+      Title is required.
+    </div>
     
     <!-- Author Name -->
     <label for="authorName">Author Name</label>
@@ -19,33 +23,55 @@
       type="text"
       [(ngModel)]="article.authorName"
       name="authorName"
+      #authorName="ngModel"
       required
     />
-     <!-- Category -->
-     <label for="category">Category</label>
-     <select id="category" [(ngModel)]="article.categoryId" name="category">
-       <option *ngFor="let category of categories" [value]="category.id">
-         {{ category.name }}
-       </option>
-     </select>
+    <div class="error" *ngIf="authorName.invalid && authorName.touched">
+      Author Name is required.
+    </div>
+
+    <!-- Category -->
+    <label for="category">Category</label>
+    <select
+      id="category"
+      [(ngModel)]="article.categoryId"
+      name="category"
+      #category="ngModel"
+      required
+    >
+      <option value="" disabled>Select a category</option>
+      <option *ngFor="let category of categories" [value]="category.id">
+        {{ category.name }}
+      </option>
+    </select>
+    <div class="error" *ngIf="category.invalid && category.touched">
+      Category is required.
+    </div>
+    
+    <!-- Content -->
     <editor
-  apiKey="uoekf9wyq7a3jc2vkvotddkco2llde2b2b847xeofo4bb6qc"
-  [(ngModel)]="article.content"
-  name="content"
-  [init]="{
-    height: 300,
-    menubar: false,
-    plugins: [
-      'advlist autolink lists link image charmap print preview anchor',
-      'searchreplace visualblocks code fullscreen',
-      'insertdatetime media table paste code help wordcount'
-    ],
-    toolbar:
-      'undo redo | formatselect | bold italic backcolor | \
-      alignleft aligncenter alignright alignjustify | \
-      bullist numlist outdent indent | removeformat | help'
-  }"
-></editor>
+      apiKey="uoekf9wyq7a3jc2vkvotddkco2llde2b2b847xeofo4bb6qc"
+      [(ngModel)]="article.content"
+      name="content"
+      #content="ngModel"
+      [init]="{
+        height: 300,
+        menubar: false,
+        plugins: [
+          'advlist autolink lists link image charmap print preview anchor',
+          'searchreplace visualblocks code fullscreen',
+          'insertdatetime media table paste code help wordcount'
+        ],
+        toolbar:
+          'undo redo | formatselect | bold italic backcolor | \
+          alignleft aligncenter alignright alignjustify | \
+          bullist numlist outdent indent | removeformat | help'
+      }"
+      required
+    ></editor>
+    <div class="error" *ngIf="content.invalid && content.touched">
+      Content is required.
+    </div>
 
     <!-- Thumbnail URL -->
     <label for="thumbnailUrl">Thumbnail URL</label>
@@ -54,9 +80,12 @@
       type="url"
       [(ngModel)]="article.thumbnailUrl"
       name="thumbnailUrl"
+      #thumbnailUrl="ngModel"
+      pattern="https?://.+"
     />
-
-   
+    <div class="error" *ngIf="thumbnailUrl.invalid && thumbnailUrl.touched">
+      Please enter a valid URL.
+    </div>
 
     <!-- Tags -->
     <label for="tags">Tags</label>
@@ -66,9 +95,20 @@
       placeholder="Comma-separated tags"
       [(ngModel)]="article.tags"
       name="tags"
+      #tags="ngModel"
+      pattern="^([^,]+,)*[^,]+$"
     />
+    <div class="error" *ngIf="tags.invalid && tags.touched">
+      Tags must be comma-separated without trailing commas.
+    </div>
     
     <!-- Submit Button -->
-    <button type="submit" class="submit-btn">Submit</button>
+    <button
+      type="submit"
+      class="submit-btn"
+      [disabled]="articleForm.invalid"
+    >
+      Submit
+    </button>
   </form>
 </div>
