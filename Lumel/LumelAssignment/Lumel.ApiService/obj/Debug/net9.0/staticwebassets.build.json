@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "hwSenkTyY2G5HDTxYo36RyigLgqQRtxYz3ypFBlZg8I=",
+  "Source": "Lumel.ApiService",
+  "BasePath": "_content/Lumel.ApiService",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

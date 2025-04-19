@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lumel.Data", "Lumel.Data\Lumel.Data.csproj", "{C1A7C607-D10E-4EE2-9126-B7F9139B0596}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lumel.Service", "Lumel.Service\Lumel.Service.csproj", "{532FDA18-96F1-4599-B2A3-9D1D3EC4E723}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lumel.ApiService", "Lumel.ApiService\Lumel.ApiService.csproj", "{5E19DBF8-E661-4925-9799-C18C363AA7F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lumel.Shared", "Lumel.Shared\Lumel.Shared.csproj", "{FE69ABB3-9B21-437E-95CC-5D987873A33E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C1A7C607-D10E-4EE2-9126-B7F9139B0596}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1A7C607-D10E-4EE2-9126-B7F9139B0596}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1A7C607-D10E-4EE2-9126-B7F9139B0596}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1A7C607-D10E-4EE2-9126-B7F9139B0596}.Release|Any CPU.Build.0 = Release|Any CPU
+		{532FDA18-96F1-4599-B2A3-9D1D3EC4E723}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{532FDA18-96F1-4599-B2A3-9D1D3EC4E723}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{532FDA18-96F1-4599-B2A3-9D1D3EC4E723}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{532FDA18-96F1-4599-B2A3-9D1D3EC4E723}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E19DBF8-E661-4925-9799-C18C363AA7F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E19DBF8-E661-4925-9799-C18C363AA7F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E19DBF8-E661-4925-9799-C18C363AA7F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E19DBF8-E661-4925-9799-C18C363AA7F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE69ABB3-9B21-437E-95CC-5D987873A33E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE69ABB3-9B21-437E-95CC-5D987873A33E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE69ABB3-9B21-437E-95CC-5D987873A33E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE69ABB3-9B21-437E-95CC-5D987873A33E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

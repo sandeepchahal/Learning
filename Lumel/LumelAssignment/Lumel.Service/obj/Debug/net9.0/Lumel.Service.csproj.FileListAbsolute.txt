@@ -1,0 +1,12 @@
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Service/bin/Debug/net9.0/Lumel.Service.deps.json
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Service/bin/Debug/net9.0/Lumel.Service.dll
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Service/bin/Debug/net9.0/Lumel.Service.pdb
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Service/obj/Debug/net9.0/Lumel.Service.GeneratedMSBuildEditorConfig.editorconfig
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Service/obj/Debug/net9.0/Lumel.Service.AssemblyInfoInputs.cache
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Service/obj/Debug/net9.0/Lumel.Service.AssemblyInfo.cs
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Service/obj/Debug/net9.0/Lumel.Service.csproj.CoreCompileInputs.cache
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Service/obj/Debug/net9.0/Lumel.Service.sourcelink.json
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Service/obj/Debug/net9.0/Lumel.Service.dll
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Service/obj/Debug/net9.0/refint/Lumel.Service.dll
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Service/obj/Debug/net9.0/Lumel.Service.pdb
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Service/obj/Debug/net9.0/ref/Lumel.Service.dll
