@@ -9,6 +9,7 @@ public class MarketingCampaign:BaseEntity
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
 
+    [StringLength(100)]
     public required string Name { get; set; }
     public required DateTime StartDate { get; set; }
     public required DateTime  EndDate { get; set; }

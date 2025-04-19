@@ -10,11 +10,13 @@ namespace Lumel.Data.Entities;
 public class Customer:BaseEntity
 {
     [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int Id { get; set; }
+    public required int Id { get; set; }
 
+    [StringLength(100)]
     public required string Name { get; set; }
+    [StringLength(100)]
     public required string Email { get; set; }
+    [StringLength(500)]
     public required string Address { get; set; }
     public GenderType? Gender { get; set; }
     public DateTime? DateOfBirth { get; set; }

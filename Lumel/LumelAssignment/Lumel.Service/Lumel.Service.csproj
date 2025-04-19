@@ -6,4 +6,10 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Lumel.Data\Lumel.Data.csproj" />
+      <ProjectReference Include="..\Lumel.Dto\Lumel.Dto.csproj" />
+      <ProjectReference Include="..\Lumel.Shared\Lumel.Shared.csproj" />
+    </ItemGroup>
+
 </Project>

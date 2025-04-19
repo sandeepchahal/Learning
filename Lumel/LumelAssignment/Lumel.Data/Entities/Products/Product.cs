@@ -9,11 +9,13 @@ namespace Lumel.Data.Entities;
 public class Product: BaseEntity
 {
     [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int Id { get; set; }
+    public required int Id { get; set; }
 
+    [StringLength(100)]
     public required string Name { get; set; }
+    [StringLength(100)]
     public required string Category { get; set; } // we should be storing id as foreign key which reference the category table
+    [StringLength(1000)]
     public string? Description { get; set; }
     public virtual List<Order>? Orders { get; set; }
 }

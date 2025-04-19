@@ -9,15 +9,14 @@ namespace Lumel.Data.Entities;
 public class Order:BaseEntity
 {
     [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int Id { get; set; }
+    public required int Id { get; set; }
 
     [ForeignKey(nameof(Product))]
     public required int ProductId { get; set; }
     
     [ForeignKey(nameof(Customer))]
     public required int CustomerId { get; set; }
-
+    [StringLength(100)]
     public required string Region { get; set; } // it should be regionId as Forgein key
     public required DateTime DateOfSale { get; set; }
     public required int Quantity { get; set; }

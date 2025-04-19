@@ -10,3 +10,9 @@
 /Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Service/obj/Debug/net9.0/refint/Lumel.Service.dll
 /Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Service/obj/Debug/net9.0/Lumel.Service.pdb
 /Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Service/obj/Debug/net9.0/ref/Lumel.Service.dll
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Service/bin/Debug/net9.0/Lumel.Data.dll
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Service/bin/Debug/net9.0/Lumel.Shared.dll
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Service/bin/Debug/net9.0/Lumel.Data.pdb
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Service/bin/Debug/net9.0/Lumel.Shared.pdb
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Service/obj/Debug/net9.0/Lumel.Service.csproj.AssemblyReference.cache
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Service/obj/Debug/net9.0/Lumel.Se.82C57619.Up2Date

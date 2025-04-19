@@ -18,7 +18,7 @@ public class LumelDbContextFactory:IDesignTimeDbContextFactory<LumelDbContext>
             .Build();
         
         var builder = new DbContextOptionsBuilder<LumelDbContext>();
-        var connectionString = configuration.GetConnectionString("AppDb");
+        var connectionString = configuration.GetConnectionString("LumelDb");
         builder.UseSqlServer(connectionString);
         return new LumelDbContext(builder.Options);
     }

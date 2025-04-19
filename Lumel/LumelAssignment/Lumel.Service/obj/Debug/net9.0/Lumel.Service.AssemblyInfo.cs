@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Lumel.Service")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d0c4954bfc26548f5ab3f7580e84fe8cd98ba567")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+36c2649bc761ffa50403fa32c2e27a0ac6628e3d")]
 [assembly: System.Reflection.AssemblyProductAttribute("Lumel.Service")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Lumel.Service")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
