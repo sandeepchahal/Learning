@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Lumel.ApiService")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+998766b85c842fbca8b1e3a2b4ada23aced40365")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2487e9b8c52e7c9718bee9703c071253f398abfc")]
 [assembly: System.Reflection.AssemblyProductAttribute("Lumel.ApiService")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Lumel.ApiService")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

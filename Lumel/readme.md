@@ -37,24 +37,52 @@ This project is built using **.NET 9.0** and is designed to read a CSV file, loa
 
 ```json
 {
-  "totalRevenue": 1983.0284,
-  "totalRevenueByProduct": {
-    "P324": 746.253,
-    "P533": 109.04,
-    "P601": 701.6592,
-    "P664": 426.0762
-  },
-  "totalRevenueByCategory": {
-    "Accessories": 746.253,
-    "Books": 426.0762,
-    "Clothing": 109.04,
-    "Electronics": 701.6592
-  },
-  "totalRevenueByRegion": {
-    "Asia": 109.04,
-    "Australia": 426.0762,
-    "Europe": 701.6592,
-    "North America": 746.253
-  }
+  "totalRevenue": 1873.9884,
+  "totalRevenueByProduct": [
+    {
+      "name": "P324",
+      "revenue": 746.253
+    },
+    {
+      "name": "P601",
+      "revenue": 701.6592
+    },
+    {
+      "name": "P664",
+      "revenue": 426.0762
+    }
+  ],
+  "totalRevenueByCategory": [
+    {
+      "name": "Accessories",
+      "revenue": 746.253
+    },
+    {
+      "name": "Books",
+      "revenue": 426.0762
+    },
+    {
+      "name": "Electronics",
+      "revenue": 701.6592
+    }
+  ],
+  "totalRevenueByRegion": [
+    {
+      "name": "Australia",
+      "revenue": 426.0762
+    },
+    {
+      "name": "Europe",
+      "revenue": 701.6592
+    },
+    {
+      "name": "North America",
+      "revenue": 746.253
+    }
+  ]
 }
 ```
+
+### Database Diagram
+
+![Database Diagram](./diagram.png)

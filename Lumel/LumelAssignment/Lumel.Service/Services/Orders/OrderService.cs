@@ -81,11 +81,19 @@ public class OrderService(LumelDbContext dbContext):IOrderService
         
         var revenueByProduct = orders.OrderBy(col=>col.ProductId)
             .GroupBy(col=>col.ProductId)
-            .ToDictionary(col=>col.Key, g=>g.Sum(o=>o.Quantity * o.UnitPrice * (1 - o.Discount)));
-        
-        var revenueByRegion= orders.OrderBy(col=>col.Region)
-            .GroupBy(col=>col.Region)
-            .ToDictionary(col=>col.Key, g=>g.Sum(o=>o.Quantity * o.UnitPrice * (1 - o.Discount)));
+            .Select(col => new RevenueDTO()
+            {
+                Name = col.Key,
+                Revenue = col.Sum(o => o.Quantity * o.UnitPrice * (1 - o.Discount))
+            }).ToList();
+
+        var revenueByRegion = orders.OrderBy(col => col.Region)
+            .GroupBy(col => col.Region)
+            .Select(col => new RevenueDTO()
+            {
+                Name = col.Key,
+                Revenue = col.Sum(o => o.Quantity * o.UnitPrice * (1 - o.Discount))
+            }).ToList();
 
 
         var groupByCategory =
@@ -95,11 +103,11 @@ public class OrderService(LumelDbContext dbContext):IOrderService
                 group new { o, p } by p.Category
                 into g
                 orderby g.Key
-                select new
+                select new RevenueDTO()
                 {
-                    Category = g.Key,
+                    Name = g.Key,
                     Revenue = g.Sum(s=>s.o.Quantity * s.o.UnitPrice * (1 - s.o.Discount))
-                }).ToDictionary(col=>col.Category,col=>col.Revenue);
+                }).ToList();
         
         return new Revenue()
         {
@@ -109,7 +117,4 @@ public class OrderService(LumelDbContext dbContext):IOrderService
             TotalRevenueByRegion = revenueByRegion
         };
     }
-    
-    
-    
 }
