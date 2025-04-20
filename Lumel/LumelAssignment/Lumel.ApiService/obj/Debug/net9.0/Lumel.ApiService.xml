@@ -4,6 +4,24 @@
         <name>Lumel.ApiService</name>
     </assembly>
     <members>
+        <member name="T:Lumel.ApiService.ApiServices.CsvApiController">
+            <summary>
+            CSV API to process the file
+            </summary>
+            <param name="csvService"></param>
+        </member>
+        <member name="M:Lumel.ApiService.ApiServices.CsvApiController.#ctor(Lumel.Service.ICsvService)">
+            <summary>
+            CSV API to process the file
+            </summary>
+            <param name="csvService"></param>
+        </member>
+        <member name="M:Lumel.ApiService.ApiServices.CsvApiController.ProcessFile">
+            <summary>
+            Process file api method
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Lumel.ApiService.ApiServices.OrderApiController.GetRevenue(System.DateTime,System.Nullable{System.DateTime})">
             <summary>
             Get revenue calculations for a date range.
