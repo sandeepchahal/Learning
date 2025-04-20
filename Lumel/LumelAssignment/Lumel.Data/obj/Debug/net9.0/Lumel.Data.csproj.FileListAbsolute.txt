@@ -1,0 +1,16 @@
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Data/bin/Debug/net9.0/Lumel.Data.deps.json
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Data/bin/Debug/net9.0/Lumel.Data.dll
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Data/bin/Debug/net9.0/Lumel.Data.pdb
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Data/bin/Debug/net9.0/Lumel.Shared.dll
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Data/bin/Debug/net9.0/Lumel.Shared.pdb
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Data/obj/Debug/net9.0/Lumel.Data.csproj.AssemblyReference.cache
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Data/obj/Debug/net9.0/Lumel.Data.GeneratedMSBuildEditorConfig.editorconfig
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Data/obj/Debug/net9.0/Lumel.Data.AssemblyInfoInputs.cache
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Data/obj/Debug/net9.0/Lumel.Data.AssemblyInfo.cs
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Data/obj/Debug/net9.0/Lumel.Data.csproj.CoreCompileInputs.cache
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Data/obj/Debug/net9.0/Lumel.Data.sourcelink.json
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Data/obj/Debug/net9.0/Lumel.Data.csproj.Up2Date
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Data/obj/Debug/net9.0/Lumel.Data.dll
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Data/obj/Debug/net9.0/refint/Lumel.Data.dll
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Data/obj/Debug/net9.0/Lumel.Data.pdb
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Data/obj/Debug/net9.0/ref/Lumel.Data.dll

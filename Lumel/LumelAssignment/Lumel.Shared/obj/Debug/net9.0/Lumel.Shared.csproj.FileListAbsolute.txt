@@ -1,0 +1,12 @@
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Shared/bin/Debug/net9.0/Lumel.Shared.deps.json
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Shared/bin/Debug/net9.0/Lumel.Shared.dll
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Shared/bin/Debug/net9.0/Lumel.Shared.pdb
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Shared/obj/Debug/net9.0/Lumel.Shared.GeneratedMSBuildEditorConfig.editorconfig
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Shared/obj/Debug/net9.0/Lumel.Shared.AssemblyInfoInputs.cache
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Shared/obj/Debug/net9.0/Lumel.Shared.AssemblyInfo.cs
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Shared/obj/Debug/net9.0/Lumel.Shared.csproj.CoreCompileInputs.cache
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Shared/obj/Debug/net9.0/Lumel.Shared.sourcelink.json
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Shared/obj/Debug/net9.0/Lumel.Shared.dll
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Shared/obj/Debug/net9.0/refint/Lumel.Shared.dll
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Shared/obj/Debug/net9.0/Lumel.Shared.pdb
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Shared/obj/Debug/net9.0/ref/Lumel.Shared.dll
