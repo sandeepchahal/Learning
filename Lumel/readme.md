@@ -21,35 +21,40 @@ This project is built using **.NET 9.0** and is designed to read a CSV file, loa
    A background job will execute on startup, read the specified CSV file, and load its contents into the database. This job runs at a **60-minute interval** by default (configurable in `appsettings.json`).
 
 5. **Swagger UI**  
-   Once the service is running, you can access the Swagger UI at:  
-   [http://localhost:5033/swagger/index.html](http://localhost:5033/swagger/index.html)
-   [http://localhost:7164/swagger/index.html](http://localhost:7164/swagger/index.html)
+   Once the service is running, you can access the Swagger UI at:
+   - [http://localhost:5033/swagger/index.html](http://localhost:5033/swagger/index.html)
+   - [http://localhost:7164/swagger/index.html](http://localhost:7164/swagger/index.html)
 
 ## API Endpoints
 
-| Route                | Method | Request Body                             | Sample Response                  | Description                                                      |
-| -------------------- | ------ | ---------------------------------------- | -------------------------------- | ---------------------------------------------------------------- |
-| `/api/csv/process`   | POST   | None                                     | `File is processed successfully` | Processes the CSV file and loads its contents into the database. |
-| `/api/order/revenue` | GET    | Query: `startDate`, `endDate` (optional) |
+| Route                | Method | Request Body                             | Sample Response                    | Description                                                                  |
+| -------------------- | ------ | ---------------------------------------- | ---------------------------------- | ---------------------------------------------------------------------------- |
+| `/api/csv/process`   | POST   | None                                     | `"File is processed successfully"` | Processes the CSV file and loads its contents into the database.             |
+| `/api/order/revenue` | GET    | Query: `startDate`, `endDate` (optional) | See sample below ↓                 | Calculates revenue between the specified `startDate` and optional `endDate`. |
 
-`{                               
-"totalRevenue": 1983.0284,
-"totalRevenueByProduct": {
-"P324": 746.253,
-"P533": 109.04,
-"P601": 701.6592,
-"P664": 426.0762
-},
-"totalRevenueByCategory": {
-"Accessories": 746.253,
-"Books": 426.0762,
-"Clothing": 109.04,
-"Electronics": 701.6592
-},
-"totalRevenueByRegion": {
-"Asia": 109.04,
-"Australia": 426.0762,
-"Europe": 701.6592,
-"North America": 746.253
+<details>
+  <summary>Sample Response for <code>/api/order/revenue</code></summary>
+
+```json
+{
+  "totalRevenue": 1983.0284,
+  "totalRevenueByProduct": {
+    "P324": 746.253,
+    "P533": 109.04,
+    "P601": 701.6592,
+    "P664": 426.0762
+  },
+  "totalRevenueByCategory": {
+    "Accessories": 746.253,
+    "Books": 426.0762,
+    "Clothing": 109.04,
+    "Electronics": 701.6592
+  },
+  "totalRevenueByRegion": {
+    "Asia": 109.04,
+    "Australia": 426.0762,
+    "Europe": 701.6592,
+    "North America": 746.253
+  }
 }
-}`| Calculates revenue between the specified`startDate`and optional`endDate`. |
+```
