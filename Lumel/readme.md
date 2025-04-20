@@ -83,6 +83,8 @@ This project is built using **.NET 9.0** and is designed to read a CSV file, loa
 }
 ```
 
+</details>
+
 ### Database Diagram
 
 ![Database Diagram](./diagram.png)
