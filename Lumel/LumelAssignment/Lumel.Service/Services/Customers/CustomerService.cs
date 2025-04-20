@@ -4,17 +4,24 @@ using Lumel.Dto;
 
 namespace Lumel.Service;
 
-public class CustomerService(LumelDbContext dbContext):ICustomerService
+public class CustomerService:ICustomerService
 {
+    private readonly LumelDbContext dbContext;
+
+    // Constructor to initialize the DbContext
+    public CustomerService(LumelDbContext dbContext)
+    {
+        this.dbContext = dbContext;
+    }
     public async Task AddOrUpdateAsync(List<CustomerDto> dto)
     { 
         List<Customer> customers = new List<Customer>();
-       var result =  dto.Select(async col =>
+        foreach (var col in dto)
         {
             var customer = await GetByIdAsync(col.Id);
             if (customer == null)
             {
-                return new Customer()
+                customers.Add(new Customer()
                 {
                     Id = col.Id,
                     Address = col.Address,
@@ -24,20 +31,18 @@ public class CustomerService(LumelDbContext dbContext):ICustomerService
                     CreatedOn = DateTime.Now,
                     DateOfBirth = col.DateOfBirth,
                     Gender = col.Gender
-                };
+                });
             }
-            customer.Address = col.Address;
-            customer.DateOfBirth = col.DateOfBirth;
-            customer.Name = col.Name;
-            customer.Gender = col.Gender;
-            customer.ModifiedBy = "System";
-            customer.ModifiedOn = DateTime.Now;
-            return null;
-                
-        }).Where(col=>col!= null).ToList();
-
-        var results = await Task.WhenAll(result);
-        customers.AddRange(results.Where(c => c != null)!);
+            else
+            {
+                customer.Address = col.Address;
+                customer.DateOfBirth = col.DateOfBirth;
+                customer.Name = col.Name;
+                customer.Gender = col.Gender;
+                customer.ModifiedBy = "System";
+                customer.ModifiedOn = DateTime.Now;
+            }
+        }
         if (customers.Count != 0)
         {
             dbContext.Customers.AddRange(customers);
@@ -45,7 +50,7 @@ public class CustomerService(LumelDbContext dbContext):ICustomerService
         await dbContext.SaveChangesAsync();
     }
 
-    public async Task<Customer?> GetByIdAsync(int customerId)
+    public async Task<Customer?> GetByIdAsync(string customerId)
     {
         return await dbContext.Customers.FindAsync(customerId);
     }

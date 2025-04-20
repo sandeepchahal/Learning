@@ -1,0 +1,2 @@
+Order ID,Product ID,Customer ID,Product Name,Category,Region,Date of Sale,Quantity Sold,Unit Price,Discount,Shipping Cost,Payment Method,Customer Name,Customer Email,Customer Address
+11111,Q123,C999,UltraBoost Running Shoes,Shoes,North America,2023-12-15,2,180.00,0.1,10.00,Credit Card,John Smith,johnsmith@email.com,"123 Main St, Anytown, CA 12345"

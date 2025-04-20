@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "IUccXSjXe1g=",
+  "dgSpecHash": "lvFQ5hOeBgA=",
   "success": true,
   "projectFilePath": "/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Service/Lumel.Service.csproj",
   "expectedPackageFiles": [
     "/Users/sandeepsingh/.nuget/packages/azure.core/1.38.0/azure.core.1.38.0.nupkg.sha512",
     "/Users/sandeepsingh/.nuget/packages/azure.identity/1.11.4/azure.identity.1.11.4.nupkg.sha512",
+    "/Users/sandeepsingh/.nuget/packages/csvhelper/33.0.1/csvhelper.33.0.1.nupkg.sha512",
     "/Users/sandeepsingh/.nuget/packages/microsoft.bcl.asyncinterfaces/1.1.1/microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "/Users/sandeepsingh/.nuget/packages/microsoft.csharp/4.5.0/microsoft.csharp.4.5.0.nupkg.sha512",
     "/Users/sandeepsingh/.nuget/packages/microsoft.data.sqlclient/5.1.6/microsoft.data.sqlclient.5.1.6.nupkg.sha512",
@@ -19,6 +20,7 @@
     "/Users/sandeepsingh/.nuget/packages/microsoft.extensions.caching.memory/9.0.4/microsoft.extensions.caching.memory.9.0.4.nupkg.sha512",
     "/Users/sandeepsingh/.nuget/packages/microsoft.extensions.configuration/9.0.4/microsoft.extensions.configuration.9.0.4.nupkg.sha512",
     "/Users/sandeepsingh/.nuget/packages/microsoft.extensions.configuration.abstractions/9.0.4/microsoft.extensions.configuration.abstractions.9.0.4.nupkg.sha512",
+    "/Users/sandeepsingh/.nuget/packages/microsoft.extensions.configuration.binder/9.0.4/microsoft.extensions.configuration.binder.9.0.4.nupkg.sha512",
     "/Users/sandeepsingh/.nuget/packages/microsoft.extensions.configuration.fileextensions/9.0.4/microsoft.extensions.configuration.fileextensions.9.0.4.nupkg.sha512",
     "/Users/sandeepsingh/.nuget/packages/microsoft.extensions.configuration.json/9.0.4/microsoft.extensions.configuration.json.9.0.4.nupkg.sha512",
     "/Users/sandeepsingh/.nuget/packages/microsoft.extensions.dependencyinjection/9.0.4/microsoft.extensions.dependencyinjection.9.0.4.nupkg.sha512",

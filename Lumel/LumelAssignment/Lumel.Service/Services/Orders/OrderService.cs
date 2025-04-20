@@ -10,44 +10,43 @@ public class OrderService(LumelDbContext dbContext):IOrderService
     public async Task AddAsync(List<OrderDto> dto)
     {
         var orderList = new List<Order>();
-        var orders = dto.Select(async col =>
+        foreach (var orderItem in dto)
         {
-            var order = await GetByIdAsync(col.OrderId);
+            var order = await GetByIdAsync(orderItem.OrderId);
             if (order == null)
             {
-                return new Order()
-                {
-                    Id = col.OrderId,
-                    ProductId = col.ProductId,
-                    CustomerId = col.CustomerId,
-                    Discount = col.Discount,
-                    Quantity = col.Quantity,
-                    Region = col.Region,
-                    PaymentMethod = col.PaymentMethod,
-                    ShippingCost = col.ShippingCost,
-                    UnitPrice = col.UnitPrice,
-                    DateOfSale = col.DateOfSale,
-                    CreatedBy = "System",
-                    CreatedOn = DateTime.Now,
-                };
+                orderList.Add(
+                    new Order()
+                    {
+                        Id = orderItem.OrderId,
+                        ProductId = orderItem.ProductId,
+                        CustomerId = orderItem.CustomerId,
+                        Discount = Math.Round(orderItem.Discount, 2, MidpointRounding.AwayFromZero),
+                        Quantity = orderItem.Quantity,
+                        Region = orderItem.Region,
+                        PaymentMethod = orderItem.PaymentMethod,
+                        ShippingCost = Math.Round(orderItem.ShippingCost, 2, MidpointRounding.AwayFromZero),
+                        UnitPrice = Math.Round(orderItem.UnitPrice, 2, MidpointRounding.AwayFromZero),
+                        DateOfSale = orderItem.DateOfSale,
+                        CreatedBy = "System",
+                        CreatedOn = DateTime.Now,
+                    });
             }
-
-            order.ProductId = col.ProductId;
-            order.CustomerId = col.CustomerId;
-            order.Discount = col.Discount;
-            order.Quantity = col.Quantity;
-            order.Region = col.Region;
-            order.PaymentMethod = col.PaymentMethod;
-            order.ShippingCost = col.ShippingCost;
-            order.UnitPrice = col.UnitPrice;
-            order.DateOfSale = col.DateOfSale;
-            order.ModifiedBy = "System";
-            order.ModifiedOn = DateTime.Now;
-            return null;
-        }).Where(c=>c!= null);
-
-        var result = await Task.WhenAll(orders);
-        orderList.AddRange(result.Where(c=>c!=null)!);
+            else
+            {
+                order.ProductId = orderItem.ProductId;
+                order.CustomerId = orderItem.CustomerId;
+                order.Discount = Math.Round(orderItem.Discount, 2, MidpointRounding.AwayFromZero);
+                order.Quantity = orderItem.Quantity;
+                order.Region = orderItem.Region;
+                order.PaymentMethod = orderItem.PaymentMethod;
+                order.ShippingCost = Math.Round(orderItem.ShippingCost, 2, MidpointRounding.AwayFromZero);
+                order.UnitPrice = Math.Round(orderItem.UnitPrice, 2, MidpointRounding.AwayFromZero);
+                order.DateOfSale = orderItem.DateOfSale;
+                order.ModifiedBy = "System";
+                order.ModifiedOn = DateTime.Now;
+            }
+        }
         if (orderList.Count != 0)
         {
             dbContext.Orders.AddRange(orderList);
@@ -55,21 +54,21 @@ public class OrderService(LumelDbContext dbContext):IOrderService
         await dbContext.SaveChangesAsync();
     }
 
-    public async Task<Order?> GetByIdAsync(int orderId)
+    public async Task<Order?> GetByIdAsync(string orderId)
     {
         return await dbContext.Orders.FindAsync(orderId);
     }
 
-    public async Task<IEnumerable<Order>?> GetByProductIdAsync(int productId)
+    public async Task<IEnumerable<Order>?> GetByProductIdAsync(string productId)
     {
         return await dbContext.Orders.AsNoTracking()
-            .Where(col => col.ProductId == productId).ToListAsync();
+            .Where(orderItem => orderItem.ProductId == productId).ToListAsync();
     }
 
-    public async Task<IEnumerable<Order>?> GetByCustomerIdAsync(int customerId)
+    public async Task<IEnumerable<Order>?> GetByCustomerIdAsync(string customerId)
     {
         return await dbContext.Orders.AsNoTracking()
-            .Where(col => col.CustomerId == customerId).ToListAsync();
+            .Where(orderItem => orderItem.CustomerId == customerId).ToListAsync();
 
     }
 }

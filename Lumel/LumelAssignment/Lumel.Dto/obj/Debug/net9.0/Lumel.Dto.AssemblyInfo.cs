@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Lumel.Dto")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+36c2649bc761ffa50403fa32c2e27a0ac6628e3d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+193b1ddcaf18645baea3b82ffc2e9b7e00308b8d")]
 [assembly: System.Reflection.AssemblyProductAttribute("Lumel.Dto")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Lumel.Dto")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

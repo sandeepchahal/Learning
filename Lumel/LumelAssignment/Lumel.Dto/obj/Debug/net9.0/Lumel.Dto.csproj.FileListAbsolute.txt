@@ -1,0 +1,16 @@
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Dto/bin/Debug/net9.0/Lumel.Dto.deps.json
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Dto/bin/Debug/net9.0/Lumel.Dto.dll
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Dto/bin/Debug/net9.0/Lumel.Dto.pdb
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Dto/bin/Debug/net9.0/Lumel.Shared.dll
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Dto/bin/Debug/net9.0/Lumel.Shared.pdb
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Dto/obj/Debug/net9.0/Lumel.Dto.csproj.AssemblyReference.cache
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Dto/obj/Debug/net9.0/Lumel.Dto.GeneratedMSBuildEditorConfig.editorconfig
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Dto/obj/Debug/net9.0/Lumel.Dto.AssemblyInfoInputs.cache
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Dto/obj/Debug/net9.0/Lumel.Dto.AssemblyInfo.cs
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Dto/obj/Debug/net9.0/Lumel.Dto.csproj.CoreCompileInputs.cache
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Dto/obj/Debug/net9.0/Lumel.Dto.sourcelink.json
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Dto/obj/Debug/net9.0/Lumel.Dto.csproj.Up2Date
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Dto/obj/Debug/net9.0/Lumel.Dto.dll
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Dto/obj/Debug/net9.0/refint/Lumel.Dto.dll
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Dto/obj/Debug/net9.0/Lumel.Dto.pdb
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Dto/obj/Debug/net9.0/ref/Lumel.Dto.dll

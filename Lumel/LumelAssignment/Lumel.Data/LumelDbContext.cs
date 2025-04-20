@@ -18,4 +18,25 @@ public class LumelDbContext:DbContext
     public DbSet<MarketingCampaign> MarketingCampaigns { get; set; }
     #endregion
     
+    
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+
+        modelBuilder.Entity<Customer>(entity =>
+        {
+            entity.Property(e => e.Id)
+                .ValueGeneratedNever(); 
+        });
+        modelBuilder.Entity<Product>(entity =>
+        {
+            entity.Property(e => e.Id)
+                .ValueGeneratedNever(); 
+        });
+        modelBuilder.Entity<Order>(entity =>
+        {
+            entity.Property(e => e.Id)
+                .ValueGeneratedNever(); 
+        });
+    }
 }

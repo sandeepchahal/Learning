@@ -7,7 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.4"/>
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.4" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.4">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -29,9 +29,5 @@
       <None Update="csv\data.csv">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="ApiServices\" />
     </ItemGroup>
 </Project>

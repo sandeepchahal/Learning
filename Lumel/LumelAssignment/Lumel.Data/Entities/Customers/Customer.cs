@@ -10,7 +10,7 @@ namespace Lumel.Data.Entities;
 public class Customer:BaseEntity
 {
     [Key]
-    public required int Id { get; set; }
+    public required string Id { get; set; }
 
     [StringLength(100)]
     public required string Name { get; set; }

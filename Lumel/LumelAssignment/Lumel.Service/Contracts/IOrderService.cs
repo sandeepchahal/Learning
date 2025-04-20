@@ -6,7 +6,7 @@ namespace Lumel.Service;
 public interface IOrderService
 {
     Task AddAsync(List<OrderDto> dto);
-    Task<Order?> GetByIdAsync(int orderId);
-    Task<IEnumerable<Order>?> GetByProductIdAsync(int productId);
-    Task<IEnumerable<Order>?> GetByCustomerIdAsync(int customerId);
+    Task<Order?> GetByIdAsync(string orderId);
+    Task<IEnumerable<Order>?> GetByProductIdAsync(string productId);
+    Task<IEnumerable<Order>?> GetByCustomerIdAsync(string customerId);
 }

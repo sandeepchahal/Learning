@@ -6,5 +6,5 @@ namespace Lumel.Service;
 public interface IProductService
 {
     Task AddOrUpdateAsync(List<ProductDto> dto);
-    Task<Product?> GetByIdAsync(int productId);
+    Task<Product?> GetByIdAsync(string productId);
 }

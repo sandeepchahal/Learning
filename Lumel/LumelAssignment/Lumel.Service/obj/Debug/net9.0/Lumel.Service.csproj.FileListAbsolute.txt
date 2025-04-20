@@ -16,3 +16,5 @@
 /Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Service/bin/Debug/net9.0/Lumel.Shared.pdb
 /Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Service/obj/Debug/net9.0/Lumel.Service.csproj.AssemblyReference.cache
 /Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Service/obj/Debug/net9.0/Lumel.Se.82C57619.Up2Date
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Service/bin/Debug/net9.0/Lumel.Dto.dll
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.Service/bin/Debug/net9.0/Lumel.Dto.pdb
