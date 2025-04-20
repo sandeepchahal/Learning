@@ -13,7 +13,7 @@ public class CustomerService:ICustomerService
     {
         this.dbContext = dbContext;
     }
-    public async Task AddOrUpdateAsync(List<CustomerDto> dto)
+    public async Task AddOrUpdateAsync(List<CustomerDto> dto,bool isBackgroundExecuter = true)
     { 
         List<Customer> customers = new List<Customer>();
         foreach (var col in dto)
@@ -27,7 +27,7 @@ public class CustomerService:ICustomerService
                     Address = col.Address,
                     Email = col.Email,
                     Name = col.Name,
-                    CreatedBy = "System",
+                    CreatedBy = isBackgroundExecuter? "System":"API",
                     CreatedOn = DateTime.Now,
                     DateOfBirth = col.DateOfBirth,
                     Gender = col.Gender
@@ -39,7 +39,7 @@ public class CustomerService:ICustomerService
                 customer.DateOfBirth = col.DateOfBirth;
                 customer.Name = col.Name;
                 customer.Gender = col.Gender;
-                customer.ModifiedBy = "System";
+                customer.ModifiedBy = isBackgroundExecuter? "System":"API";
                 customer.ModifiedOn = DateTime.Now;
             }
         }

@@ -184,3 +184,6 @@
 /Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.ApiService/bin/Debug/net9.0/Lumel.Dto.pdb
 /Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.ApiService/bin/Debug/net9.0/CsvHelper.dll
 /Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.ApiService/bin/Debug/net9.0/Microsoft.Extensions.Configuration.Binder.dll
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.ApiService/bin/Debug/net9.0/Swashbuckle.AspNetCore.Annotations.dll
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.ApiService/bin/Debug/net9.0/Lumel.ApiService.xml
+/Users/sandeepsingh/Documents/Learning/Lumel/LumelAssignment/Lumel.ApiService/obj/Debug/net9.0/Lumel.ApiService.xml

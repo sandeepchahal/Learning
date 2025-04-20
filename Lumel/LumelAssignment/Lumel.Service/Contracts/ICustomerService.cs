@@ -5,6 +5,6 @@ namespace Lumel.Service;
 
 public interface ICustomerService
 {
-    Task AddOrUpdateAsync(List<CustomerDto> dto);
+    Task AddOrUpdateAsync(List<CustomerDto> dto, bool isBackgroundExecuter = true);
     Task<Customer?> GetByIdAsync(string customerId);
 }

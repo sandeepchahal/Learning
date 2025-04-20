@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Lumel.ApiService</name>
+    </assembly>
+    <members>
+        <member name="M:Lumel.ApiService.ApiServices.OrderApiController.GetRevenue(System.DateTime,System.Nullable{System.DateTime})">
+            <summary>
+            Get revenue calculations for a date range.
+            </summary>
+            <param name="startDate">Start date (format: yyyy-MM-dd)</param>
+            <param name="endDate">End date (optional, format: yyyy-MM-dd)</param>
+        </member>
+    </members>
+</doc>

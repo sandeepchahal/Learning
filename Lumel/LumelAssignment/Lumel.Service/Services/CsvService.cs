@@ -26,7 +26,7 @@ public class CsvService :ICsvService
         _csvPath = configuration.GetValue<string>("CsvProcessor:CsvFilePath")!;
 
     } 
-    public async Task ProcessFile()
+    public async Task ProcessFile(bool isBackgroundExecutor = true)
     {
         try
         {
@@ -91,7 +91,7 @@ public class CsvService :ICsvService
                         CustomerDto = customerDic.Values.ToList(),
                         ProductDto = productDic.Values.ToList(),
                         OrderDto = orderDic.Values.ToList()
-                    });
+                    }, isBackgroundExecutor);
             }
             _logger.LogInformation("CSV Background Service is stopped at {dateTime}", DateTime.Now);
             stopwatch.Stop();
@@ -105,9 +105,9 @@ public class CsvService :ICsvService
     
     
     #region Private
-    private async Task AddOrUpdateAsync(CsvDto csvDto)
+    private async Task AddOrUpdateAsync(CsvDto csvDto,bool isBackgroundExecutor)
     {
-        await _customerService.AddOrUpdateAsync(csvDto.CustomerDto);
+        await _customerService.AddOrUpdateAsync(csvDto.CustomerDto,isBackgroundExecutor);
         await _productService.AddOrUpdateAsync(csvDto.ProductDto);
         await _orderService.AddAsync(csvDto.OrderDto);
     }

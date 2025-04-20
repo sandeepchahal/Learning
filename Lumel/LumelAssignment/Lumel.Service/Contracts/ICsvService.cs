@@ -2,5 +2,5 @@ namespace Lumel.Service;
 
 public interface ICsvService
 {
-    Task ProcessFile();
+    Task ProcessFile(bool isBackgroundExecutor = true);
 }

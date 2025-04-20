@@ -71,4 +71,45 @@ public class OrderService(LumelDbContext dbContext):IOrderService
             .Where(orderItem => orderItem.CustomerId == customerId).ToListAsync();
 
     }
+
+    public async Task<Revenue> CalculateRevenue(DateTime startDate, DateTime endDate)
+    {
+        var orders = await dbContext.Orders.AsNoTracking()
+            .Where(col => col.DateOfSale >= startDate && col.DateOfSale <= endDate).ToListAsync();
+        
+        decimal totalRevenue = orders.Sum(col => col.Quantity * col.UnitPrice * (1 - col.Discount));
+        
+        var revenueByProduct = orders.OrderBy(col=>col.ProductId)
+            .GroupBy(col=>col.ProductId)
+            .ToDictionary(col=>col.Key, g=>g.Sum(o=>o.Quantity * o.UnitPrice * (1 - o.Discount)));
+        
+        var revenueByRegion= orders.OrderBy(col=>col.Region)
+            .GroupBy(col=>col.Region)
+            .ToDictionary(col=>col.Key, g=>g.Sum(o=>o.Quantity * o.UnitPrice * (1 - o.Discount)));
+
+
+        var groupByCategory =
+            (from o in dbContext.Orders
+                join p in dbContext.Products on o.ProductId equals p.Id
+                where o.DateOfSale>=startDate && o.DateOfSale<=endDate
+                group new { o, p } by p.Category
+                into g
+                orderby g.Key
+                select new
+                {
+                    Category = g.Key,
+                    Revenue = g.Sum(s=>s.o.Quantity * s.o.UnitPrice * (1 - s.o.Discount))
+                }).ToDictionary(col=>col.Category,col=>col.Revenue);
+        
+        return new Revenue()
+        {
+            TotalRevenue = totalRevenue,
+            TotalRevenueByCategory = groupByCategory,
+            TotalRevenueByProduct = revenueByProduct,
+            TotalRevenueByRegion = revenueByRegion
+        };
+    }
+    
+    
+    
 }

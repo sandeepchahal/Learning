@@ -11,8 +11,8 @@ public class CsvApiController(ICsvService csvService):ControllerBase
     {
         try
         {
-            await csvService.ProcessFile();
-            return Ok("File is process successfully");
+            await csvService.ProcessFile(false);
+            return Ok("File is processed successfully");
         }
         catch
         {
