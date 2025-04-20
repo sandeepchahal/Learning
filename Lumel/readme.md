@@ -23,14 +23,16 @@ This project is built using **.NET 9.0** and is designed to read a CSV file, loa
 5. **Swagger UI**  
    Once the service is running, you can access the Swagger UI at:  
    [http://localhost:5033/swagger/index.html](http://localhost:5033/swagger/index.html)
+   [http://localhost:7164/swagger/index.html](http://localhost:7164/swagger/index.html)
 
 ## API Endpoints
 
-| Route                | Method | Request Body                             | Sample Response                 | Description                                                      |
-| -------------------- | ------ | ---------------------------------------- | ------------------------------- | ---------------------------------------------------------------- |
-| `/api/csv/process`   | POST   | None                                     | `File is processed successfully | Processes the CSV file and loads its contents into the database. |
-| `/api/order/revenue` | GET    | Query: `startDate`, `endDate` (optional) | `{                              |
+| Route                | Method | Request Body                             | Sample Response                  | Description                                                      |
+| -------------------- | ------ | ---------------------------------------- | -------------------------------- | ---------------------------------------------------------------- |
+| `/api/csv/process`   | POST   | None                                     | `File is processed successfully` | Processes the CSV file and loads its contents into the database. |
+| `/api/order/revenue` | GET    | Query: `startDate`, `endDate` (optional) |
 
+`{                               
 "totalRevenue": 1983.0284,
 "totalRevenueByProduct": {
 "P324": 746.253,
